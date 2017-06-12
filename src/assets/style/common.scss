@@ -1,0 +1,150 @@
+@import 'mixin';
+@import '~assets/font/iconfont';
+
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei",sans-serif;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-font-smoothing: antialiased;
+    &:focus {
+        outline: none;
+    }
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 0px;  
+    height: 0px;  
+    background-color: #F5F5F5;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);  
+    border-radius: 10px;  
+    background-color: #F5F5F5;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: #555;  
+}  
+
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+textarea { -webkit-appearance: none;}   
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    font-size: 10px;
+}
+img{
+    width: 100%;
+}
+.col-1{width: 10%;}
+.col-2{width: 20%;}
+.col-3{width: 30%;}
+.col-4{width: 40%;}
+.col-5{width: 50%;}
+.col-6{width: 60%;}
+.col-7{width: 70%;}
+.col-8{width: 80%;}
+.col-9{width: 90%;}
+.col-10{width: 100%;}
+.lr-col{
+    @include fj();
+}
+
+.fz12{font-size: 1em;}
+.fz14{font-size: 1.1666em;}
+.fz16{font-size: 1.3333em;}
+.fz18{font-size: 1.5em;}
+
+.tac{text-align: center;}
+.tar{text-align: right;}
+.tal{text-align: left;}
+
+.fl{float: left;}
+.fr{float: right;}
+.pr{position: relative;}
+.pa{position: absolute;}
+// 公共样式
+.padd-lr{
+    @include remCalc('padding', 0, 10);
+}
+#app{
+    margin-bottom: strip-rem(60px);
+}
+.divide-line{
+    background-color: #363636;
+    margin: 0;
+    border: none;
+    height: 1rem;
+    @include remCalc('height', 12);
+}
+.btn-buy{
+    width: strip-rem(100px);
+    height: strip-rem(30px);
+    background-color: #999;
+    color: #000;
+    line-height: strip-rem(30px);
+    margin: 0 auto;
+}
+// 左右按钮通知块
+.lr-info{
+    background-color: $gray;
+    @include remCalc('padding', 15, 10);
+}
+.link-known{
+    @include remCalc('padding', 5, 10);
+    background-color: #000;
+}
+// ul列表
+.list-item{
+    float: left;
+    width: 50%;
+    @include remCalc('padding', 0, 0, 15, 15);
+    img{
+        width: 100%;
+    }
+    .item-content{
+        @include remCalc('padding', 10, 0);
+        color: #989898;
+    }
+    .item-pirce,{
+        color: #989898;
+    }
+}
+.goods-item{
+    padding-bottom: strip-rem(15px);
+    border-bottom: 1px solid $gray;;
+    a{
+        display: block;
+    }
+    .item-content{
+        @include remCalc('padding', 10, 0);
+        color: #747474;
+    }
+}
+// 弹窗默认字体颜色
+.tip_text{
+    p{
+        color: #333;
+    }
+}

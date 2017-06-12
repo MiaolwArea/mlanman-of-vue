@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+$gray: #333;
+$newsFZ: 14;
+$browser-default-font-size: 32px !default;
+
+@function strip-units($number){ 
+	@return $number / ($number * 0 + 1);
+}
+@function strip-rem($number){ 
+	@return $number / $browser-default-font-size * 1rem;
+}
+// 背景图片地址和大小
+@mixin bis($url) { 
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+@mixin borderRadius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+//定位全屏
+@mixin allcover{
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+//定位上下左右居中
+@mixin center {  
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+//定位上下居中
+@mixin ct {  
+	position: absolute;
+	top: 50%;
+    transform: translateY(-50%);
+}
+
+//定位上下居中
+@mixin cl {  
+	position: absolute;
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+//宽高
+@mixin wh($width, $height){
+	width: strip-rem($width);
+	height: strip-rem($height);
+}
+
+//字体大小、行高、字体
+@mixin font($size, $line-height, $family: 'Microsoft YaHei') {  
+	font: #{$size}/#{$line-height} $family;
+}
+
+//字体大小，颜色
+@mixin sc($size, $color){
+	font-size: strip-rem($size);
+	color: $color;
+}
+
+//flex 布局和 子元素 对其方式
+@mixin fj($type: space-between, $direction: row){
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: $type;
+    flex-direction: $direction;
+}
+
+@mixin prefix($property, $values){
+	-webkit-#{$property}: $values;
+    -moz-#{$property}: $values;
+    -ms-#{$property}: $values;
+    -o-#{$property}: $values;
+    #{$property}: $values;
+}
+
+@mixin remCalc($property, $values...) { 
+	$max: length($values); 
+	$remValues: '';
+	$stripVal:  0;
+
+	@for $i from 1 through $max {  
+		$stripVal: nth($values, $i);
+		@if type-of($stripVal) == 'number' {
+			$value: strip-units($stripVal); 
+			$remValues: #{$remValues + $value / strip-units($browser-default-font-size)}rem; 	
+		}@else{
+			$remValues: #{$remValues + $stripVal};
+		}
+		
+
+		@if $i < $max {  
+			$remValues: #{$remValues + " "}; 
+		} 
+	} 
+
+	#{$property}: $remValues; 
+} 

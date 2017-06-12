@@ -1,0 +1,121 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "pointUser": {
+    "error": 0,
+    "msg": null,
+    "data": {
+      "familyOrderCount": 2,
+      "spreadinfo": {
+          "user_id": "12292200",
+          "scan_id": "1",
+          "qrcode": "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHD8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL09Eb0JlMnZsS3daU05jUS01aEtLAAIEYOOiVwMEAAAAAA==",
+          "people_total": "15",
+          "income_total": "32.250",
+          "withdraw_total": "30.510",
+          "status": "1",
+          "start_time": "1472113503",
+          "end_time": "1767196740",
+          "add_time": "1472113503",
+          "qrcode_img": "http://imglanman.b0.upaiyun.com/2016/08/25/6535c875a2c30d20fc91a3b82b41979d.jpg",
+          "sale_money": "129.00",
+          "vip_status": "0",
+          "qrcode_style": "16",
+          "nickname": "桂镇",
+          "avatar": "http://imglanman.b0.upaiyun.com/2016/09/01/d8f211d968cf5eb9c0485ac505913ee1.jpg",
+          "unionid": "orLkuv59n5_3Y_XyoMOkAMOFeEBc",
+          "is_ok": "1"
+      },
+      "times": 0,
+      "member_info": {
+          "member_id": "12292200",
+          "member_nickname": "桂镇",
+          "avatar": "",
+          "sex": 2,
+          "birthday": "0000-00-00 00:00:00",
+          "integral": "5",
+          "fee_count": "0",
+          "mobile": "",
+          "province_id": "0",
+          "city_id": "0",
+          "qq": "",
+          "signature": "",
+          "fans_count": "0",
+          "new_fans_count": "0",
+          "follow_count": "0",
+          "message_count": "0",
+          "member_rank": "LV1",
+          "member_medal": "0",
+          "cart_goods_total_num": 0
+      },
+      "family": 14,
+      "task_list": [
+          {
+              "task_id": "1",
+              "type": "1",
+              "val": "2",
+              "desc": "关注“LANMAN烂熳口红”公众号",
+              "status": "3"
+          },
+          {
+              "task_id": "2",
+              "type": "1",
+              "val": "3",
+              "desc": "生成你的专属二维码图片",
+              "status": "3"
+          },
+          {
+              "task_id": "3",
+              "type": "1",
+              "val": "5",
+              "desc": "邀请5位朋友成为你的家族成员",
+              "status": "3"
+          },
+          {
+              "task_id": "7",
+              "type": "1",
+              "val": "15",
+              "desc": "邀请20位朋友成为你的家族成员",
+              "status": "1"
+          },
+          {
+              "task_id": "4",
+              "type": "1",
+              "val": "5",
+              "desc": "推荐家族成员购买口红",
+              "status": "1"
+          },
+          {
+              "task_id": "5",
+              "type": "1",
+              "val": "5",
+              "desc": "获得100个积分",
+              "status": "3"
+          },
+          {
+              "task_id": "6",
+              "type": "1",
+              "val": "5",
+              "desc": "兑换LANMAN烂熳口红",
+              "status": "1"
+          }
+      ],
+      "is_doubule": "1"
+    }
+  }
+}

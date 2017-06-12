@@ -1,15 +1,18 @@
 # mlanman-vue
 
-> A Vue.js project
+> A Vue.js project，此项目作为烂熳移动端项目，前端重构模拟项目
 
 ## Build Setup
-
+**注意：由于涉及大量的 ES6/7 等新属性，nodejs 必须是 6.0 以上版本 ，node 7 是先行版，有可能会出问题，建议使用 node 6 稳定版  
+本项目借鉴Github上的[vue2-elm](https://github.com/bailicangdu/vue2-elm),在此表示感谢😁**
 ``` bash
+# 建议使用淘宝镜像命令cnpm代替npm!
 # install dependencies
-npm install
+cnpm i
 
 # serve with hot reload at localhost:8080
-npm run dev
+# 这里除了启动项目还要启动mock模拟环境
+npm run mockdev
 
 # build for production with minification
 npm run build
@@ -17,5 +20,5 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 技术栈
+vue2 + vue-router + webpack + ES6/7 + fetch + sass + flex + svg

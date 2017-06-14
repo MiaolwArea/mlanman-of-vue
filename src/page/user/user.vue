@@ -2,55 +2,50 @@
     <div id="member">
         <section class="about-me">
             <a class="member-photo" href="">
-                <img src="http://image.lanman.cn/2017/05/09/8d0714d67537db87fdc67c967166ceed.jpg" alt="">
+                <img :src="avatar">
             </a>
             <div class="member-info">
-                <p class="fz14">碎魄零星</p>
+                <p class="fz14">{{ userName }}</p>
                 <p class="point">
-                    <span class="member-id">会员ID: 123455</span>
+                    <span class="member-id">会员ID: {{ userId }}</span>
                     <span>
                         <i class="iconfont icon-point ft-34">&#xe61e;</i>
-                        我的积分: <a href="">13652 ></a>
+                        我的积分: <a href="">{{ point }} ></a>
                     </span>
                 </p>
-                <p class="fz14">家族族长: 无名</p>
+                <p class="fz14">家族族长: {{ patriarch }}</p>
             </div>
         </section>
         <section class="menu">
             <ul class="menu-list">
                 <li class="list-item">
-                    <a href="">
+                    <a @click="gotoAddress({path: '/home'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的订单</span>
-                        <span class="info-num fr">3</span>
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="">
+                    <a @click="gotoAddress({path: '/logistics'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的物流</span>
-                        <span class="info-num fr">3</span>
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="">
+                    <a @click="gotoAddress({path: '/payfeedback'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的售后</span>
-                        <span class="info-num fr">3</span>
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="">
+                    <a @click="gotoAddress({path: '/mycomment'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的评价</span>
-                        <span class="info-num fr">3</span>
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="">
+                    <a @click="gotoAddress({path: '/address'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的地址</span>
-                        <span class="info-num fr">3</span>
                     </a>
                 </li>
             </ul>
@@ -59,44 +54,21 @@
             <div class="lr-col fz14 lr-info">
                 <div class="col-6">
                     <span class="iconfont icon-newGoods-schedule"></span>
-                    免费获得4支口红，我是怎么做到的？
+                    距离下次新品发布还有1天
                 </div>
                 <div class="col-4 tar">
-                    <a class="link-known" href="">了解代言人模式</a>
+                    <a class="link-known" href="">订阅新品提醒</a>
                 </div>
             </div>
         </section>
         <section class="recommend">
             <p class="title fz14">LANMAN向您推荐</p>
             <ul class="item-list fl">
-                <li class="list-item">
-                    <a href="">
-                        <img class="item-view" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg" alt="">
-                        <p class="item-content">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
-                        <p class="item-pirce">¥120.00</p>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a href="">
-                        <img class="item-view" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg" alt="">
-                        <p class="item-content">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
-                        <p class="item-pirce">¥120.00</p>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a href="">
-                        <img class="item-view" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg" alt="">
-                        <p class="item-content">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
-                        <p class="item-pirce">¥120.00</p>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a href="">
-                        <img class="item-view" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg" alt="">
-                        <p class="item-content">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
-                        <p class="item-pirce">¥120.00</p>
-                    </a>
-                </li>
+                <router-link v-for="item in recommendList" :key="item.id" :to="{path: 'goods', query: {id: item.id}}" tag="li" class="list-item" >
+                    <img class="item-view" :src="item.outside_view">
+                    <p class="item-content">{{ item.goods_name }}</p>
+                    <p class="item-pirce">¥{{ item.shop_price }}</p>
+                </router-link>
             </ul>
         </section>
         <footer-nav></footer-nav>   
@@ -105,15 +77,40 @@
 
 <script>
 	import footerNav from '../../components/footer/footerNav'
+    import {user} from '../../service/getData'
 
     export default {
     	data(){
             return{
-                
+                avatar: '',             // 会员头像
+                userName: '',           // 会员名
+                userId: null,           // 会员ID
+                point: 0,               // 会员积分
+                patriarch: '',          // 家族族长
+                recommendList: null,    // 推荐商品列表
             }
         },
         components: {
         	footerNav,
+        },
+        mounted(){
+            this.initData();
+        },
+        methods: {
+            async initData(){
+                let userRes = await user();
+                let userData = userRes.data;
+
+                this.avatar = userData.avatar;
+                this.userName = userData.user_name;
+                this.userId = userData.user_id;
+                this.point = userData.point;
+                this.patriarch = userData.patriarch;
+                this.recommendList = userData.recommend;
+            },
+            gotoAddress(path){
+                this.$router.push(path);
+            },
         }
     }
 </script>

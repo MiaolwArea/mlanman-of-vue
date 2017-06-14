@@ -2,7 +2,7 @@
     <div class="alet_container">
 	    <section class="tip_text_container">
             <div class="tip_text" :class="{tal: isUpload === true}">
-            	<div v-html="alertText"></div>
+            	<div v-html="alertText" style="color: #000;"></div>
             	<div v-if="isUpload" class="upload-wrapper">
             		<div class="upload">
             			<img src="http://image.lanman.cn/2016/m.lanman.cn/images/comment/add.png">
@@ -12,7 +12,7 @@
             <div v-if="isConfirm" class="confrim" @click="closeTip">确认</div>
             <div class="confrim-box" v-else="isConfirm">
             	<div class="confrim" @click="closeTip">取消</div>
-            	<div class="confrim" @click="closeTip">确认</div>
+            	<div class="confrim" @click="sureTip">确认</div>
             </div>
         </section>
     </div>
@@ -30,12 +30,15 @@
       
         },
         props: {
+            // 弹出框内容
         	alertText: {
         		default: ''
         	},
+            // 是否只显示确认？0: 显示取消；1: 不显示取消
         	isConfirm: {
         		default: true
         	},
+            // 是否显示上传按钮
         	isUpload: {
         		default: false
         	}
@@ -43,7 +46,10 @@
         methods: {
             closeTip(){
                 this.$emit('closeTip')
-            }
+            },
+            sureTip(){
+                this.$emit('sureTip')
+            },
         }
     }
 </script>

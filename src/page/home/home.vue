@@ -6,7 +6,7 @@
     		<span class="fz14">关注公众号</span>
     	</div>
     	<div class="slogn">
-    		<a href="">
+    		<a href="javascript:void(0);">
     			<img src="~assets/images/common/slogn.png" alt="">
     		</a>
     	</div>
@@ -22,14 +22,14 @@
     		<p>免费获得4支口红，我是怎么做到的？</p>
     	</div>
     	<div class="col-4 tar">
-    		<a class="link-known" href="">了解代言人模式</a>
+    		<a class="link-known" href="http://mp.weixin.qq.com/s?__biz=MzI0NjUwOTEzNA==&mid=2247484274&idx=1&sn=db8fe78700a35a5100f155f81a9d9d20&chksm=e9bf7853dec8f145afe50c8f5787449fdb235c12adddff3e98d224054e2153f8a1987c092893#rd">了解代言人模式</a>
     	</div>
     </section>
     <section class="new-goods">
     	<h2 class="section-title fz16"><font class="iconfont icon-title-embellish"></font>当季新品</h2>
     	<ul class="padd-lr">
-            <li>
-                <a href="http://m.lanman.cn/sp/49.html"><img src="http://image.lanman.cn/2017/05/18/c62ec58205415801ca555794c01a285c.jpg"></a>
+            <li v-for="item in newGoodsListArr" :key="item.order_id">
+                <a :href="item.ad_url"><img :src="item.img_url"></a>
             </li>
         </ul>
     </section>
@@ -39,7 +39,7 @@
             LANMAN烂熳本季新品上线了！
         </div>
         <div class="col-4 tar">
-            <a class="link-known" href="">订阅新品提醒</a>
+            <a class="link-known" @click="subRemind">{{ reminderTxt }}</a>
         </div>
     </section>
     <section class="introduce-area">
@@ -50,89 +50,55 @@
     		<div class="introduce-header">
     			<label class="select-type">肤质：</label>
                 <span>
-                    <input type="radio" name="skin" id="skinA" value="1">
+                    <input type="radio" name="skin" id="skinA" value="1" v-model="skin">
                     <label for="skinA">偏白</label>
                 </span>
                 <span>
-                    <input type="radio" name="skin" id="skinB" value="2">
+                    <input type="radio" name="skin" id="skinB" value="2" v-model="skin">
                     <label for="skinB">偏黄</label>
                 </span>
                 <span>
-                    <input type="radio" name="skin" id="skinC" value="3">
+                    <input type="radio" name="skin" id="skinC" value="3" v-model="skin">
                     <label for="skinC">偏黑</label>
                 </span>
     		</div>
     		<div class="introduce-footer">
-    			<label class="select-type">想要：</label>
+    			<label class="select-type">场合：</label>
                 <span>
-                    <input type="checkbox" name="scene" id="sceneA" value="13">
+                    <input type="checkbox" id="sceneA" value="13" v-model="scene">
                     <label for="sceneA">约会</label>
                 </span>
                 <span>
-                    <input type="checkbox" name="scene" id="sceneB" value="11">
+                    <input type="checkbox" id="sceneB" value="11" v-model="scene">
                     <label for="sceneB">休闲</label>
                 </span>
                 <span>
-                    <input type="checkbox" name="scene" id="sceneC" value="12">
+                    <input type="checkbox" id="sceneC" value="12" v-model="scene">
                     <label for="sceneC">通勤</label>
                 </span>
     		</div>
     	</div>
-    	<a class="setting-confirm" href="javascript:void(0)">推荐适合的口红</a>
+    	<a class="setting-confirm" @click="screen">推荐适合的口红</a>
     </section>
     <hr class="divide-line">
     <section class="new-goods">
     	<h2 class="section-title fz16"><font class="iconfont icon-title-embellish"></font>全部商品</h2>
-    	<ul class="goods-list" v-load-more="loaderMore">
-            <li class="goods-item">
-                <a class="padd-lr" href="">
-                    <img class="item-view" src="http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg">
-                    <p class="item-content fz14">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
+    	<ul class="goods-list" v-load-more="loaderMore" type="1">
+            <li class="goods-item" v-for="item in goodsListArr" :key="item.order_id">
+                <router-link :to="{path: 'goods', query: {id: item.order_id}}" tag="a" class="padd-lr">
+                    <img class="item-view" :src="item.outside_view">
+                    <p class="item-content fz14">{{ item.goods_name }}</p>
                     <div class="item-p-c">
-                        <p class="item-pirce tar fz14">¥120.00</p>
-                        <p class="item-comment">11条评价</p>
+                        <p class="item-pirce tar fz14">¥{{ item.shop_price }}</p>
+                        <p class="item-comment">{{ item.cmt_count }}条评价</p>
                     </div>
-                </a>
+                </router-link>
                 <div class="item-footer lr-col padd-lr fz14">
                     <div class="goods-property col-6">
-                        <p>适合肤质：<span>偏白、偏黄、偏黑</span></p>
-                        <p>推荐场景：<span>休闲、通勤、约会</span></p>
+                        <p>适合肤质：<span>{{ item.skin }}</span></p>
+                        <p>推荐场景：<span>{{ item.scenes }}</span></p>
                     </div>
-                    <a href="" class="col-4 btn-buy tac">立即购买</a>
-                </div>
-            </li>
-            <li class="goods-item">
-                <a class="padd-lr" href="">
-                    <img class="item-view" src="http://image.lanman.cn/2017/02/28/58e14c1483492b375c49e8fca85cefa5.jpg">
-                    <p class="item-content fz14">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
-                    <div class="item-p-c">
-                        <p class="item-pirce tar fz14">¥120.00</p>
-                        <p class="item-comment">11条评价</p>
-                    </div>
-                </a>
-                <div class="item-footer lr-col padd-lr fz14">
-                    <div class="goods-property col-6">
-                        <p>适合肤质：<span>偏白、偏黄、偏黑</span></p>
-                        <p>推荐场景：<span>休闲、通勤、约会</span></p>
-                    </div>
-                    <a href="" class="col-4 btn-buy tac">立即购买</a>
-                </div>
-            </li>
-            <li class="goods-item">
-                <a class="padd-lr" href="">
-                    <img class="item-view" src="http://image.lanman.cn/2017/02/09/8a8909dfbcb7facce12678c69eb5552b.jpg">
-                    <p class="item-content fz14">LANMAN #104 巧克力初心系列-摩洛哥王妃</p>
-                    <div class="item-p-c">
-                        <p class="item-pirce tar fz14">¥120.00</p>
-                        <p class="item-comment">11条评价</p>
-                    </div>
-                </a>
-                <div class="item-footer lr-col padd-lr fz14">
-                    <div class="goods-property col-6">
-                        <p>适合肤质：<span>偏白、偏黄、偏黑</span></p>
-                        <p>推荐场景：<span>休闲、通勤、约会</span></p>
-                    </div>
-                    <a href="" class="col-4 btn-buy tac">立即购买</a>
+                    <router-link :to="{path: 'goods', query: {id: item.order_id}}" tag="a" class="col-4 btn-buy tac">立即购买</router-link>
                 </div>
             </li>
         </ul>
@@ -142,6 +108,7 @@
 	</section>
     <hr class="divide-line">
     <loading v-show="showLoading"></loading>
+    <alert-tip v-show="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
   </div>
@@ -150,36 +117,53 @@
 <script>
 import footerBottom from '../../components/footer/footer'
 import footerNav from '../../components/footer/footerNav'
-import {newsGoodsList} from '../../service/getData'
+import {allGoodsList, newGoodsList, home, addsubscribe} from '../../service/getData'
 import {loadMore} from '../../components/common/mixin'
+import alertTip from '../../components/common/alertTip'
 import loading from '../../components/common/loading'
 
 export default {
+    // TODO 立即购买、购物车、订阅提醒都要登录验证
 	data() {
 		return{
-            counts: 0,
-            showLoading: true,
-            goodsListArr: null,
+            counts: 0,              // 单次请求商品数目
+            showAlert: false,       // 是否显示弹窗
+            alertText: null,        // 弹框文本内容
+            showLoading: true,      // 默认显示加载动画
+            goodsListArr: null,     // 全部商品列表
+            newGoodsListArr: null,  // 当季新品列表
+            totalNum: 0,            // 商品总数
+            reminderTxt: null,      // 订阅按钮文本
+            skin: '',               // 肤质
+            scene: [],              // 场合
         }
 	},
-
     components: {
         footerBottom,
         footerNav,
+        alertTip,
         loading,
     },
     mixins: [loadMore],
     mounted: function(){
-        this.initData();        
+        this.initData();   
+        this.reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
     },
     methods: {
         // 初始化获取数据
         async initData(){
-            let res = await newsGoodsList(counts)
-            let resData = res.data;
+            let newGoodsListRes = await newGoodsList();
+            this.newGoodsListArr = newGoodsListRes.data;
 
-            // this.goodsListArr = [...resData];
-            console.log(this.goodsListArr);
+            let res = await allGoodsList(this.counts, this.skin || null, this.scene.length != 0 ? this.scene : null);
+            let resData = res.data.info;
+
+            this.totalNum = res.data.total;
+            this.goodsListArr = [...resData];
+
+            let homeRes = await home();
+            this.reminderTxt = this.reminderMap[homeRes.data.subscribe];
+
             this.showLoading = false;
         },
 
@@ -195,15 +179,40 @@ export default {
             this.showLoading = true;
             this.preventRepeatReuqest = true;
 
-            //数据的定位加20位
-            this.offset += 3;
+            //数据每次显示3条
+            this.counts += 3;
             
-            //当获取数据小于20，说明没有更多数据，不需要再次请求数据
-            if (res.length < 20) {
+            let res = await allGoodsList(this.counts, this.skin || null, this.scene.length != 0 ? this.scene : null);
+            let resData = res.data.info;
+
+            this.showLoading = false;
+            this.goodsListArr = [...this.goodsListArr, ...resData];
+            //当获取数据小于总数，说明没有更多数据，不需要再次请求数据
+            if (resData.length >= this.totalNum) {
                 this.touchend = true;
                 return
             }
             this.preventRepeatReuqest = false;
+        },
+        // 订阅提醒
+        subRemind(){
+            this.showAlert = true;
+            this.alertText = "有新品上市，您将会收到公众号推送的消息";
+        },
+        async sureTip(){
+            let addsubscribeRes = await addsubscribe();
+            this.reminderTxt = this.reminderMap[addsubscribeRes.data.subscribe];
+            this.showAlert = false;
+        },
+        // 口红推荐
+        async screen(){
+            this.counts = 0;
+            this.showLoading = true;
+            let res = await allGoodsList(this.counts, this.skin, this.scene);
+            let resData = res.data.info;
+
+            this.showLoading = false;
+            this.goodsListArr = [...this.goodsListArr, ...resData];
         },
     },
 }

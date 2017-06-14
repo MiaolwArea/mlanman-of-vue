@@ -75,6 +75,7 @@ img{
 .fz14{font-size: 1.1666em;}
 .fz16{font-size: 1.3333em;}
 .fz18{font-size: 1.5em;}
+.fz20{font-size: 1.6666em;}
 
 .tac{text-align: center;}
 .tar{text-align: right;}
@@ -84,6 +85,9 @@ img{
 .fr{float: right;}
 .pr{position: relative;}
 .pa{position: absolute;}
+
+.show{display: block;}
+.hide{display: hidden;}
 // 公共样式
 .padd-lr{
     @include remCalc('padding', 0, 10);

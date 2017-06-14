@@ -1,21 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "pointUser": {
     "error": 0,
     "msg": null,
@@ -116,6 +99,89 @@
           }
       ],
       "is_doubule": "1"
+    }
+  },
+  "allGoodsList":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "total": 6,
+      "info": [{
+        "order_id": 1,
+        "outside_view": "http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "shop_price": 120.00,
+        "cmt_count": 11,
+        "skin": "偏白、偏黄、偏黑",
+        "scenes": "休闲、通勤、约会"
+      },{
+        "order_id": 2,
+        "outside_view": "http://image.lanman.cn/2017/02/28/58e14c1483492b375c49e8fca85cefa5.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "shop_price": 120.00,
+        "cmt_count": 11,
+        "skin": "偏白、偏黄、偏黑",
+        "scenes": "休闲、通勤、约会"
+      },{
+        "order_id": 3,
+        "outside_view": "http://image.lanman.cn/2017/02/09/8a8909dfbcb7facce12678c69eb5552b.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "shop_price": 120.00,
+        "cmt_count": 11,
+        "skin": "偏白、偏黄、偏黑",
+        "scenes": "休闲、通勤、约会"
+      },{
+        "order_id": 4,
+        "outside_view": "http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "shop_price": 120.00,
+        "cmt_count": 11,
+        "skin": "偏白、偏黄、偏黑",
+        "scenes": "休闲、通勤、约会"
+      },{
+        "order_id": 5,
+        "outside_view": "http://image.lanman.cn/2017/02/28/58e14c1483492b375c49e8fca85cefa5.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "shop_price": 120.00,
+        "cmt_count": 11,
+        "skin": "偏白、偏黄、偏黑",
+        "scenes": "休闲、通勤、约会"
+      },{
+        "order_id": 6,
+        "outside_view": "http://image.lanman.cn/2017/02/09/8a8909dfbcb7facce12678c69eb5552b.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "shop_price": 120.00,
+        "cmt_count": 11,
+        "skin": "偏白、偏黄、偏黑",
+        "scenes": "休闲、通勤、约会"
+      }]
+    }
+  },
+  "newGoodsList":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "order_id": 1,
+      "img_url": "http://image.lanman.cn/2017/05/18/c62ec58205415801ca555794c01a285c.jpg",
+      "ad_url": "http://m.lanman.cn/sp/49.html"
+    },{
+      "order_id": 2,
+      "img_url": "http://image.lanman.cn/2017/05/18/c62ec58205415801ca555794c01a285c.jpg",
+      "ad_url": "http://m.lanman.cn/sp/49.html"
+    }]
+  },
+  "home":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "subscribe": 1
+    }
+  },
+  "addsubscribe":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "subscribe": 0
     }
   }
 }

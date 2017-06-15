@@ -120,6 +120,8 @@
 	import alertTip from '../../components/common/alertTip'
 	import loading from '../../components/common/loading'
 
+	const boolerInfo = {false: '已订阅', true: '订阅提醒'};
+	
     export default {
     	data(){
             return{
@@ -200,7 +202,6 @@
         	},
         	// 订阅提醒
         	subReminder(){
-        		let boolerInfo = {false: '已订阅', true: '订阅提醒'};
 
         		// this.$http.get('http://localhost:3000/subReminder').then(res => {
 	    			this.subBooler = !this.subBooler;

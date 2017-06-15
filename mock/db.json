@@ -183,5 +183,30 @@
     "data": {
       "subscribe": 0
     }
+  },
+  "qrcodeimg":{
+    "error": 0,
+    "msg": null,
+    "data": "http://image.lanman.cn/2017/06/14/0066df76f084f4170223e89c76590b4a.jpg"
+  },
+  "getQrcodeimgs":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "id": 11,
+      "img_url": "http://image.lanman.cn/2017/06/14/0066df76f084f4170223e89c76590b4a.jpg"
+    },{
+      "id": 22,
+      "img_url": "http://image.lanman.cn/2016/m.lanman.cn/images/spokesman/code_02/01.jpg"
+    },{
+      "id": 33,
+      "img_url": "http://image.lanman.cn/2016/m.lanman.cn/images/spokesman/code_03/02.jpg"
+    },{
+      "id": 44,
+      "img_url": "http://image.lanman.cn/2016/m.lanman.cn/images/spokesman/code_04/01.jpg"
+    },{
+      "id": 55,
+      "img_url": "http://image.lanman.cn/2016/m.lanman.cn/images/spokesman/code_05/02.jpg"
+    }]
   }
 }

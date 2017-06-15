@@ -41,4 +41,9 @@ export const user = () => fetch('/user');
  */
 export const qrcodeimg = () => fetch('/qrcodeimg');
 
+/**
+ * 获取二维码数据组
+ */
+export const getQrcodeimgs = () => fetch('/getQrcodeimgs');
+
 

@@ -117,10 +117,12 @@
 <script>
 import footerBottom from '../../components/footer/footer'
 import footerNav from '../../components/footer/footerNav'
-import {allGoodsList, newGoodsList, home, addsubscribe} from '../../service/getData'
-import {loadMore} from '../../components/common/mixin'
+import { allGoodsList, newGoodsList, home, addsubscribe } from '../../service/getData'
+import { loadMore } from '../../components/common/mixin'
 import alertTip from '../../components/common/alertTip'
 import loading from '../../components/common/loading'
+
+const reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
 
 export default {
     // TODO 立即购买、购物车、订阅提醒都要登录验证
@@ -147,7 +149,6 @@ export default {
     mixins: [loadMore],
     mounted: function(){
         this.initData();   
-        this.reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
     },
     methods: {
         // 初始化获取数据
@@ -162,7 +163,7 @@ export default {
             this.goodsListArr = [...resData];
 
             let homeRes = await home();
-            this.reminderTxt = this.reminderMap[homeRes.data.subscribe];
+            this.reminderTxt = reminderMap[homeRes.data.subscribe];
 
             this.showLoading = false;
         },
@@ -201,7 +202,7 @@ export default {
         },
         async sureTip(){
             let addsubscribeRes = await addsubscribe();
-            this.reminderTxt = this.reminderMap[addsubscribeRes.data.subscribe];
+            this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
             this.showAlert = false;
         },
         // 口红推荐

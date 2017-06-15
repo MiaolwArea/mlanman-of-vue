@@ -77,7 +77,7 @@
 
 <script>
 	import footerNav from '../../components/footer/footerNav'
-    import {user} from '../../service/getData'
+    import { user } from '../../service/getData'
 
     export default {
     	data(){

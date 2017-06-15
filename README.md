@@ -6,7 +6,7 @@
 **注意：由于涉及大量的 ES6/7 等新属性，nodejs 必须是 6.0 以上版本 ，node 7 是先行版，有可能会出问题，建议使用 node 6 稳定版  
 本项目借鉴Github上的[vue2-elm](https://github.com/bailicangdu/vue2-elm),在此表示感谢😁**
 ``` bash
-# 建议使用淘宝镜像命令cnpm代替npm!
+# 建议使用淘宝镜像命令cnpm代替npm!防止依赖出错可以用：npm i --registry=https://registry.npm.taobao.org
 # install dependencies
 cnpm i
 
@@ -21,4 +21,4 @@ npm run build
 npm run build --report
 ```
 ## 技术栈
-vue2 + vue-router + webpack + ES6/7 + fetch + sass + flex + svg
+vue2 + vux + vue-router + webpack + ES6/7 + fetch + sass + flex + svg + mock(json-server)

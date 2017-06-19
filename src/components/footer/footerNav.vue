@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
     export default {
     	data(){
             return{
@@ -53,10 +55,24 @@
                 default: true
             }
         },
+        mounted(){
+            //获取用户信息
+            this.getUserInfo();
+        },
+        computed: {
+            ...mapState([
+                'userInfo'
+            ])
+        },
         methods: {
+            // 获取登入信息
+            ...mapActions([
+                'getUserInfo'
+            ]),
+            // 地址跳转
         	gotoAddress(path){
         		this.$router.push(path)
-        	}
+        	},
         },
     }
 </script>

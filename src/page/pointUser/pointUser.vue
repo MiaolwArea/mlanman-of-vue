@@ -156,7 +156,7 @@
 	        // 初始化获取数据
 	        async initData(){
 	        	// 进入页面根据积分值, 执行动画以及数据初始化
-	            let res = await pointUser()
+	            let res = await pointUser();
 	            let resData = res.data;
 	            if(resData){
 	            	var dataInfo = resData

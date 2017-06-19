@@ -77,7 +77,9 @@
 
 <script>
 	import footerNav from '../../components/footer/footerNav'
-    import { user } from '../../service/getData'
+    import { recommendList } from '../../service/getData'
+    import { removeStore } from '../../assets/config/mUtils'
+    import { mapState, mapMutations } from 'vuex'
 
     export default {
     	data(){
@@ -94,23 +96,34 @@
         	footerNav,
         },
         mounted(){
-            this.initData();
+            // this.initData();
+        },
+        computed: {
+            ...mapState([
+                'userInfo',
+            ])
         },
         methods: {
             async initData(){
-                let userRes = await user();
-                let userData = userRes.data;
+                if (this.userInfo && this.userInfo.user_id) {
+                    this.avatar = this.userInfo.avatar;
+                    this.userName = this.userInfo.user_name;
+                    this.userId = this.userInfo.user_id;
+                    this.point = this.userInfo.point;
+                    this.patriarch = this.userInfo.patriarch;
+                }
+                let recommendListRes = await recommendList();
 
-                this.avatar = userData.avatar;
-                this.userName = userData.user_name;
-                this.userId = userData.user_id;
-                this.point = userData.point;
-                this.patriarch = userData.patriarch;
-                this.recommendList = userData.recommend;
+                this.recommendList = recommendListRes.data;
             },
             gotoAddress(path){
                 this.$router.push(path);
-            },
+            }
+        },
+        watch: {
+            userInfo: function (value){
+                this.initData()
+            }
         }
     }
 </script>
@@ -124,7 +137,8 @@
         background: url(~assets/images/member/bg-my.jpg) no-repeat center;
         background-size: cover;
         .member-photo{
-            width: 75px;
+            width: strip-rem(70px);
+            height: strip-rem(70px);
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid #fff;

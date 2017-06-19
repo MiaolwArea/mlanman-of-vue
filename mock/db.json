@@ -208,5 +208,43 @@
       "id": 55,
       "img_url": "http://image.lanman.cn/2016/m.lanman.cn/images/spokesman/code_05/02.jpg"
     }]
+  },
+  "getUser":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "id": 818,
+      "avatar": "http://image.lanman.cn/2017/05/09/8d0714d67537db87fdc67c967166ceed.jpg",
+      "adress": "厦门市湖里区软件园二期望海路31号美易在线",
+      "user_name": "碎魄零星",
+      "point": 12,
+      "user_id": 818,
+      "patriarch": "无名"
+    }
+  },
+  "recommendList":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "order_id": 1,
+      "outside_view": "http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    },{
+      "order_id": 2,
+      "outside_view": "http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    },{
+      "order_id": 3,
+      "outside_view": "http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    },{
+      "order_id": 4,
+      "outside_view": "http://image.lanman.cn/2017/04/06/9707a8c0487e36f823a1f60fbaea3a7f.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    }]
   }
 }

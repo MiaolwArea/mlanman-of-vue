@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueResource from 'vue-resource';
+import VueResource from 'vue-resource'
 import routes from './router/router'
-import './assets/applicationUtil/flexible'
+import store from './store/'
+import './assets/applicationUtil/flexible' 
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -16,5 +17,6 @@ const router = new VueRouter({
 
 new Vue({
 	router,
+	store,
 }).$mount('#app')
 

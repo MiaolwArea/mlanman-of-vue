@@ -32,9 +32,9 @@ export const home = () => fetch('/home');
 export const pointUser = () => fetch('/pointUser');
 
 /**
- * 个人中心页初始数据
+ * 推荐列表
  */
-export const user = () => fetch('/user');
+export const recommendList = () => fetch('/recommendList');
 
 /**
  * 我的二维码图片
@@ -45,5 +45,17 @@ export const qrcodeimg = () => fetch('/qrcodeimg');
  * 获取二维码数据组
  */
 export const getQrcodeimgs = () => fetch('/getQrcodeimgs');
+
+/**
+ * 选择二维码样式
+ */
+export const selectedQrcodeimg = () => fetch('/selectedQrcodeimg');
+
+
+/**
+ * 获取用户信息
+ */
+
+export const getUser = () => fetch('/getUser', {user_id: getStore('user_id')});
 
 

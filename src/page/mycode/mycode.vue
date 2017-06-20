@@ -6,8 +6,8 @@
         </div>
         <div id="qrcode-select-view" class="fz16" v-show="isSelect">
             <p class="tac qrcode-title">选择二维码样式</p>
-            <a class="iconfont pa-t icon-arrow-left" @click="prev">&#xe61d;</a> 
-            <a class="iconfont pa-t icon-arrow-right" @click="next">&#xe61b;</a>
+            <a class="iconfont pa-t icon-arrow-left" @click="swiperAction('prev')">&#xe61d;</a> 
+            <a class="iconfont pa-t icon-arrow-right" @click="swiperAction('next')">&#xe61b;</a>
             <swiper 
                 height="11rem" 
                 v-model="picIndex"
@@ -22,33 +22,46 @@
             </swiper>
             <div class="btn-qrcode-select tac" @click="selected">确定选择</div>
         </div>
+        <alert-tip v-show="showAlert" @sureTip="sureTip" :alertText="alertText"></alert-tip>
         <footer-nav :isShopcart="false"></footer-nav>   
     </div>
 </template>
 
 <script>
 	import footerNav from '../../components/footer/footerNav'
+    import alertTip from '../../components/common/alertTip'
     import { qrcodeimg, getQrcodeimgs, selectedQrcodeimg } from '../../service/getData'
     import { Swiper, SwiperItem } from 'vux'
+    import { mapState, mapMutations } from 'vuex'
 
     export default {
     	data(){
             return{
+                showAlert: false,       // 是否显示弹窗
+                alertText: null,        // 弹框文本内容
                 qrcodeimgSrc: null,     // 生成二维码预览图    
                 isSelect: false,        // 是否开启更换样式页  
                 qrcodeimgAry: [],       // 可选生成二维码图数组
-                picIndex: 0,            // 切换图片索引值
             }
         },
         components: {
         	footerNav,
+            alertTip,
             Swiper,
             SwiperItem,
         },
         mounted(){
-            this.initData();
+            // this.initData();
+        },
+        computed: {
+            ...mapState([
+                'userInfo', 'picIndex'
+            ])
         },
         methods: {
+            ...mapMutations([
+                'SWIPER_ACTION'
+            ]),
             // 初始化数据
             async initData(){
                 let qrcodeimgRes = await qrcodeimg();
@@ -57,31 +70,39 @@
                 let getQrcodeimgsRes = await getQrcodeimgs();
                 this.qrcodeimgAry = getQrcodeimgsRes.data;
             },
-            // 滑动切图
+            // 滑动动作
             onIndexChange(index){
-                this.picIndex = index;
+                this.SWIPER_ACTION({
+                    index: index
+                });
             },
-            // 上一张
-            prev(){
-                if(this.picIndex == 0){
-                    this.picIndex = this.qrcodeimgAry.length - 1;
-                }else{
-                    this.picIndex--;
-                }
-            },
-            // 下一张
-            next(){
-                if(this.picIndex == (this.qrcodeimgAry.length - 1)){
-                    this.picIndex = 0;
-                }else{
-                    this.picIndex++;
-                }
+            // 滚图动作
+            swiperAction(position){
+                this.SWIPER_ACTION({
+                    actionNum: position,
+                    picItem: this.qrcodeimgAry.length
+                });
             },
             // 选择样式
             async selected(){
-                let selectedQrcodeimgRes = await selectedQrcodeimg(useId, this.qrcodeimgAry[this.picIndex].id);
+                let selectedQrcodeimgRes = await selectedQrcodeimg(this.userInfo.user_id, this.qrcodeimgAry[this.picIndex].id);
+
+                if(selectedQrcodeimgRes.data = "success"){
+                    this.showAlert = true;
+                    this.alertText = "选择成功！"
+                }
+            },
+            sureTip(){
+                this.isSelect = false;
+                this.showAlert = false;
+                this.initData();
             }
         },
+        watch: {
+            userInfo: function (value){
+                this.initData();
+            }
+        }
     }
 </script>
 <style lang="scss" scoped>

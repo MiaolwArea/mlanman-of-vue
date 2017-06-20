@@ -9,7 +9,7 @@
             		</div>
             	</div>
             </div>
-            <div v-if="isConfirm" class="confrim" @click="closeTip">确认</div>
+            <div v-if="isConfirm" class="confrim" @click="sureTip">确认</div>
             <div class="confrim-box" v-else="isConfirm">
             	<div class="confrim" @click="closeTip">取消</div>
             	<div class="confrim" @click="sureTip">确认</div>

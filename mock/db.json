@@ -170,13 +170,6 @@
       "ad_url": "http://m.lanman.cn/sp/49.html"
     }]
   },
-  "home":{
-    "error": 0,
-    "msg": null,
-    "data": {
-      "subscribe": 1
-    }
-  },
   "addsubscribe":{
     "error": 0,
     "msg": null,
@@ -219,7 +212,8 @@
       "user_name": "碎魄零星",
       "point": 12,
       "user_id": 818,
-      "patriarch": "无名"
+      "patriarch": "无名",
+      "subscribe": 0
     }
   },
   "recommendList":{
@@ -246,5 +240,10 @@
       "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
       "shop_price": 120.00
     }]
+  },
+  "selectedQrcodeimg": {
+    "error": 0,
+    "msg": null,
+    "data": "success"
   }
 }

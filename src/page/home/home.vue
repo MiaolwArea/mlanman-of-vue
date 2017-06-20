@@ -28,9 +28,9 @@
     <section class="new-goods">
     	<h2 class="section-title fz16"><font class="iconfont icon-title-embellish"></font>当季新品</h2>
     	<ul class="padd-lr">
-            <li v-for="item in newGoodsListArr" :key="item.order_id">
-                <a :href="item.ad_url"><img :src="item.img_url"></a>
-            </li>
+            <router-link v-for="item in newGoodsListArr" :key="item.order_id" :to="{path: 'goods', query: {id: item.order_id}}" tag="li">
+                <img :src="item.img_url">
+            </router-link>
         </ul>
     </section>
     <section class="lr-col fz14 lr-info">
@@ -121,6 +121,7 @@ import { allGoodsList, newGoodsList, home, addsubscribe } from '../../service/ge
 import { loadMore } from '../../components/common/mixin'
 import alertTip from '../../components/common/alertTip'
 import loading from '../../components/common/loading'
+import { mapState } from 'vuex'
 
 const reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
 
@@ -148,7 +149,12 @@ export default {
     },
     mixins: [loadMore],
     mounted: function(){
-        this.initData();   
+        // this.initData();   
+    },
+    computed: {
+        ...mapState([
+            'userInfo'
+        ])
     },
     methods: {
         // 初始化获取数据
@@ -161,9 +167,8 @@ export default {
 
             this.totalNum = res.data.total;
             this.goodsListArr = [...resData];
-
-            let homeRes = await home();
-            this.reminderTxt = reminderMap[homeRes.data.subscribe];
+            // 根据是否登入判断是否开启提醒，无登入默认未提醒
+            this.reminderTxt = this.userInfo ? reminderMap[this.userInfo.subscribe] : reminderMap[0];
 
             this.showLoading = false;
         },
@@ -216,6 +221,11 @@ export default {
             this.goodsListArr = [...this.goodsListArr, ...resData];
         },
     },
+    watch: {
+        userInfo: function(value){
+            this.initData();
+        }
+    }
 }
 </script>
 

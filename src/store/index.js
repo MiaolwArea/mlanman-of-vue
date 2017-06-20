@@ -19,6 +19,7 @@ const state = {
 	orderDetail: null, //订单详情
 	login: true,//是否登录
 	imgPath:null,//头像地址
+	picIndex: 0,//滚图索引值
 }
 
 export default new Vuex.Store({

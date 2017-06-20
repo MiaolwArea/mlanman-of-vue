@@ -17,7 +17,8 @@ import {
 	OUT_LOGIN,
 	RETSET_NAME,
 	ADD_ADDRESS,
-	BUY_CART,
+	BUY_CART, 
+	SWIPER_ACTION,
 } from './mutation-types.js'
 
 import {setStore, getStore} from '../assets/config/mUtils'
@@ -25,6 +26,36 @@ import {setStore, getStore} from '../assets/config/mUtils'
 import {localapi, proapi} from '../assets/config/env'
 
 export default {
+	/**
+	 * 滚图控制
+	 * @param {other} actionNum   控制类型，0: 滑动(默认)；prev: 上一张；next: 下一张（必选）
+	 * @param {Number} actionNum   显示图片总数（可选）
+	 * @param {Number} index   0: 滑动时，索引（可选）
+	 */
+	[SWIPER_ACTION](state, {actionNum = 0, picItem, index}) {
+		switch(actionNum){
+			case 0: {
+				state.picIndex = index;
+				break;
+			}
+			case 'prev': {
+				if(state.picIndex == 0){
+                    state.picIndex = picItem - 1;
+                }else{
+                    state.picIndex--;
+                }
+                break;
+			}
+			case 'next': {
+				if(state.picIndex == (picItem - 1)){
+                    state.picIndex = 0;
+                }else{
+                    state.picIndex++;
+                }
+                break;
+			}
+		}
+	},
 	// 加入购物车
 	[ADD_CART](state, {
 		shopid,

@@ -16,3 +16,4 @@ export const SAVE_ORDER = 'SAVE_ORDER'
 export const OUT_LOGIN = 'OUT_LOGIN'
 export const RETSET_NAME = 'RETSET_NAME'
 export const BUY_CART = 'BUY_CART'
+export const SWIPER_ACTION = 'SWIPER_ACTION' // 滚图控制

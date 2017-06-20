@@ -34,7 +34,7 @@
 	    		</a>
 	    	</li>
 	    </ul>
-        <div class="shopcart pa" v-show="isShopcart">
+        <div class="shopcart pa" v-show="isShopcart" @click="gotoAddress({path: '/cart'})">
             <a class="iconfont icon-fixed-shopcar"></a>
             <div class="cart-num" id="cart_num">0</div>
         </div>
@@ -56,7 +56,7 @@ import { mapState, mapActions } from 'vuex'
             }
         },
         mounted(){
-            //获取用户信息
+            // 获取用户信息
             this.getUserInfo();
         },
         computed: {

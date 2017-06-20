@@ -5,6 +5,7 @@ const home = r => require.ensure([], () => r(require('../page/home/home')), 'hom
 const mycode = r => require.ensure([], () => r(require('../page/mycode/mycode')), 'mycode')
 const pointUser = r => require.ensure([], () => r(require('../page/pointUser/pointUser')), 'pointUser')
 const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
+const goods = r => require.ensure([], () => r(require('../page/goods/goods')), 'goods')
 
 export default [{
     path: '/',
@@ -39,6 +40,11 @@ export default [{
         {
             path: '/user',
             component: user
+        },
+        // 商品详情页
+        {
+            path: '/goods',
+            component: goods
         },
     ]
 }]

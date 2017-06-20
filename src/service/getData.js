@@ -22,11 +22,6 @@ export const allGoodsList = (counts, skin, scene) => fetch('/allGoodsList', {
 export const addsubscribe = () => fetch('/addsubscribe');
 
 /**
- * 首页初始数据
- */
-export const home = () => fetch('/home');
-
-/**
  * 积分页初始数据
  */
 export const pointUser = () => fetch('/pointUser');
@@ -49,7 +44,7 @@ export const getQrcodeimgs = () => fetch('/getQrcodeimgs');
 /**
  * 选择二维码样式
  */
-export const selectedQrcodeimg = () => fetch('/selectedQrcodeimg');
+export const selectedQrcodeimg = (userId, styleId) => fetch('/selectedQrcodeimg', {user_id: userId, style_id: styleId});
 
 
 /**

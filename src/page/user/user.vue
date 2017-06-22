@@ -61,7 +61,7 @@
                 </div>
             </div>
         </section>
-        <section class="recommend">
+        <section class="recommend padd-lr">
             <p class="title fz14">LANMAN向您推荐</p>
             <ul class="item-list fl">
                 <router-link v-for="item in recommendList" :key="item.id" :to="{path: 'goods', query: {id: item.id}}" tag="li" class="list-item" >
@@ -187,10 +187,9 @@
         }
     }
     .recommend{
-        padding-right: strip-rem(15px);
         overflow: hidden;
         .title{
-            @include remCalc('margin', 15, auto, 15, 15);
+            @include remCalc('margin', 15, auto);
         }
     }
 </style>

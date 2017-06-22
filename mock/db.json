@@ -98,7 +98,11 @@
               "status": "1"
           }
       ],
-      "is_doubule": "1"
+      "is_doubule": "1",
+      "newsLink": {
+        "link_to": "http://mp.weixin.qq.com/s?__biz=MzI0NjUwOTEzNA==&mid=2247484274&idx=1&sn=db8fe78700a35a5100f155f81a9d9d20&chksm=e9bf7853dec8f145afe50c8f5787449fdb235c12adddff3e98d224054e2153f8a1987c092893#rd",
+        "link_title": "免费获得4支口红，我是怎么做到的！"
+      }
     }
   },
   "allGoodsList":{
@@ -245,5 +249,143 @@
     "error": 0,
     "msg": null,
     "data": "success"
+  },
+  "goodsDetial":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "order_id": 1,
+      "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
+      "color_name": "#204 日光倾城",
+      "goods_name": "LANMAN #204 巧克力初心系列-日光倾城",
+      "simple_desc": "倾城日光，燃烧出飞扬激情，你是元气满满的公主，与微风欢笑，与日光共舞。",
+      "shop_price": 129.00,
+      "picture_desc": ["http://image.lanman.cn/2017/06/16/499cad6e28fb6414ccf5bee5301a5a56.jpg", "http://image.lanman.cn/2017/06/16/53f8c4f1fdbe29cef41856d0e141bd06.jpg"],
+      "commentList": [{
+        "id": 1,
+        "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+        "user_name": "张三",
+        "content": "哇，超级漂亮，是最有气场的正红色，包装超级高大上，刻字的服务也超级贴心口红用着非常好，很滋润，味道也很好闻，是淡淡的巧克力味，颜色也非常漂亮非常喜欢，以后我的口红就用烂熳的了",
+        "star": 4,
+        "buy_date": 1498015839,
+        "children": {
+          "add_info": {
+            "add_content": "确实好用！",
+            "add_date": 1498024000
+          },
+          "reply_info": {
+            "avatar": "http://wx.qlogo.cn/mmopen/libxyP1BJU6Y5oqdHz5Kq4OiaZcnVtvKXONDd9B418zmiabsoRFm78ia6E6hHs1AicYS9HEj20bDZfGlbr7hk9A8rSHswnkd4yuJI/0",
+            "reply_comment": "感谢您对烂熳口红的支持！",
+            "reply_date": 1498024300
+          }
+        }
+      },{
+        "id": 2,
+        "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+        "user_name": "张三",
+        "content": "好用，不错！",
+        "star": 4,
+        "buy_date": 1498015839,
+        "children": null
+      },{
+        "id": 3,
+        "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+        "user_name": "张三",
+        "content": "好用，不错！",
+        "star": 4,
+        "buy_date": 1498015839,
+        "children": null
+      },{
+        "id": 4,
+        "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+        "user_name": "张三",
+        "content": "好用，不错！",
+        "star": 4,
+        "buy_date": 1498015839,
+        "children": null
+      },{
+        "id": 5,
+        "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+        "user_name": "张三",
+        "content": "好用，不错！",
+        "star": 4,
+        "buy_date": 1498015839,
+        "children": null
+      }]
+    }
+  },
+  "commentList":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "id": 1,
+      "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+      "user_name": "张三",
+      "content": "哇，超级漂亮，是最有气场的正红色，包装超级高大上，刻字的服务也超级贴心口红用着非常好，很滋润，味道也很好闻，是淡淡的巧克力味，颜色也非常漂亮非常喜欢，以后我的口红就用烂熳的了",
+      "star": 4,
+      "buy_date": 1498015839,
+      "children": {
+        "add_info": {
+          "add_content": "确实好用！",
+          "add_date": 1498024000
+        },
+        "reply_info": {
+          "reply_comment": "感谢您对烂熳口红的支持！",
+          "reply_date": 1498024300
+        }
+      }
+    },{
+      "id": 2,
+      "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+      "user_name": "张三",
+      "content": "好用，不错！",
+      "star": 4,
+      "buy_date": 1498015839,
+      "children": null
+    },{
+      "id": 3,
+      "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+      "user_name": "张三",
+      "content": "好用，不错！",
+      "star": 4,
+      "buy_date": 1498015839,
+      "children": null
+    },{
+      "id": 4,
+      "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+      "user_name": "张三",
+      "content": "好用，不错！",
+      "star": 4,
+      "buy_date": 1498015839,
+      "children": null
+    },{
+      "id": 5,
+      "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
+      "user_name": "张三",
+      "content": "好用，不错！",
+      "star": 4,
+      "buy_date": 1498015839,
+      "children": null
+    }]
+  },
+  "popularGoods":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "order_id": 1,
+      "outside_view": "http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    },{
+      "order_id": 2,
+      "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    },{
+      "order_id": 3,
+      "outside_view": "http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg",
+      "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "shop_price": 120.00
+    }]
   }
 }

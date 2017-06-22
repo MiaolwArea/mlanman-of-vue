@@ -71,6 +71,7 @@ img{
     @include fj();
 }
 
+.fz0{font-size: 0px;}
 .fz12{font-size: 1em;}
 .fz14{font-size: 1.1666em;}
 .fz16{font-size: 1.3333em;}
@@ -88,13 +89,25 @@ img{
 
 .show{display: block;}
 .hide{display: hidden;}
+
+.inline-block{display: inline-block;}
+.fw{font-weight: bold;}
 // 公共样式
 .padd-lr{
     @include remCalc('padding', 0, 10);
 }
+.clear:after{
+    content: ".";
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    width: 100%;
+    display: block;
+}
 #app{
     margin-bottom: strip-rem(60px);
 }
+// 分割条
 .divide-line{
     background-color: #363636;
     margin: 0;
@@ -102,6 +115,7 @@ img{
     height: 1rem;
     @include remCalc('height', 12);
 }
+// 购买按钮
 .btn-buy{
     width: strip-rem(100px);
     height: strip-rem(30px);
@@ -122,8 +136,11 @@ img{
 // ul列表
 .list-item{
     float: left;
-    width: 50%;
-    @include remCalc('padding', 0, 0, 15, 15);
+    margin-bottom: strip-rem(15px);
+    width: calc(50% - #{strip-rem(15px) / 2});
+    &:nth-child(odd){
+        margin-right: strip-rem(15px);
+    }
     img{
         width: 100%;
     }

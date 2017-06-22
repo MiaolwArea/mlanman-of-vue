@@ -35,12 +35,12 @@
 		            <a @click="gotoAddress({path: '/point/list'})">兑换口红</a>
 		        </div>
 		    </div>
-		    <div class="spance"></div>
+		    <div class="divide-line"></div>
 		</section>
 		<section class="link-info">
-		    <a class="link-info-word fz14">{{ newsLink }}</a>
+		    <a class="link-info-word fz14" :href="newsLinkTo">{{ newsLinkTitle }}</a>
 		</section>
-		<div class="spance"></div>
+		<div class="divide-line"></div>
 		<section class="myfamily">
 		    <div class="header">
 		        <font class="iconfont icon-title-embellish"></font>
@@ -61,7 +61,7 @@
 		        <p>家族订单每增加1单，可获得20个积分</p>
 		    </div>
 		</section>
-		<div class="spance"></div>
+		<div class="divide-line"></div>
 		<section class="mission">
 		    <div class="header">
 		        <font class="iconfont icon-title-embellish"></font>
@@ -126,7 +126,6 @@
     	data(){
             return{
             	showLoading: false,		// 是否显示等待加载
-            	dataInfo: null,			// 总数据
             	showAlert: false,		// 是否显示弹窗
                 alertText: null,		// 弹框文本内容
                 isShowOfPic: false,		// 是否显示晒单任务
@@ -134,7 +133,8 @@
                 difNum: 0,				// 差值积分
                 percenNum: 0,			// 百分比积分
                 goodsNum: 0,			// 以得商品数
-                newsLink: '',			// 软链文本信息
+                newsLinkTitle: '',		// 软链文本信息
+                newsLinkTo: '',			// 软链地址
                 familyMan: 0,			// 家族成员
                 familyOrder: 0,			// 家族订单
                 isConfirm: true,		// 弹框是否只显示确定按钮
@@ -169,12 +169,12 @@
 			            , curProcess = vals / 100
 			            , circumference = 2 * radius * Math.PI;
 
-			        this.dataInfo = dataInfo;
 			        this.num = dataInfo.member_info.integral;
 			        this.difNum = 100 - vals;
 			        this.percenNum = vals;
 			        this.goodsNum = num;
-			        this.newsLink = dataInfo.newsLink;
+			        this.newsLinkTitle = dataInfo.newsLink.link_title;
+			        this.newsLinkTo = dataInfo.newsLink.link_to;
 			        this.familyMan = dataInfo.family;
 			        this.familyOrder = dataInfo.familyOrderCount;
 			        this.isShowOfPic = dataInfo.times;
@@ -290,7 +290,6 @@
 			font-size: strip-rem(23px);
 		}
 	}
-	.spance{height: strip-rem(10px);width: 100%;background-color: #3e3d3d;}
 	.link-info{text-align: center;margin: #{strip-rem(15px)} auto;}
 	.link-info-word{color: #fff;}
 	/* 家族 */

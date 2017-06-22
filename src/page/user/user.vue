@@ -176,6 +176,7 @@
         .list-item{
             width: 100%;
             border-top: 1px solid #676767;
+            margin-bottom: 0px;
             padding: 0;
             &:first-child{
                 border-top: 0;

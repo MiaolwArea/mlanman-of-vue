@@ -52,7 +52,7 @@
 			    						<div class="comment-info inline-block">
 			    							<div class="info">
 			    								<span>{{ item.user_name }}</span>
-			    								<span class="fr">{{ item.buy_date }}</span>
+			    								<span class="fr">{{ item.buy_date | formatDate('yyyy-MM-dd') }}</span>
 			    							</div>
 			    							<ul class="star">
 			    								<li class="iconfont star active inline-block fz14" v-for="a in item.star"></li>
@@ -70,6 +70,7 @@
 		    	</swiper-item>
 		    </swiper>
     	</section>
+        <div class="divide-line"></div>
     	<section class="hot-goods">
     		<div class="hot-box padd-lr">
     			<h3 class="title fz14">大家最喜欢的LANMAN口红</h3>
@@ -83,7 +84,7 @@
     		</div>
     	</section>
         <alert-tip v-show="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
-        <footer-nav :isShopcart="false"></footer-nav>   
+        <footer-nav :isShopcart="false" :buyBtn="true"></footer-nav>   
     </div>
 </template>
 
@@ -91,6 +92,7 @@
 	import footerNav from '../../components/footer/footerNav'
     import alertTip from '../../components/common/alertTip'
     import { goodsDetial, popularGoods, commentList } from '../../service/getData'
+    import { formatDate } from '../../components/common/mixin'
     import { mapState } from 'vuex'
     import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
 
@@ -123,6 +125,7 @@
             }
         },
         components: { footerNav, alertTip, Tab, TabItem, Swiper, SwiperItem },
+        mixins: [ formatDate ],
         created(){
         	this.goodsId = this.$route.query.id;
         },

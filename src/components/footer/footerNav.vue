@@ -1,14 +1,38 @@
 <template>
-	<nav class="footer-nav">
+	<nav class="footer-nav" :class="{buyBtn: buyBtn}">
 		<div class="nav-service nav-item" @click="isService = !isService">
 	        <i class="iconfont icon-fixed-service fz16"></i>
-	        <p class="fz16">客服</p>
+	        <p class="fz14">客服</p>
             <div class="service-wrapper" v-show="isService">
                 <p>扫描二维码联系客服</p>
                 <img src="http://image.lanman.cn/2016/12/13/63375aee3f9c1daa48425c5d3e6e3d7c.jpg">
             </div>
 	    </div> 
-	    <ul class="item-list">
+        <ul class="item-list" v-if="buyBtn">
+            <li :class="{active: $route.path.indexOf('home') !== -1}" @click="gotoAddress({path: '/home'})">
+                <a class="nav-itme">
+                    <i class="iconfont fz20 icon-tabbar-index"></i>
+                    <p>首页</p>
+                </a>
+            </li>
+            <li :class="{active: $route.path.indexOf('mycode') !== -1}" @click="gotoAddress({path: '/mycode'})">
+                <a class="nav-itme">
+                    <i class="iconfont fz20 icon-fixed-shopcar"></i>
+                    <p>购物车</p>
+                </a>
+            </li>
+            <li :class="{active: $route.path.indexOf('point') !== -1}" @click="gotoAddress({path: '/pointUser'})">
+                <a class="nav-itme fz16">
+                    加入购物车
+                </a>
+            </li>
+            <li :class="{active: $route.path.indexOf('user') !== -1}" @click="gotoAddress({path: '/user'})">
+                <a class="nav-itme fz16">
+                    立即下单
+                </a>
+            </li>
+        </ul>
+	    <ul class="item-list" v-else="buyBtn">
 	    	<li :class="{active: $route.path.indexOf('home') !== -1}" @click="gotoAddress({path: '/home'})">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-index"></i>
@@ -53,6 +77,9 @@ import { mapState, mapActions } from 'vuex'
         props: {
             isShopcart: {
                 default: true
+            },
+            buyBtn: {
+                default: false
             }
         },
         mounted(){
@@ -79,7 +106,7 @@ import { mapState, mapActions } from 'vuex'
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 
-    $footerNavHeight: 60px;
+    $footerNavHeight: 50px;
     .footer-nav{
     	position: fixed;
     	background-color: #4c4c4c;
@@ -92,18 +119,48 @@ import { mapState, mapActions } from 'vuex'
     		flex-direction: column;
     		background-color: #fff;
     		@include remCalc('width', 66);
-    		@include remCalc('padding', 13);
+    		@include remCalc('padding', 10);
     		height: 100%;
     		i,p{
     			color: #000;
     		}
     	}
+        &.buyBtn{
+            .nav-service{
+                width: strip-rem(50px);
+                color: #000;
+                background-color: #bfbfbf;
+            }
+            .item-list{
+                background-color: #bfbfbf;
+                width: calc(100% - #{strip-rem(50px)});
+                li:nth-child(1), li:nth-child(2){
+                    width: 20%;
+                }
+                li:nth-child(3){
+                    background-color: #5f5f5f;
+                    line-height: strip-rem(50px);
+                }
+                li:nth-child(4){
+                    background-color: #000;
+                    line-height: strip-rem(50px);
+                }
+                li:nth-child(3), li:nth-child(4){
+                    width: 30%;
+                    padding: 0;
+                    color: #fff;
+                }
+            }
+        }
     	.item-list{
     		@include fj('center');
     		width: calc(100% - 66px);
+            height: 100%;
     		text-align: center;
     		li{
     			width: 25%;
+                height: strip-rem(50px);
+                @include remCalc('padding', 6, 0);
     		}
     		i,p{
     			color: #000;

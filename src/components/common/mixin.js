@@ -72,6 +72,10 @@ export const loadMore = {
 export const formatDate = {
 	filters: {
 		formatDate(time, format){
+			if(/^[0-9]*$/.test(time) == false){
+				return time;
+			}
+
 			let date = new Date(parseInt(time) * 1000);
 
 			function padLeftZero(str){

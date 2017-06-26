@@ -9,24 +9,25 @@
             </div>
 	    </div> 
         <ul class="item-list" v-if="buyBtn">
-            <li :class="{active: $route.path.indexOf('home') !== -1}" @click="gotoAddress({path: '/home'})">
+            <li @click="gotoAddress({path: '/home'})">
                 <a class="nav-itme">
                     <i class="iconfont fz20 icon-tabbar-index"></i>
                     <p>首页</p>
                 </a>
             </li>
-            <li :class="{active: $route.path.indexOf('mycode') !== -1}" @click="gotoAddress({path: '/mycode'})">
+            <li @click="gotoAddress({path: '/shoppingCart'})" class="pr footer-cart">
                 <a class="nav-itme">
                     <i class="iconfont fz20 icon-fixed-shopcar"></i>
                     <p>购物车</p>
+                    <div class="cart-num">{{ cartNum }}</div>
                 </a>
             </li>
-            <li :class="{active: $route.path.indexOf('point') !== -1}" @click="gotoAddress({path: '/pointUser'})">
-                <a class="nav-itme fz16">
-                    加入购物车
+            <li @click="" :class="{cant: !isCanJoin}">
+                <a class="nav-itme fz16" @click="joinCart">
+                    {{ cartText }}
                 </a>
             </li>
-            <li :class="{active: $route.path.indexOf('user') !== -1}" @click="gotoAddress({path: '/user'})">
+            <li @click="gotoAddress({path: '/user'})">
                 <a class="nav-itme fz16">
                     立即下单
                 </a>
@@ -58,20 +59,21 @@
 	    		</a>
 	    	</li>
 	    </ul>
-        <div class="shopcart pa" v-show="isShopcart" @click="gotoAddress({path: '/cart'})">
+        <div class="shopcart pa" v-show="isShopcart" @click="gotoAddress({path: '/shoppingCart'})">
             <a class="iconfont icon-fixed-shopcar"></a>
-            <div class="cart-num" id="cart_num">0</div>
+            <div class="cart-num">{{ cartNumSide }}</div>
         </div>
 	</nav>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
     export default {
     	data(){
             return{
                 isService: false,       // 是否显示联系客服二维码
+                cartNumSide: 0,         // 悬浮购物车商品数量
             }
         },
         props: {
@@ -80,18 +82,34 @@ import { mapState, mapActions } from 'vuex'
             },
             buyBtn: {
                 default: false
+            },
+            cartText: {
+                default: ''
+            },
+            isCanJoin: {
+                default: true
+            },
+            cartNum: {
+                default: 0
             }
+        },
+        created(){
+            this.INIT_BUYCART();
         },
         mounted(){
             // 获取用户信息
-            this.getUserInfo();
+            // this.getUserInfo();
+            this.initCartNum();
         },
         computed: {
             ...mapState([
-                'userInfo'
+                'userInfo', 'cartList'
             ])
         },
         methods: {
+            ...mapMutations([
+                'INIT_BUYCART'
+            ]),
             // 获取登入信息
             ...mapActions([
                 'getUserInfo'
@@ -100,6 +118,16 @@ import { mapState, mapActions } from 'vuex'
         	gotoAddress(path){
         		this.$router.push(path)
         	},
+            joinCart(){
+                this.$emit('joinCart');
+            },
+            initCartNum(){
+                Object.keys(this.cartList).forEach(itemid => {
+                    let goodsInfo = this.cartList[itemid];
+
+                    this.cartNumSide += goodsInfo.num;
+                })
+            },
         },
     }
 </script>
@@ -130,16 +158,23 @@ import { mapState, mapActions } from 'vuex'
                 width: strip-rem(50px);
                 color: #000;
                 background-color: #bfbfbf;
+                border-right: 1px solid #808080;
             }
             .item-list{
                 background-color: #bfbfbf;
                 width: calc(100% - #{strip-rem(50px)});
+                li:nth-child(1){
+                    border-right: 1px solid #808080;
+                }
                 li:nth-child(1), li:nth-child(2){
                     width: 20%;
                 }
                 li:nth-child(3){
                     background-color: #5f5f5f;
                     line-height: strip-rem(50px);
+                }
+                li.cant{
+                    background-color: #a0a0a0;
                 }
                 li:nth-child(4){
                     background-color: #000;
@@ -179,16 +214,22 @@ import { mapState, mapActions } from 'vuex'
             height: strip-rem(35px);
             padding: strip-rem(9px);
             border: 1px solid #fff;
+        }
+        .cart-num{
+            position: absolute;
+            top: strip-rem(-2px);
+            right: strip-rem(-2px);
+            background-color: red;
+            width: strip-rem(15px);
+            height: strip-rem(15px);
+            line-height: strip-rem(15px);
+            border-radius: 50%;
+            text-align: center;
+        }
+        .footer-cart{
             .cart-num{
-                position: absolute;
-                top: 0;
-                right: 0;
-                background-color: red;
-                width: 15px;
-                height: 15px;
-                line-height: 15px;
-                border-radius: 50%;
-                text-align: center;
+                top: strip-rem(-5px);
+                right: strip-rem(-5px);
             }
         }
         .service-wrapper{
@@ -202,6 +243,24 @@ import { mapState, mapActions } from 'vuex'
             border-radius: 5px;
             overflow: hidden;
             padding-top: strip-rem(10px);
+        }
+    }
+    .footer-nav.scaleaction .cart-num{
+        -webkit-animation: scale .5s;
+        animation: scale .5s;
+    }
+    @keyframes scale{
+        0%{
+            -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+        }
+        50%{
+            -webkit-transform: scale(.8);
+            transform: scale(.8);
+        }
+        100%{
+            -webkit-transform: scale(1);
+            transform: scale(1);
         }
     }
 </style>

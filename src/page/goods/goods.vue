@@ -84,7 +84,7 @@
     		</div>
     	</section>
         <alert-tip v-show="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
-        <footer-nav :isShopcart="false" :buyBtn="true"></footer-nav>   
+        <footer-nav ref="footerNavObj" :class="{scaleaction: isAdd}" :isShopcart="false" :buyBtn="true" :cartText="cartText" :isCanJoin="isCanJoin" @joinCart="joinCart" :cartNum="cartNum"></footer-nav>   
     </div>
 </template>
 
@@ -93,7 +93,7 @@
     import alertTip from '../../components/common/alertTip'
     import { goodsDetial, popularGoods, commentList } from '../../service/getData'
     import { formatDate } from '../../components/common/mixin'
-    import { mapState } from 'vuex'
+    import { mapState, mapMutations } from 'vuex'
     import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
 
     /* 
@@ -105,6 +105,12 @@
     var swiperDOM = null				// swiper的DOM
     	, firstListComment = null
     	, pictureAryLength = 0;			// 图片总数量
+
+    const saleStatusMap = {
+        0: "已下架",
+        1: "加入购物车",
+        2: "已售磐"
+    }
 
     export default {
     	data(){
@@ -122,45 +128,70 @@
                 index: 0,				// 标签页索引值
                 popularGoodsInfo: null,	// 热门商品列表	
                 commentList: null,		// 评论列表
+                cartText: null,         // 购物车按钮文本
+                isCanJoin: true,        // 购物车按钮是否可点击样式
+                cartNum: 0,             // 底部导航栏购物车商品数量
+                isAdd: false,           // 是否执行购物车红点动画
             }
         },
         components: { footerNav, alertTip, Tab, TabItem, Swiper, SwiperItem },
         mixins: [ formatDate ],
         created(){
         	this.goodsId = this.$route.query.id;
+            this.INIT_BUYCART();
         },
         mounted(){
-            // this.initData();
+            this.initData();
 
             // 计算加载完成图片数量
-            this.countForImg = 1					
+            this.countForImg = 1;
         },
         computed: {
             ...mapState([
-                'userInfo'
+                'userInfo', 'cartList'
             ])
         },
         methods: {
+            ...mapMutations([
+                'ADD_CART', 'INIT_BUYCART'
+            ]),
             // 初始化数据
             async initData(){
+                const _this = this;
+
             	// 获取商品详情
-                let goodsDetialRes = await goodsDetial(this.goodsId)
+                let goodsDetialRes = await goodsDetial(_this.goodsId)
                 	, goodsDetialInfo = goodsDetialRes.data;
 
-            	this.bannerPic = goodsDetialInfo.outside_view;
-            	this.colorName = goodsDetialInfo.color_name;
-            	this.goodsName = goodsDetialInfo.goods_name;
-            	this.simpleDesc = goodsDetialInfo.simple_desc;
-            	this.shopPrice = goodsDetialInfo.shop_price;
-            	this.pictureDesc = goodsDetialInfo.picture_desc;
-            	this.commentList = goodsDetialInfo.commentList;
+                _this.orderId = goodsDetialInfo.order_id;
+            	_this.bannerPic = goodsDetialInfo.outside_view;
+            	_this.colorName = goodsDetialInfo.color_name;
+            	_this.goodsName = goodsDetialInfo.goods_name;
+            	_this.simpleDesc = goodsDetialInfo.simple_desc;
+            	_this.shopPrice = goodsDetialInfo.shop_price;
+            	_this.pictureDesc = goodsDetialInfo.picture_desc;
+            	_this.commentList = goodsDetialInfo.commentList;
+                _this.cartText = saleStatusMap[goodsDetialInfo.saleStatus];
+                if(goodsDetialInfo.saleStatus != 1){
+                    _this.isCanJoin = false;
+                }
+
             	firstListComment = goodsDetialInfo.commentList;
-            	pictureAryLength = this.pictureDesc.length;
+            	pictureAryLength = _this.pictureDesc.length;
 
                 // 获取热门商品
                 let popularGoodsRes = await popularGoods();
                 
-                this.popularGoodsInfo = popularGoodsRes.data;
+                _this.popularGoodsInfo = popularGoodsRes.data;
+
+                _this.initCartNum();
+            },
+            initCartNum(){
+                Object.keys(this.cartList).forEach(itemid => {
+                    let goodsInfo = this.cartList[itemid];
+
+                    this.cartNum += goodsInfo.num;
+                })
             },
             // 计算区块高度
             successLoadImg(){
@@ -186,12 +217,35 @@
                 
                 this.commentList = this.commentList.concat(commentListRes.data);
             },
+            joinCart(){
+                const _this = this;
+
+                // 判断是否允许点击
+                if(!_this.isCanJoin){
+                    return;
+                }
+                if (!(_this.userInfo && _this.userInfo.user_id)) {
+                    _this.ADD_CART({shopId: _this.orderId, shopPrice: _this.shopPrice, goodsName: _this.goodsName, colorName: _this.color_name, shopPic: _this.bannerPic });
+                }else{
+                    // 存到后端API地址中
+                }
+                _this.cartNum++;
+            },
         },
         watch: {
             userInfo: function (value){
-                this.initData();
+                // this.initData();
+            },
+            // 购物车数量变化执行动画
+            cartNum(){
+                const _this = this;
+
+                _this.isAdd = true;
+                _this.$refs.footerNavObj.$el.addEventListener("animationend", e => {
+                    _this.isAdd = false;
+                })
             }
-        }
+        },
     }
 </script>
 <style lang="scss" scoped>

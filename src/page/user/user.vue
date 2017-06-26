@@ -31,7 +31,8 @@
                     </a>
                 </li>
                 <li class="list-item">
-                    <a @click="gotoAddress({path: '/payfeedback'})">
+                    <!-- <a @click="gotoAddress({path: '/payfeedback'})"> -->
+                    <a @click="outLogin">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的售后</span>
                     </a>
@@ -96,7 +97,7 @@
         	footerNav,
         },
         mounted(){
-            // this.initData();
+            this.initData();
         },
         computed: {
             ...mapState([
@@ -104,25 +105,34 @@
             ])
         },
         methods: {
+            ...mapMutations([
+                'OUT_LOGIN'
+            ]),
             async initData(){
-                if (this.userInfo && this.userInfo.user_id) {
-                    this.avatar = this.userInfo.avatar;
-                    this.userName = this.userInfo.user_name;
-                    this.userId = this.userInfo.user_id;
-                    this.point = this.userInfo.point;
-                    this.patriarch = this.userInfo.patriarch;
+                const _this = this;
+
+                if (_this.userInfo && _this.userInfo.user_id) {
+                    _this.avatar = _this.userInfo.avatar;
+                    _this.userName = _this.userInfo.user_name;
+                    _this.userId = _this.userInfo.user_id;
+                    _this.point = _this.userInfo.point;
+                    _this.patriarch = _this.userInfo.patriarch;
                 }
                 let recommendListRes = await recommendList();
 
-                this.recommendList = recommendListRes.data;
+                _this.recommendList = recommendListRes.data;
             },
             gotoAddress(path){
                 this.$router.push(path);
-            }
+            },
+            outLogin(){
+                this.OUT_LOGIN();
+                removeStore('user_id');
+            },
         },
         watch: {
             userInfo: function (value){
-                this.initData()
+                // this.initData()
             }
         }
     }

@@ -6,6 +6,7 @@ const mycode = r => require.ensure([], () => r(require('../page/mycode/mycode'))
 const pointUser = r => require.ensure([], () => r(require('../page/pointUser/pointUser')), 'pointUser')
 const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
 const goods = r => require.ensure([], () => r(require('../page/goods/goods')), 'goods')
+const shoppingCart = r => require.ensure([], () => r(require('../page/shoppingCart/shoppingCart')), 'shoppingCart')
 
 export default [{
     path: '/',
@@ -45,6 +46,11 @@ export default [{
         {
             path: '/goods',
             component: goods
+        },
+        // 购物车页
+        {
+            path: '/shoppingCart',
+            component: shoppingCart
         },
     ]
 }]

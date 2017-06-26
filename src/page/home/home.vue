@@ -107,7 +107,6 @@
 	    <img src="~assets/images/home/service.png">
 	</section>
     <hr class="divide-line">
-    <loading v-show="showLoading"></loading>
     <alert-tip v-show="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
@@ -120,7 +119,6 @@ import footerNav from '../../components/footer/footerNav'
 import { allGoodsList, newGoodsList, home, addsubscribe } from '../../service/getData'
 import { loadMore } from '../../components/common/mixin'
 import alertTip from '../../components/common/alertTip'
-import loading from '../../components/common/loading'
 import { mapState } from 'vuex'
 
 const reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
@@ -132,7 +130,6 @@ export default {
             counts: 0,              // 单次请求商品数目
             showAlert: false,       // 是否显示弹窗
             alertText: null,        // 弹框文本内容
-            showLoading: true,      // 默认显示加载动画
             goodsListArr: null,     // 全部商品列表
             newGoodsListArr: null,  // 当季新品列表
             totalNum: 0,            // 商品总数
@@ -145,11 +142,10 @@ export default {
         footerBottom,
         footerNav,
         alertTip,
-        loading,
     },
     mixins: [loadMore],
     mounted: function(){
-        // this.initData();   
+        this.initData();   
     },
     computed: {
         ...mapState([
@@ -170,7 +166,6 @@ export default {
             // 根据是否登入判断是否开启提醒，无登入默认未提醒
             this.reminderTxt = this.userInfo ? reminderMap[this.userInfo.subscribe] : reminderMap[0];
 
-            this.showLoading = false;
         },
 
         // 到达底部加载更多数据
@@ -182,7 +177,6 @@ export default {
             if (this.preventRepeatReuqest) {
                 return 
             }
-            this.showLoading = true;
             this.preventRepeatReuqest = true;
 
             //数据每次显示3条
@@ -191,7 +185,6 @@ export default {
             let res = await allGoodsList(this.counts, this.skin || null, this.scene.length != 0 ? this.scene : null);
             let resData = res.data.info;
 
-            this.showLoading = false;
             this.goodsListArr = [...this.goodsListArr, ...resData];
             //当获取数据小于总数，说明没有更多数据，不需要再次请求数据
             if (resData.length >= this.totalNum) {
@@ -213,17 +206,15 @@ export default {
         // 口红推荐
         async screen(){
             this.counts = 0;
-            this.showLoading = true;
             let res = await allGoodsList(this.counts, this.skin, this.scene);
             let resData = res.data.info;
 
-            this.showLoading = false;
             this.goodsListArr = [...this.goodsListArr, ...resData];
         },
     },
     watch: {
         userInfo: function(value){
-            this.initData();
+            // this.initData();
         }
     }
 }

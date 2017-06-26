@@ -217,7 +217,8 @@
       "point": 12,
       "user_id": 818,
       "patriarch": "无名",
-      "subscribe": 0
+      "subscribe": 0,
+      "phone_num": 18759376268
     }
   },
   "recommendList":{
@@ -261,13 +262,15 @@
       "simple_desc": "倾城日光，燃烧出飞扬激情，你是元气满满的公主，与微风欢笑，与日光共舞。",
       "shop_price": 129.00,
       "picture_desc": ["http://image.lanman.cn/2017/06/16/499cad6e28fb6414ccf5bee5301a5a56.jpg", "http://image.lanman.cn/2017/06/16/53f8c4f1fdbe29cef41856d0e141bd06.jpg"],
+      "stock": 999,
+      "saleStatus": 1,
       "commentList": [{
         "id": 1,
         "avatar": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM4NibmsBMcUMiavUibpYw90WhYTSSib2cvt1yd1TJpDPTDWDpevT03POFTSleAibr0ajcSCicNw71s6FVwQ/0",
         "user_name": "张三",
         "content": "哇，超级漂亮，是最有气场的正红色，包装超级高大上，刻字的服务也超级贴心口红用着非常好，很滋润，味道也很好闻，是淡淡的巧克力味，颜色也非常漂亮非常喜欢，以后我的口红就用烂熳的了",
         "star": 4,
-        "buy_date": 1498015839,
+        "buy_date": "2017-5-23",
         "children": {
           "add_info": {
             "add_content": "确实好用！",

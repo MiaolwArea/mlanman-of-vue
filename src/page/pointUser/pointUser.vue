@@ -108,7 +108,6 @@
 		        </ul>
 		    </div>
 		</section>
-		<loading v-show="showLoading"></loading>
 		<alert-tip v-if="showAlert" @closeTip="uploadCommit" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
 		<footer-nav></footer-nav>	
 	</div>
@@ -118,14 +117,12 @@
 	import footerNav from '../../components/footer/footerNav'
 	import {pointUser} from '../../service/getData'
 	import alertTip from '../../components/common/alertTip'
-	import loading from '../../components/common/loading'
 
 	const boolerInfo = {false: '已订阅', true: '订阅提醒'};
 	
     export default {
     	data(){
             return{
-            	showLoading: false,		// 是否显示等待加载
             	showAlert: false,		// 是否显示弹窗
                 alertText: null,		// 弹框文本内容
                 isShowOfPic: false,		// 是否显示晒单任务
@@ -147,7 +144,6 @@
         components: {
         	footerNav,
         	alertTip,
-        	loading,
         },
 	    mounted: function(){
 	        this.initData();        
@@ -210,9 +206,8 @@
         	},
         	// 领取奖励
         	reward(taskId){
-        		this.showLoading = true;
         		this.$http.get('http://localhost:3000/pointUser', {taskId: taskId}).then(res => {
-        			this.showLoading = false;
+        			// 
         		});
         	}
         }

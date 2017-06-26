@@ -6,7 +6,7 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
     margin: 0;
     list-style: none;
     font-style: normal;
-    text-decoration: none;
+    text-decoration: none !important;
     border: none;
     color: #fff;
     box-sizing: border-box;

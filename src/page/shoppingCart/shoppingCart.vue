@@ -23,28 +23,29 @@
                 <p class="fz16 tac">点击登入获取地址信息</p>
             </router-link>
             <div class="divide-line"></div>
-            <section class="order-list-box padding-1">
+            <section class="order-list-box">
                 <ul class="order-list">
-                    <li class="goods-item lr-col" v-for="item in cartList" :key="item.id">
+                    <li class="goods-item lr-col padding-1" v-for="item in cartList" :key="item.id">
                         <router-link tag="div" :to="{path: 'goods', query: {id: item.id}}" class="order-my-pic">
                             <img :src="item.shopPic"/>
                         </router-link>
-                        <div class="order-goods-info">
-                            <p>{{ item.name }}</p>
-                            <p>{{ item.price }}</p>
-                            <div class="order-goods-num">
-                                <div class="num">
+                        <div class="order-goods-info col-8">
+                            <p class="fz14 color-cart-gray">{{ item.name }}</p>
+                            <p class="tar color-cart-gray">¥{{ item.price | subNumber }}</p>
+                            <div class="order-goods-num lr-col">
+                                <div class="num lr-col">
                                     <span>数量：</span>
-                                    <span>-</span>
-                                    <span>{{ item.num }}</span>
-                                    <span>+</span>   
+                                    <span class="box">-</span>
+                                    <span class="box">{{ item.num }}</span>
+                                    <span class="box">+</span>   
                                 </div>
-                                <i class="iconfont icon-delete"></i>
+                                <i class="iconfont icon-delete color-cart-gray"></i>
                             </div>
                         </div>
                     </li>
                 </ul>
             </section>
+            <div class="divide-line"></div>
         </div>
         <footer-nav :isShopcart="false"></footer-nav>   
     </div>
@@ -53,6 +54,7 @@
 <script>
 import footerNav from '../../components/footer/footerNav'
 import { mapState, mapActions, mapMutations } from 'vuex'
+import { subNumber } from '../../components/common/mixin'
 
     export default {
     	data(){
@@ -65,9 +67,10 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             }
         },
         components: { footerNav, },
+        mixins: [ subNumber ],
         created(){
+            this.isHaveOrder = (this.$route.query.num ? true : false);
             this.INIT_BUYCART();
-            console.log(this.cartList)
         },
         mounted(){
             // 获取用户信息
@@ -107,8 +110,9 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 
+    $color-a3: #a3a3a3;
     .padding-1{ padding: strip-rem(10px); }
-    .color-cart-gray{ color: #a3a3a3; }
+    .color-cart-gray{ color: $color-a3; }
     .blank-cont{
         background-color: #333;
         position: fixed;
@@ -135,6 +139,30 @@ import { mapState, mapActions, mapMutations } from 'vuex'
         }
     }
     .order-my-pic{
-        @include wh(65px, 65px);
+        @include wh(70px, 70px);
+    }
+    .order-goods-info{
+        margin-left: strip-rem(10px);
+    }
+    .order-goods-num{
+        margin-top: strip-rem(5px);
+        span{
+            color: $color-a3;
+        }
+        .box{
+            @include wh(20px, 20px);
+            text-align: center;
+            line-height: 2;
+            border: 1px solid $color-a3;
+            &:nth-child(3){
+                border-left: 0;
+                border-right: 0;
+                width: strip-rem(25px);
+            }
+        }
+        .icon-delete{
+            padding: strip-rem(2px);
+            background-color: #333;
+        }
     }
 </style>

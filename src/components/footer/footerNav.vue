@@ -15,7 +15,7 @@
                     <p>首页</p>
                 </a>
             </li>
-            <li @click="gotoAddress({path: '/shoppingCart'})" class="pr footer-cart">
+            <li @click="gotoAddress({path: (cartNum ? '/shoppingCart/?num=' + cartNum : '/shoppingCart')})" class="pr footer-cart">
                 <a class="nav-itme">
                     <i class="iconfont fz20 icon-fixed-shopcar"></i>
                     <p>购物车</p>
@@ -59,7 +59,7 @@
 	    		</a>
 	    	</li>
 	    </ul>
-        <div class="shopcart pa" v-show="isShopcart" @click="gotoAddress({path: '/shoppingCart'})">
+        <div class="shopcart pa" v-show="isShopcart" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
             <a class="iconfont icon-fixed-shopcar"></a>
             <div class="cart-num">{{ cartNumSide }}</div>
         </div>

@@ -1,7 +1,11 @@
 import { getStyle } from '../../assets/config/mUtils'
 
 /*------------directives--------------*/
-// 滚动加载更多
+/**
+ * 滚动加载更多
+ * @param {Object} el   当前元素（回调）
+ * @param {Function} binding   要执行的事件
+ */
 export const loadMore = {
 	directives: {
 		'load-more': {
@@ -68,7 +72,11 @@ export const loadMore = {
 };
 
 /*------------filters--------------*/
-// 时间戳格式化
+/**
+ * 时间戳格式化
+ * @param {Number} time   自动传入要控制的值
+ * @param {String} format   期望日期格式：yyyy-MM-dd hH:mm:ss
+ */
 export const formatDate = {
 	filters: {
 		formatDate(time, format){
@@ -99,6 +107,31 @@ export const formatDate = {
 		    }
 
 			return format;
+		}
+	}
+}
+/**
+ * 小数截取位数
+ * @param {Number} number   自动传入要控制的值
+ * @param {Number} subNum   截取小数位数（默认：2位）（可选）
+ * @param {Boolean} isRounding   是否四舍五入(默认：是)（可选）
+ */
+export const subNumber = {
+	filters: {
+		subNumber(number, subNum = 2, isRounding = true){
+			let numbers = parseFloat(number); 
+
+			if(/[.]*/.test(numbers) == true){
+				if(isRounding){
+					numbers = numbers.toFixed(subNum);
+				}else{
+					let numStr = numbers.toString();
+					numbers = Number(numStr.substring(0, numStr.indexOf('.') + (subNum + 1) ))
+				}
+			}else{
+				numbers += '.00';
+			}
+			return numbers;
 		}
 	}
 }

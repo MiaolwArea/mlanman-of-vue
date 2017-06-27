@@ -12,6 +12,9 @@ cnpm i
 
 # serve with hot reload at localhost:8080
 # 这里除了启动项目还要启动mock模拟环境
+# 先全局安装`json-server`
+npm install json-server -g
+# 启动项目
 npm run mockdev
 
 # build for production with minification
@@ -21,4 +24,4 @@ npm run build
 npm run build --report
 ```
 ## 技术栈
-vue2 + vux + vue-router + webpack + ES6/7 + fetch + sass + flex + svg + mock(json-server)
+vue2 + vuex + vux + vue-router + webpack + ES6/7 + fetch + sass + flex + svg + mock(json-server)

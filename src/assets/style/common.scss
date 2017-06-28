@@ -104,6 +104,12 @@ img{
     width: 100%;
     display: block;
 }
+// 超出不换行
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 #app{
     margin-bottom: strip-rem(50px);
 }

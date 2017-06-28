@@ -19,6 +19,7 @@ import {
 	ADD_ADDRESS,
 	BUY_CART, 
 	SWIPER_ACTION,
+	ADD_CART_NUM,
 } from './mutation-types.js'
 
 import {setStore, getStore} from '../assets/config/mUtils'
@@ -77,6 +78,23 @@ export default {
 				shopPic
 			};
 		}
+		state.cartList = {...cart};
+		//存入localStorage
+		setStore('buyCart', state.cartList);
+	},
+	/**
+	 * 修改商品数量
+	 * @param {Number} shopId   要修改的商品ID
+	 * @param {Number} num   具体数量
+	 */
+	[ADD_CART_NUM](state, {
+		shopId,
+		num
+	}) {
+		let cart = state.cartList;
+		if (cart[shopId]) {
+			cart[shopId]['num'] = num;
+		} 
 		state.cartList = {...cart};
 		//存入localStorage
 		setStore('buyCart', state.cartList);

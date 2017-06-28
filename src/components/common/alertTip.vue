@@ -22,8 +22,7 @@
     export default {
     	data(){
             return{
-                positionY: 0,
-                timer: null,
+                
             }
         },
         mounted(){

@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <section class="top-logo">
-    	<div class="small-logo">
+    	<div class="small-logo" @click="showChangeBlock = true">
     		<img src="~assets/images/common/small_logo.png" />
     		<span class="fz14">关注公众号</span>
     	</div>
@@ -12,8 +12,8 @@
     	</div>
     </section>
     <section class="news">
-    	<a href="https://mp.weixin.qq.com/s?__biz=MzI0NjUwOTEzNA==&mid=2247485512&idx=1&sn=fb96ed05e42fa393c7a83ffafca54f7d&chksm=e9bf7369dec8fa7fe55f52feaf50a87ad99e309a1c9bec3114e07298bcfc1f951da1320e2e63#rd">
-    		<p class="news-title"><span>LANMAN烂熳天使之吻水润唇膏上市</span></p>
+    	<a :href="news.link_to">
+    		<p class="news-title"><span>{{ news.title }}</span></p>
     	</a>
     	<video id="news_video" preload="none" src="http://apps.mushu.cn/lanman_20161205.mp4" poster=""></video>
     </section>
@@ -36,7 +36,7 @@
     <section class="lr-col fz14 lr-info">
         <div class="col-6">
             <span class="iconfont icon-newGoods-schedule"></span>
-            LANMAN烂熳本季新品上线了！
+            {{ onLineInfo }}
         </div>
         <div class="col-4 tar">
             <a class="link-known" @click="subRemind">{{ reminderTxt }}</a>
@@ -107,6 +107,28 @@
 	    <img src="~assets/images/home/service.png">
 	</section>
     <hr class="divide-line">
+    <!-- 关注公众号弹窗 -->
+    <transition name="fade">
+        <div class="specs_cover" @click="showChangeBlock = false" v-if="showChangeBlock"></div>
+    </transition>
+    <transition name="fadeBounce">
+        <div class="specs_list" v-show="showChangeBlock">
+            <header class="specs_list_header">
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" version="1.1"class="specs_cancel" @click="showChangeBlock = false">
+                    <line x1="0" y1="0" x2="16" y2="16"  stroke="#666" stroke-width="1.2"/>
+                    <line x1="0" y1="16" x2="16" y2="0"  stroke="#666" stroke-width="1.2"/>
+                </svg>
+            </header>
+            <section class="specs_details">
+                <div class="pic-box">
+                    <img src="http://image.lanman.cn/2016/m.lanman.cn/images/index/qrcode.png" />
+                </div>
+            </section>
+            <footer class="specs_footer">
+                <p class="fz16">确认</p>
+            </footer>
+        </div>
+    </transition>
     <alert-tip v-show="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
@@ -136,6 +158,9 @@ export default {
             reminderTxt: null,      // 订阅按钮文本
             skin: '',               // 肤质
             scene: [],              // 场合
+            showChangeBlock: false, // 是否显示关注公众号弹框
+            news: {},               // 外链信息
+            onLineInfo: null,       // 上线时间
         }
 	},
     components: {
@@ -155,43 +180,59 @@ export default {
     methods: {
         // 初始化获取数据
         async initData(){
+            const _this = this;
             let newGoodsListRes = await newGoodsList();
-            this.newGoodsListArr = newGoodsListRes.data;
+            _this.newGoodsListArr = newGoodsListRes.data;
 
-            let res = await allGoodsList(this.counts, this.skin || null, this.scene.length != 0 ? this.scene : null);
+            let res = await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null);
             let resData = res.data.info;
 
-            this.totalNum = res.data.total;
-            this.goodsListArr = [...resData];
+            _this.totalNum = res.data.total;
+            _this.goodsListArr = [...resData];
             // 根据是否登入判断是否开启提醒，无登入默认未提醒
-            this.reminderTxt = this.userInfo ? reminderMap[this.userInfo.subscribe] : reminderMap[0];
-
+            _this.reminderTxt = _this.userInfo ? reminderMap[_this.userInfo.subscribe] : reminderMap[0];
+            
+            let homeRes = await home();
+            _this.news = homeRes.data.news;
+            _this.onLineTimeOfDay(homeRes.data.newGoodsOnline);
         },
+        onLineTimeOfDay(onLineTime){
+            let nowTime = Math.round(new Date().getTime()/1000)
+                , onLineDay = Math.ceil((onLineTime - nowTime)/3600/24);
 
+            if(onLineDay > 0){
+                this.onLineInfo = "距离下次新品发布还有"+ onLineDay +"天"
+            }else if(onLineDay == 0){
+                this.onLineInfo = "LANMAN烂熳新品今日上线！"
+            }else if(onLineInfo < 0){
+                this.onLineInfo = "LANMAN烂熳本季新品上线了！"
+            }
+        },
         // 到达底部加载更多数据
         async loaderMore(){
-            if (this.touchend) {
+            const _this = this;
+            if (_this.touchend) {
                 return
             }
             //防止重复请求
-            if (this.preventRepeatReuqest) {
+            if (_this.preventRepeatReuqest) {
                 return 
             }
-            this.preventRepeatReuqest = true;
+            _this.preventRepeatReuqest = true;
 
             //数据每次显示3条
-            this.counts += 3;
+            _this.counts += 3;
             
-            let res = await allGoodsList(this.counts, this.skin || null, this.scene.length != 0 ? this.scene : null);
+            let res = await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null);
             let resData = res.data.info;
 
-            this.goodsListArr = [...this.goodsListArr, ...resData];
+            _this.goodsListArr = [..._this.goodsListArr, ...resData];
             //当获取数据小于总数，说明没有更多数据，不需要再次请求数据
-            if (resData.length >= this.totalNum) {
-                this.touchend = true;
+            if (resData.length >= _this.totalNum) {
+                _this.touchend = true;
                 return
             }
-            this.preventRepeatReuqest = false;
+            _this.preventRepeatReuqest = false;
         },
         // 订阅提醒
         subRemind(){
@@ -302,4 +343,8 @@ export default {
 	.after-sale-service{
 		@include remCalc('margin', 20, 15, 15, 25);
 	}
+    .specs_list{
+        width: 80%;
+        left: 10%;
+    }
 </style>

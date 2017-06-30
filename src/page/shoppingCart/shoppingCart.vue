@@ -50,23 +50,23 @@
                 <ul class="list-info">
                     <li class="order-item lr-col fz14">
                         <span class="fw">商品金额</span>
-                        <span class="color-cart-gray">¥258</span>
+                        <span class="color-cart-gray">¥{{ countTotal | subNumber }}</span>
                     </li>
                     <li class="order-item lr-col fz14">
                         <span class="fw">抵用金额</span>
-                        <span class="color-cart-gray">¥0</span>
+                        <span class="color-cart-gray">¥{{ voucher | subNumber }}</span>
                     </li>
                     <li class="order-item lr-col fz14">
                         <span class="fw">运费</span>
-                        <span class="color-cart-gray">免运费</span>
+                        <span class="color-cart-gray">{{ freight | subNumber }}</span>
                     </li>
                     <li class="order-item fz14">
                         <span class="fw">我要留言</span>
-                        <textarea class="remark"></textarea>
+                        <textarea class="remark" v-model="remark"></textarea>
                     </li>
                     <li class="order-item lr-col fz14">
-                        <span class="fw">< 继续购物</span>
-                        <span class="color-cart-gray fz16">实付¥258</span>
+                        <span class="fw" @click="goBack"><i class="iconfont">&#xe610;</i>继续购物</span>
+                        <span class="color-cart-gray fz16">实付¥{{ finalPirce | subNumber }}</span>
                     </li>
                 </ul>
             </section>
@@ -83,7 +83,7 @@
             </footer>
             <!-- 数量选择弹窗 -->
             <transition name="fade">
-                <div class="specs_cover" @click="showChangeBlock = !showChangeBlock" v-if="showChangeBlock"></div>
+                <div class="specs_cover" @click="showChangeBlock = false" v-if="showChangeBlock"></div>
             </transition>
             <transition name="fadeBounce">
                 <div class="specs_list" v-show="showChangeBlock">
@@ -133,6 +133,7 @@ import alertTip from '../../components/common/alertTip'
                 showChangeBlock: false,     // 是否显示数量输入框
                 changeNumTxt: 1,            // 修改商品数目
                 listNum: {},                // 暂存商品修改数目信息
+                remark: '',                 // 留言，备注
             }
         },
         components: { footerNav, alertTip },
@@ -149,7 +150,33 @@ import alertTip from '../../components/common/alertTip'
         computed: {
             ...mapState([
                 'userInfo', 'cartList'
-            ])
+            ]),
+            // 计算总价
+            countTotal: function(){
+                let total = 0;
+                Object.keys(this.cartList).forEach(itemid => {
+                    let goodsInfo = this.cartList[itemid];
+
+                    total += goodsInfo.num * goodsInfo.price;
+                })
+                return total;
+            },
+            // 抵用券
+            voucher: function(){
+                // TODO 看用户是否有抵用券，有的话选择改变金额
+                return 0;
+            },
+            // 计算运费
+            freight: function(){
+                // TODO 运费计算规则...
+                return '免运费';
+            },
+            // 需要支付金额
+            finalPirce: function(){
+                let countNum = this.countTotal + ( parseInt(this.freight) ? this.freight : 0 ) - this.voucher;
+
+                return ( countNum > 0 ? countNum : 0 );
+            },
         },
         methods: {
             // 获取登入信息
@@ -175,6 +202,7 @@ import alertTip from '../../components/common/alertTip'
                 this.showChangeBlock = true;
                 this.changeNumTxt = num;
                 thisId = id;
+                this.aa = 3
             },
             // 确认修改
             changeNumAlertSure(num){
@@ -185,6 +213,7 @@ import alertTip from '../../components/common/alertTip'
                 _this.ADD_CART_NUM({shopId: thisId, num});
                 thisId = null;
             },
+            // 清空商品
             clearGoods(id){
                 this.showAlert = true;
                 this.alertText = '确认删除商品吗？';
@@ -195,11 +224,15 @@ import alertTip from '../../components/common/alertTip'
                 this.showAlert = false;
                 thisId = null;
             },
+            // 返回上一页
+            goBack(){
+                this.$router.go(-1);
+            },
         },
         watch: {
             userInfo: function (value){
                 // this.initData();
-            }
+            },
         },
     }
 </script>
@@ -259,35 +292,13 @@ import alertTip from '../../components/common/alertTip'
             }
         }
         .icon-delete{
-            padding: strip-rem(2px);
+            padding: strip-rem(3px);
             background-color: #333;
         }
     }
-    .specs_cover{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0,0,0,.4);
-        z-index: 17;
-    }
     .specs_list{
-        position: fixed;
-        top: 35%;
-        left: 15%;
-        width: 70%;
-        background-color: #fff;
-        z-index: 18;
-        border: 1px;
-        border-radius: 0.2rem;
         h4{
             padding: strip-rem(10px);
-        }
-        .specs_cancel{
-            position: absolute;
-            right: strip-rem(10px);
-            top: strip-rem(10px);
         }
         .icon-num-minus, .icon-num-plus{
             @include wh(30px, 30px);
@@ -303,7 +314,6 @@ import alertTip from '../../components/common/alertTip'
         }
         .num-box{
             @include fj(center);
-            padding-top: strip-rem(20px);
         }
         .update_num{
             background-color: #000;
@@ -343,16 +353,5 @@ import alertTip from '../../components/common/alertTip'
         .contact-tel{
             padding: strip-rem(10px);
         }
-    }
-    .fadeBounce-enter-active, .fadeBounce-leave-active,
-    .fade-enter-active, .fade-leave-active {
-        transition: all .3s;
-    }
-    .fadeBounce-enter, .fadeBounce-leave-active {
-        opacity: 0;
-        transform: scale(.7);
-    }
-    .fade-enter, .fade-leave-active {
-        opacity: 0;
     }
 </style>

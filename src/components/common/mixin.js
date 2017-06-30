@@ -120,7 +120,9 @@ export const subNumber = {
 	filters: {
 		subNumber(number, subNum = 2, isRounding = true){
 			let numbers = parseFloat(number); 
-
+			if(!numbers){
+				return number;
+			}
 			if(/[.]*/.test(numbers) == true){
 				if(isRounding){
 					numbers = numbers.toFixed(subNum);

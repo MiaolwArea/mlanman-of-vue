@@ -175,3 +175,42 @@ img{
         color: #333;
     }
 }
+// 动画弹窗
+.specs_cover{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.4);
+    z-index: 17;
+}
+.specs_list{
+    position: fixed;
+    top: 22%;
+    left: 15%;
+    width: 70%;
+    background-color: #fff;
+    z-index: 18;
+    border: 1px;
+    border-radius: 0.2rem;
+    .specs_cancel{
+        position: absolute;
+        right: strip-rem(10px);
+        top: strip-rem(10px);
+    }
+    .specs_details{
+        @include remCalc('padding', 20, 10, 0);
+    }
+}
+.fadeBounce-enter-active, .fadeBounce-leave-active,
+.fade-enter-active, .fade-leave-active {
+    transition: all .3s;
+}
+.fadeBounce-enter, .fadeBounce-leave-active {
+    opacity: 0;
+    transform: scale(.7);
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0;
+}

@@ -2,11 +2,12 @@ import App from '../App'
 
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 // const community = r => require.ensure([], () => r(require('../page/community/community')), 'community')
-const mycode = r => require.ensure([], () => r(require('../page/mycode/mycode')), 'mycode')
+const myCode = r => require.ensure([], () => r(require('../page/myCode/myCode')), 'myCode')
 const pointUser = r => require.ensure([], () => r(require('../page/pointUser/pointUser')), 'pointUser')
 const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
 const goods = r => require.ensure([], () => r(require('../page/goods/goods')), 'goods')
 const shoppingCart = r => require.ensure([], () => r(require('../page/shoppingCart/shoppingCart')), 'shoppingCart')
+const pointList = r => require.ensure([], () => r(require('../page/point/list')), 'pointList')
 
 export default [{
     path: '/',
@@ -29,8 +30,8 @@ export default [{
         // },
         // 二维码
         {
-            path: '/mycode',
-            component: mycode
+            path: '/myCode',
+            component: myCode
         },
         // 积分
         {
@@ -51,6 +52,11 @@ export default [{
         {
             path: '/shoppingCart',
             component: shoppingCart
+        },
+        // 积分兑换页
+        {
+            path: '/point',
+            component: pointList
         },
     ]
 }]

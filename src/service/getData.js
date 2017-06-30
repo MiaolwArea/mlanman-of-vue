@@ -4,6 +4,11 @@ import {getStore} from '../assets/config/mUtils'
 /**
  * 当季新品
  */
+export const home = () => fetch('/home');
+
+/**
+ * 当季新品
+ */
 export const newGoodsList = () => fetch('/newGoodsList');
 
 /**

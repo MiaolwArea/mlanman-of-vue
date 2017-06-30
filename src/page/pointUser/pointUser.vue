@@ -32,7 +32,7 @@
 		            <p>当前可兑换口红数量：<span class="exchange-num-word">{{ goodsNum }}</span></p>
 		        </div>
 		        <div class="exchange-btn txt-align-r">
-		            <a @click="gotoAddress({path: '/point/list'})">兑换口红</a>
+		            <a @click="gotoAddress({path: '/point'})">兑换口红</a>
 		        </div>
 		    </div>
 		    <div class="divide-line"></div>
@@ -151,6 +151,7 @@
         methods: {
 	        // 初始化获取数据
 	        async initData(){
+	        	const _this = this;
 	        	// 进入页面根据积分值, 执行动画以及数据初始化
 	            let res = await pointUser();
 	            let resData = res.data;
@@ -165,29 +166,31 @@
 			            , curProcess = vals / 100
 			            , circumference = 2 * radius * Math.PI;
 
-			        this.num = dataInfo.member_info.integral;
-			        this.difNum = 100 - vals;
-			        this.percenNum = vals;
-			        this.goodsNum = num;
-			        this.newsLinkTitle = dataInfo.newsLink.link_title;
-			        this.newsLinkTo = dataInfo.newsLink.link_to;
-			        this.familyMan = dataInfo.family;
-			        this.familyOrder = dataInfo.familyOrderCount;
-			        this.isShowOfPic = dataInfo.times;
-			        this.missionList = dataInfo.task_list;
+			        _this.num = dataInfo.member_info.integral;
+			        _this.difNum = 100 - vals;
+			        _this.percenNum = vals;
+			        _this.goodsNum = num;
+			        _this.newsLinkTitle = dataInfo.newsLink.link_title;
+			        _this.newsLinkTo = dataInfo.newsLink.link_to;
+			        _this.familyMan = dataInfo.family;
+			        _this.familyOrder = dataInfo.familyOrderCount;
+			        _this.isShowOfPic = dataInfo.times;
+			        _this.missionList = dataInfo.task_list;
 			        // 修改圆环进度条进度
-			        this.$refs.donut__svg__circle.style.strokeDashoffset = Math.floor(circumference - curProcess * circumference);
+			        _this.$refs.donut__svg__circle.style.strokeDashoffset = Math.floor(circumference - curProcess * circumference);
 	            }
 	        },
         	// 显示弹窗
         	showMyPic(isUpload, remark){
-        		this.isConfirm = !isUpload;
-        		this.isUpload = isUpload;
-        		this.showAlert = true;
+        		const _this = this;
+        		
+        		_this.isConfirm = !isUpload;
+        		_this.isUpload = isUpload;
+        		_this.showAlert = true;
         		if(isUpload){
-	                this.alertText = '<p>一、在朋友圈完成晒单<br>朋友圈晒单要求：<br>1、晒出来的图不得少于3张图片<br>2、含LANMAN烂熳LOGO图片<br>3、含个人专属二维码图片4、至少含一张产品拍照图<br>二、截图朋友圈状态上传即可</p>';
+	                _this.alertText = '<p>一、在朋友圈完成晒单<br>朋友圈晒单要求：<br>1、晒出来的图不得少于3张图片<br>2、含LANMAN烂熳LOGO图片<br>3、含个人专属二维码图片4、至少含一张产品拍照图<br>二、截图朋友圈状态上传即可</p>';
         		}else{
-        			this.alertText = remark;
+        			_this.alertText = remark;
         		}
         	},
         	// 上传确定按钮
@@ -198,7 +201,6 @@
         	},
         	// 订阅提醒
         	subReminder(){
-
         		// this.$http.get('http://localhost:3000/subReminder').then(res => {
 	    			this.subBooler = !this.subBooler;
 	        		this.reminderTxt = boolerInfo[this.subBooler];
@@ -209,7 +211,11 @@
         		this.$http.get('http://localhost:3000/pointUser', {taskId: taskId}).then(res => {
         			// 
         		});
-        	}
+        	},
+        	// 地址跳转
+        	gotoAddress(path){
+        		this.$router.push(path)
+        	},
         }
     }
 </script>

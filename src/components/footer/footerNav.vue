@@ -40,16 +40,17 @@
                 	<p>口红</p>
 	    		</a>
 	    	</li>
-	    	<li :class="{active: $route.path.indexOf('mycode') !== -1}" @click="gotoAddress({path: '/mycode'})">
+	    	<li :class="{active: $route.path.indexOf('myCode') !== -1}" @click="gotoAddress({path: '/myCode'})">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-qrcode"></i>
                 	<p>二维码</p>
 	    		</a>
 	    	</li>
-	    	<li :class="{active: $route.path.indexOf('point') !== -1}" @click="gotoAddress({path: '/pointUser'})">
+	    	<li :class="{active: $route.path.indexOf('point') !== -1}" @click="gotoAddress({path: '/pointUser'})" class="pr">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-point"></i>
                     <p>积分</p>
+                    <!-- <div :class="{'red-spot': userInfo.isTask}"></div> -->
 	    		</a>
 	    	</li>
 	    	<li :class="{active: $route.path.indexOf('user') !== -1}" @click="gotoAddress({path: '/user'})">
@@ -231,6 +232,15 @@ import { mapState, mapActions, mapMutations } from 'vuex'
                 top: strip-rem(-5px);
                 right: strip-rem(-5px);
             }
+        }
+        .red-spot{
+            position: absolute;
+            top: strip-rem(5px);
+            left: strip-rem(15px);
+            background-color: red;
+            width: strip-rem(10px);
+            height: strip-rem(10px);
+            border-radius: 50%;
         }
         .service-wrapper{
             position: absolute;

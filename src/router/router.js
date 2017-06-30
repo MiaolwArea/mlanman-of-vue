@@ -4,10 +4,11 @@ const home = r => require.ensure([], () => r(require('../page/home/home')), 'hom
 // const community = r => require.ensure([], () => r(require('../page/community/community')), 'community')
 const myCode = r => require.ensure([], () => r(require('../page/myCode/myCode')), 'myCode')
 const pointUser = r => require.ensure([], () => r(require('../page/pointUser/pointUser')), 'pointUser')
+const pointList = r => require.ensure([], () => r(require('../page/pointUser/point/list')), 'pointList')
+const pointListDetail = r => require.ensure([], () => r(require('../page/pointUser/point/listDetail')), 'pointListDetail')
 const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
 const goods = r => require.ensure([], () => r(require('../page/goods/goods')), 'goods')
 const shoppingCart = r => require.ensure([], () => r(require('../page/shoppingCart/shoppingCart')), 'shoppingCart')
-const pointList = r => require.ensure([], () => r(require('../page/point/list')), 'pointList')
 
 export default [{
     path: '/',
@@ -35,8 +36,18 @@ export default [{
         },
         // 积分
         {
-            path: '/pointUser',
-            component: pointUser
+            path: '/pointUser', 
+            component: pointUser,
+            children: [{
+                // 积分兑换页
+                path: 'point/list',
+                component: pointList,
+                children: [{
+                    // 兑换详情页
+                    path: 'detail',
+                    component: pointListDetail
+                }]
+            }]
         },
         // 个人中心
         {
@@ -52,11 +63,6 @@ export default [{
         {
             path: '/shoppingCart',
             component: shoppingCart
-        },
-        // 积分兑换页
-        {
-            path: '/point',
-            component: pointList
         },
     ]
 }]

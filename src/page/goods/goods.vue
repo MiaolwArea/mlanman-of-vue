@@ -55,7 +55,7 @@
 			    								<span class="fr">{{ item.buy_date | formatDate('yyyy-MM-dd') }}</span>
 			    							</div>
 			    							<ul class="star">
-			    								<li class="iconfont star active inline-block fz14" v-for="a in item.star"></li>
+			    								<li class="iconfont star active inline-block fz14" v-for="starItem in item.star"></li>
 			    							</ul>
 			    						</div>
 			    					</div>

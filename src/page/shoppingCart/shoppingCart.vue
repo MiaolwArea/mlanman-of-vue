@@ -1,7 +1,7 @@
 <template>
 	<div class="shopping-cart">
         <div v-if="!isHaveOrder">
-            <div class="blank-cont">
+            <div class="blank-cont color-bg-gray">
                 <img src="~assets/images/shoppingCart/bg_shoppingcart_blank.png">
                 <p class="fz16 fw">您购物车中没任何商品</p>
                 <a class="fz14 link-home" href="">去逛逛 ></a>
@@ -11,13 +11,13 @@
             <router-link tag="section" v-if="userId" :to="{path: 'address', query: {id: userId}}" class="address padding-1">
                 <div class="receive-info">
                     <div class="receive fz16">
-                        <span class="color-cart-gray">收货人：{{ receiveName }} {{ phone }}</span>
+                        <span class="color-ft-a3">收货人：{{ receiveName }} {{ phone }}</span>
                     </div>
                     <div class="receive-address fz14">
-                        <span class="color-cart-gray">收货地址：{{ adress }}</span>
+                        <span class="color-ft-a3">收货地址：{{ adress }}</span>
                     </div>    
                 </div>
-                <i class="color-cart-gray icon-right-arrow iconfont">&#xe60e;</i>
+                <i class="color-ft-a3 icon-right-arrow iconfont">&#xe60e;</i>
             </router-link>
             <router-link tag="section" v-else="userId" :to="{path: 'login'}" class="padding-1">
                 <p class="fz16 tac">点击登入获取地址信息</p>
@@ -30,8 +30,8 @@
                             <img :src="item.shopPic"/>
                         </router-link>
                         <div class="order-goods-info col-8">
-                            <p class="fz14 color-cart-gray">{{ item.name }}</p>
-                            <p class="tar color-cart-gray">¥{{ item.price | subNumber }}</p>
+                            <p class="fz14 color-ft-a3">{{ item.name }}</p>
+                            <p class="tar color-ft-a3">¥{{ item.price | subNumber }}</p>
                             <div class="order-goods-num lr-col">
                                 <div class="num lr-col" @click="changeNumAlert(item.id, listNum[item.id] || item.num)">
                                     <span>数量：</span>
@@ -39,7 +39,7 @@
                                     <span class="box">{{ listNum[item.id] || item.num }}</span>
                                     <span class="box">+</span>   
                                 </div>
-                                <i class="iconfont icon-delete color-cart-gray" @click="clearGoods(item.id)"></i>
+                                <i class="iconfont icon-delete color-bg-gray color-ft-a3" @click="clearGoods(item.id)"></i>
                             </div>
                         </div>
                     </li>
@@ -50,15 +50,15 @@
                 <ul class="list-info">
                     <li class="order-item lr-col fz14">
                         <span class="fw">商品金额</span>
-                        <span class="color-cart-gray">¥{{ countTotal | subNumber }}</span>
+                        <span class="color-ft-a3">¥{{ countTotal | subNumber }}</span>
                     </li>
                     <li class="order-item lr-col fz14">
                         <span class="fw">抵用金额</span>
-                        <span class="color-cart-gray">¥{{ voucher | subNumber }}</span>
+                        <span class="color-ft-a3">¥{{ voucher | subNumber }}</span>
                     </li>
                     <li class="order-item lr-col fz14">
                         <span class="fw">运费</span>
-                        <span class="color-cart-gray">{{ freight | subNumber }}</span>
+                        <span class="color-ft-a3">{{ freight | subNumber }}</span>
                     </li>
                     <li class="order-item fz14">
                         <span class="fw">我要留言</span>
@@ -66,19 +66,19 @@
                     </li>
                     <li class="order-item lr-col fz14">
                         <span class="fw" @click="goBack"><i class="iconfont">&#xe610;</i>继续购物</span>
-                        <span class="color-cart-gray fz16">实付¥{{ finalPirce | subNumber }}</span>
+                        <span class="color-ft-a3 fz16">实付¥{{ finalPirce | subNumber }}</span>
                     </li>
                 </ul>
             </section>
-            <section class="pay-btn-box bg-cart-333">
+            <section class="pay-btn-box color-bg-gray">
                 <a href="" class="pay-btn tac fz16">微信支付</a>
             </section>
-            <footer class="lanman-footer bg-cart-333">
+            <footer class="lanman-footer color-bg-gray">
                 <div class="lanman-footer-logo">
                     <img src="http://image.lanman.cn/2016/m.lanman.cn/images/my/lanman-footer-logo.png">
                 </div>
                 <p class="contact-tel tac">
-                    <font class="fz14 color-cart-gray">全球服务联系电话：400－700－0825</font>    
+                    <font class="fz14 color-ft-a3">全球服务联系电话：400－700－0825</font>    
                 </p>
             </footer>
             <!-- 数量选择弹窗 -->
@@ -239,13 +239,9 @@ import alertTip from '../../components/common/alertTip'
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 
-    $color-a3: #a3a3a3;
     .padding-1{ padding: strip-rem(10px); }
-    .color-cart-gray{ color: $color-a3; }
     .color-cart-black{ color: #000; }
-    .bg-cart-333{ background-color: #333; }
     .blank-cont{
-        background-color: #333;
         position: fixed;
         top: 0px;
         left: 0px;
@@ -293,7 +289,6 @@ import alertTip from '../../components/common/alertTip'
         }
         .icon-delete{
             padding: strip-rem(3px);
-            background-color: #333;
         }
     }
     .specs_list{

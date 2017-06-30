@@ -88,10 +88,14 @@ img{
 .pa{position: absolute;}
 
 .show{display: block;}
-.hide{display: hidden;}
+.hide{display: none;}
 
 .inline-block{display: inline-block;}
 .fw{font-weight: bold;}
+.color-ft-a3{ color: $color-a3; } 
+.color-ft-gray{ color: $gray; }
+.color-bg-gray{ background-color: $gray; }
+.color-bg-black{ background-color: #000; }
 // 公共样式
 .padd-lr{
     @include remCalc('padding', 0, 10);
@@ -112,6 +116,13 @@ img{
 }
 #app{
     margin-bottom: strip-rem(50px);
+}
+.children-view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    z-index: 9999;
 }
 // 分割条
 .divide-line{

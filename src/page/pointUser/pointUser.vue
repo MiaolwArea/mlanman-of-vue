@@ -21,7 +21,7 @@
 		            </div>
 		            <div class="svg-box">
 					    <svg width="100%" height="100%" viewBox="0 0 100 100" >
-					        <circle cx="50" cy="50" r="45" stroke-width="2"  stroke="#fff"></circle>
+					        <circle cx="50" cy="50" r="45" stroke-width="2" stroke="#fff"></circle>
 					        <circle cx="50" cy="50" r="45" stroke-width="8" ref="donut__svg__circle" class="donut__svg__circle--one" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" transform="rotate(90, 50 50)"></circle>
 					    </svg>
 					</div>
@@ -32,7 +32,7 @@
 		            <p>当前可兑换口红数量：<span class="exchange-num-word">{{ goodsNum }}</span></p>
 		        </div>
 		        <div class="exchange-btn txt-align-r">
-		            <a @click="gotoAddress({path: '/point'})">兑换口红</a>
+		            <a @click="gotoAddress({path: '/pointUser/point/list'})">兑换口红</a>
 		        </div>
 		    </div>
 		    <div class="divide-line"></div>
@@ -109,7 +109,11 @@
 		    </div>
 		</section>
 		<alert-tip v-if="showAlert" @closeTip="uploadCommit" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
-		<footer-nav></footer-nav>	
+		<footer-nav></footer-nav>
+		<!-- 兑换积分页 -->
+        <transition name="router-slid" mode="out-in">
+            <router-view></router-view>
+        </transition>
 	</div>
 </template>
 
@@ -129,7 +133,7 @@
                 num: 0,					// 总积分
                 difNum: 0,				// 差值积分
                 percenNum: 0,			// 百分比积分
-                goodsNum: 0,			// 以得商品数
+                goodsNum: 0,			// 可获得商品数
                 newsLinkTitle: '',		// 软链文本信息
                 newsLinkTo: '',			// 软链地址
                 familyMan: 0,			// 家族成员
@@ -350,4 +354,11 @@
 			}
 		}
 	}
+    .router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(0, -2rem, 0);
+        opacity: 0;
+    }
 </style>

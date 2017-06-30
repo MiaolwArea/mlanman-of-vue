@@ -31,7 +31,7 @@
           "avatar": "",
           "sex": 2,
           "birthday": "0000-00-00 00:00:00",
-          "integral": "5",
+          "integral": 105,
           "fee_count": "0",
           "mobile": "",
           "province_id": "0",
@@ -402,5 +402,34 @@
       "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
       "shop_price": 120.00
     }]
+  },
+  "pointGoods": {
+    "error": 0,
+    "msg": null,
+    "data": {
+      "integral": 105,
+      "freezeIntegral": 20,
+      "pointGoodsList": [{
+        "order_id": 1,
+        "outside_view": "http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "point": 100
+      },{
+        "order_id": 2,
+        "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "point": 100
+      },{
+        "order_id": 3,
+        "outside_view": "http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "point": 100
+      },{
+        "order_id": 4,
+        "outside_view": "http://image.lanman.cn/2016/12/30/3d06bdfa396745d2d81c94433dd90757.jpg",
+        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+        "point": 100
+      }]
+    }
   }
 }

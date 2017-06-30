@@ -77,6 +77,11 @@ export const popularGoods = () => fetch('/popularGoods');
  */
 export const commentList = () => fetch('/commentList');
 
+/**
+ * 获取积分兑换商品
+ */
+export const pointGoods = () => fetch('/pointGoods');
+
 
 
 

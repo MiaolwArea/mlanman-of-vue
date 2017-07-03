@@ -12,15 +12,20 @@ Vue.use(VueResource);
 Vue.config.productionTip = false
 
 const router = new VueRouter({
-	routes
+	mode: 'history',
+	routes,
+	scrollBehavior (to, from, savedPosition) {
+		// 关闭路由跳转页默认记录位置功能
+	    return { x: 0, y: 0 }
+	}
 });
 
 // 所有请求启用loading动画
-router.beforeEach(function (to, from, next) {
+router.beforeEach((to, from, next) => {
 	store.commit('updateLoadingStatus', {isLoading: true});
 	next();
 })
-router.afterEach(function (to) {
+router.afterEach((to) => {
 	store.commit('updateLoadingStatus', {isLoading: false});
 })
 

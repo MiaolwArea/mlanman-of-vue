@@ -82,6 +82,11 @@ export const commentList = () => fetch('/commentList');
  */
 export const pointGoods = () => fetch('/pointGoods');
 
+/**
+ * 积分兑换商品描述
+ */
+export const pointGoodsDetail = () => fetch('/pointGoodsDetail');
+
 
 
 

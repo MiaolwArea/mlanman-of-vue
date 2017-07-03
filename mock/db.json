@@ -431,5 +431,26 @@
         "point": 100
       }]
     }
+  },
+  "pointGoodsDetail": {
+    "error": 0,
+    "msg": null,
+    "data": {
+      "order_id": 1,
+      "outside_view": "http://imglanman.b0.upaiyun.com/2016/09/22/2e91b52dc9305ac55f58c3ebb29aee78.jpg",
+      "goods_name": "LANMAN #301 巧克力初心系列-我的橙色",
+      "point": 100,
+      "price": 129,
+      "stock": 200,
+      "start_time": 1499011200,
+      "end_time": 1499270400,
+      "picture_desc": [
+        "http://image.lanman.cn/2017/01/17/499cad6e28fb6414ccf5bee5301a5a56.jpg",
+        "http://image.lanman.cn/2017/04/25/fc464ffb83f2ffb458af034cbb489ec0.jpg",
+        "http://image.lanman.cn/2017/04/25/c2ec65b6e6b3e3be4c14eafd35af13fd.jpg",
+        "http://image.lanman.cn/2017/04/25/c384755dc43ae7554f47c724041b9666.jpg",
+        "http://image.lanman.cn/2017/04/25/7de97e4c39a130f835a23d902a7860c9.jpg"
+      ]
+    }
   }
 }

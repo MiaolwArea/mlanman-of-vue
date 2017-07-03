@@ -100,6 +100,9 @@ img{
 .padd-lr{
     @include remCalc('padding', 0, 10);
 }
+.padd-all-2010{
+    @include remCalc('padding', 20, 10);
+}
 .clear:after{
     content: ".";
     visibility: hidden;

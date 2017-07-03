@@ -184,9 +184,9 @@
                 
                 _this.popularGoodsInfo = popularGoodsRes.data;
 
-                _this.initCartNum();
+                _this._initCartNum();
             },
-            initCartNum(){
+            _initCartNum(){
                 Object.keys(this.cartList).forEach(itemid => {
                     let goodsInfo = this.cartList[itemid];
 

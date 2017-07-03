@@ -33,7 +33,7 @@
 			</ul>
 		</section>
 		<!-- 兑换积分页 -->
-        <transition name="router-slid" mode="out-in">
+        <transition name="router-children-slid" mode="in-out">
             <router-view></router-view>
         </transition>
 	</div>
@@ -73,9 +73,9 @@
     			_this.percenNum = _this.integral % 100;
     			_this.goodsNum = parseInt(_this.integral / 100);
 
-    			_this.countHeight();
+    			_this._countHeight();
     		},
-    		countHeight(){
+    		_countHeight(){
     			let nowHeight = this.$refs.rateRouge.getBoundingClientRect().height;
 
     			this.$refs.rateRouge.style.paddingTop = (nowHeight * (1 - this.percenNum / 100)) + 'px';
@@ -84,7 +84,10 @@
     	watch: {
     		userInfo: function(){
     			// this.initData();
-    		}
+    		},
+    		$route: function(to, from) {
+		    	// TODO change
+		    }
     	},
     }
 </script>
@@ -129,10 +132,10 @@
             margin-bottom: strip-rem(40px);
         }
 	}
-    .router-slid-enter-active, .router-slid-leave-active {
+    .router-children-slid-enter-active, .router-children-slid-leave-active {
         transition: all .4s;
     }
-    .router-slid-enter, .router-slid-leave-active {
+    .router-children-slid-enter, .router-children-slid-leave-active {
         transform: scale(2, 2);
         opacity: 0;
     }

@@ -194,9 +194,9 @@ export default {
             
             let homeRes = await home();
             _this.news = homeRes.data.news;
-            _this.onLineTimeOfDay(homeRes.data.newGoodsOnline);
+            _this._onLineTimeOfDay(homeRes.data.newGoodsOnline);
         },
-        onLineTimeOfDay(onLineTime){
+        _onLineTimeOfDay(onLineTime){
             let nowTime = Math.round(new Date().getTime()/1000)
                 , onLineDay = Math.ceil((onLineTime - nowTime)/3600/24);
 
@@ -204,7 +204,7 @@ export default {
                 this.onLineInfo = "距离下次新品发布还有"+ onLineDay +"天"
             }else if(onLineDay == 0){
                 this.onLineInfo = "LANMAN烂熳新品今日上线！"
-            }else if(onLineInfo < 0){
+            }else if(onLineDay < 0){
                 this.onLineInfo = "LANMAN烂熳本季新品上线了！"
             }
         },

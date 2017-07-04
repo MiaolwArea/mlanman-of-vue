@@ -108,7 +108,7 @@
 		        </ul>
 		    </div>
 		</section>
-		<alert-tip v-if="showAlert" @closeTip="uploadCommit" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
+		<alert-tip :isShow="showAlert" @closeTip="uploadCommit" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
 		<footer-nav></footer-nav>
 		<!-- 兑换积分页 -->
         <transition name="router-slid" mode="out-in">

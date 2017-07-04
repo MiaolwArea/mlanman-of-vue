@@ -107,7 +107,7 @@
                 </div>
             </transition>
         </div>
-        <alert-tip v-show="showAlert" @closeTip="showAlert = false" :isConfirm="false" :alertText="alertText" @sureTip="sureTip()"></alert-tip>
+        <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" :alertText="alertText" @sureTip="sureTip()"></alert-tip>
         <footer-nav :isShopcart="false"></footer-nav>   
     </div>
 </template>

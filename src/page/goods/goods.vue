@@ -83,7 +83,7 @@
     			</ul>
     		</div>
     	</section>
-        <alert-tip v-show="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
+        <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
         <footer-nav ref="footerNavObj" :class="{scaleaction: isAdd}" :isShopcart="false" :buyBtn="true" :cartText="cartText" :isCanJoin="isCanJoin" @joinCart="joinCart" :cartNum="cartNum"></footer-nav>   
     </div>
 </template>

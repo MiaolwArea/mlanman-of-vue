@@ -22,7 +22,7 @@
             </swiper>
             <div class="btn-qrcode-select tac" @click="selected">确定选择</div>
         </div>
-        <alert-tip v-show="showAlert" @sureTip="sureTip" :alertText="alertText"></alert-tip>
+        <alert-tip :isShow="showAlert" @sureTip="sureTip" :alertText="alertText"></alert-tip>
         <footer-nav :isShopcart="false"></footer-nav>   
     </div>
 </template>

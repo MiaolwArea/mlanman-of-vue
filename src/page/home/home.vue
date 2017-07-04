@@ -129,7 +129,7 @@
             </footer>
         </div>
     </transition>
-    <alert-tip v-show="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
+    <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
   </div>

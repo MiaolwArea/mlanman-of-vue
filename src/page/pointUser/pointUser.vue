@@ -7,7 +7,7 @@
 		            <span>我的积分</span>
 		            <span class="point-num fz18">{{ num }}</span>
 		        </div>
-		        <div class="my-money-item-log txt-align-r" @click="gotoAddress({path: '/user/point'})">
+		        <div class="my-money-item-log txt-align-r" @click="gotoAddress({path: '/user/myPoint'})">
 		            <i class="iconfont icon-point ft-34">&#xe61f;</i>
 		            <span>积分记录</span>
 		        </div>

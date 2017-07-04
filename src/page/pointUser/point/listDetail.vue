@@ -25,15 +25,16 @@
 				</div>
 			</section>
 		</div>
-		<div class="point-exchange-box tac fixed" :class="isShowBtn ? 'show' : 'hide'">
+		<div class="point-exchange-box tac fixed" :class="isShowBtn ? 'show' : 'hide'" @click="exchange">
 			<a class="exchange fz16">{{ btninfo }}</a>
 		</div>
+        <alert-tip :isShow="showAlert" :confirmModel="2" @isShowAuto="isShowAuto" :alertText="alertText"></alert-tip>
 	</div>
 </template>
 
 <script>
     import { pointGoodsDetail } from '../../../service/getData'
-    import { loadMore } from '../../../components/common/mixin'
+    import alertTip from '../../../components/common/alertTip'
     import { mapState } from 'vuex'
 
     let isBeginExchange = true;
@@ -49,6 +50,8 @@
     			price: null,			// 商品价格
     			stock: null,			// 商品库存
     			btninfo: "",			// 兑换按钮文本信息
+                showAlert: false,       // 是否显示弹窗
+                alertText: '',          // 弹窗内容
     		}
     	},
     	compute: {
@@ -56,16 +59,17 @@
     			'userInfo'
 			])
     	},
-    	mixins: [loadMore],
     	mounted(){
     		this.initData();
     	},
+        components: { alertTip },
     	methods: {
     		async initData(){
     			const _this = this;
     			let pointGoodsDetailRes = await pointGoodsDetail(this.userInfo)
     				, goodsInfo = pointGoodsDetailRes.data;
 
+                _this.orderId = goodsInfo.order_id;
     			_this.title = goodsInfo.goods_name;
     			_this.pointGoodsArr = goodsInfo.picture_desc;
     			_this.picView = goodsInfo.outside_view;
@@ -93,6 +97,7 @@
     					this.isShowBtn = false;
     				}
     			}catch(err){
+                    // 如果用了transition, 可以用@after-leave="unbind"钩子解除绑定，具体参考官网：过渡效果
     				window.removeEventListener('scroll', this._scrollHandler, false);
     			}
     		},
@@ -112,9 +117,14 @@
     				isBeginExchange = false;
     			}
     		},
-    		exchange(){
-    			console.log('do')
-    		}
+    		async exchange(){
+    			// let exchangeGoodsRes = await exchangeGoods(this.userInfo, this.orderId);
+                this.showAlert = true;
+                this.alertText = '兑换成功！'
+    		},
+            isShowAuto(data){
+                this.showAlert = false;
+            }
     	},
     	watch: {
     		userInfo: function(){

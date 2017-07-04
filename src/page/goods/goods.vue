@@ -84,7 +84,15 @@
     		</div>
     	</section>
         <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
-        <footer-nav ref="footerNavObj" :class="{scaleaction: isAdd}" :isShopcart="false" :buyBtn="true" :cartText="cartText" :isCanJoin="isCanJoin" @joinCart="joinCart" :cartNum="cartNum"></footer-nav>   
+        <footer-nav ref="footerNavObj"
+            :class = "{scaleaction: isAdd}" 
+            :isShopcart = "false" 
+            :buyBtn = "true" 
+            :cartText = "cartText" 
+            :isCanJoin = "isCanJoin" 
+            :cartNum = "cartNum"
+            @joinCart = "joinCart"
+            @joinOrder = "joinOrder"></footer-nav>   
     </div>
 </template>
 
@@ -102,8 +110,8 @@
      * 页面虽然达到目的，不过是针对图片多情况实现的（主要针对图片多的情况，会造成加载延迟计算高端不准的解决方案）
     */
 
-    var swiperDOM = null				// swiper的DOM
-    	, firstListComment = null
+    var swiperDOM = null                // swiper的DOM
+    	, firstListComment = null       // 缓存第一次获取的评论列表
     	, pictureAryLength = 0;			// 图片总数量
 
     const saleStatusMap = {
@@ -186,6 +194,7 @@
 
                 _this._initCartNum();
             },
+            // 计算购物车商品数目
             _initCartNum(){
                 Object.keys(this.cartList).forEach(itemid => {
                     let goodsInfo = this.cartList[itemid];
@@ -197,18 +206,18 @@
             successLoadImg(){
             	this.countForImg++;
             	if(this.countForImg == pictureAryLength){
-            		swiperDOM = document.querySelectorAll("div[class='vux-swiper']");
-            		swiperDOM[0].style.cssText = 'overflow: scroll;';
-            		swiperDOM[0].style.height = this.$refs.imgBox0.clientHeight + "px";
+            		swiperDOM = document.querySelectorAll("div[class='vux-swiper']")[0];
+            		swiperDOM.style.cssText = 'overflow: scroll;';
+            		swiperDOM.style.height = this.$refs.imgBox0.clientHeight + "px";
             	}
             },
             // 滑动内容区块重新计算高度
             onIndexChange(index){
             	if(index == 0){
             		this.commentList = firstListComment;
-            		swiperDOM[0].style.height = this.$refs.imgBox0.clientHeight + "px";
+            		swiperDOM.style.height = this.$refs.imgBox0.clientHeight + "px";
             	}else{
-            		swiperDOM[0].style.height = this.$refs.imgBox1.clientHeight + "px";
+            		swiperDOM.style.height = this.$refs.imgBox1.clientHeight + "px";
             	}
             },
             async loadMore(){
@@ -217,6 +226,7 @@
                 
                 this.commentList = this.commentList.concat(commentListRes.data);
             },
+            // 加入购物车
             joinCart(){
                 const _this = this;
 
@@ -231,6 +241,11 @@
                 }
                 _this.cartNum++;
             },
+            // 立即下单
+            joinOrder(url){
+                // TODO 下单业务逻辑
+                this.$router.push(url);
+            }
         },
         watch: {
             userInfo: function (value){
@@ -294,7 +309,7 @@
     }
     .comment-body{
     	margin-bottom: strip-rem(15px);
-    	P{
+    	p{
     		color: #909090;
     	}
     }

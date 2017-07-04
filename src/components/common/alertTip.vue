@@ -22,7 +22,7 @@
         <transition name="downToUp">
             <section v-show="isShow" class="simpleTip-text-container" v-if="confirmModel == 2">
                 <div class="simpleTip-box">
-                    <p class="fz16 tac color-ft-black">更新成功<span class="color-ft-black" v-if="isCountDown">({{ timeDown }})</span></p>
+                    <p class="fz16 tac color-ft-black">{{ alertText }}<span class="color-ft-black" v-if="isCountDown">({{ timeDown }})</span></p>
                     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" version="1.1"class="specs_cancel" v-if="isCancel" @click="closeTip">
                         <line x1="0" y1="0" x2="16" y2="16" stroke="#666" stroke-width="1.2"/>
                         <line x1="0" y1="16" x2="16" y2="0" stroke="#666" stroke-width="1.2"/>
@@ -71,7 +71,7 @@
             },
             // 是否显示倒计时
             isCountDown: {
-                default: true
+                default: false
             },
             // 是否自动消失
             isAutoHide: {
@@ -93,6 +93,7 @@
                     }, 1000);
                 }else{
                     if(_this.isAutoHide){
+                        // 自动隐藏回调函数
                         _this.$emit('isShowAuto', false);
                     }
                 }
@@ -201,7 +202,7 @@
         margin-top: -50%;
         margin-left: strip-rem(-120px);
         width: strip-rem(240px);
-        background-color: #fff;
+        background-color: #ccc;
         border-radius: strip-rem(5px);
         @include remCalc('padding', 10);
         .simpleTip-box{

@@ -130,6 +130,7 @@
         </div>
     </transition>
     <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
+    <loading v-show="loading.isloading"></loading>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
   </div>
@@ -170,11 +171,11 @@ export default {
     },
     mixins: [loadMore],
     mounted: function(){
-        this.initData();   
+        this.initData();
     },
     computed: {
         ...mapState([
-            'userInfo'
+            'userInfo', 'loading'
         ])
     },
     methods: {
@@ -223,9 +224,11 @@ export default {
             //数据每次显示3条
             _this.counts += 3;
             
-            let res = await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null);
+            _this.loading.isloading = true;
+            let res = _this.ajaxDoSomeing(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
             let resData = res.data.info;
 
+            _this.loading.isloading = false;
             _this.goodsListArr = [..._this.goodsListArr, ...resData];
             //当获取数据小于总数，说明没有更多数据，不需要再次请求数据
             if (resData.length >= _this.totalNum) {
@@ -240,18 +243,24 @@ export default {
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){
-            let addsubscribeRes = await addsubscribe();
+            let addsubscribeRes = this.ajaxDoSomeing(await addsubscribe());
             this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
             this.showAlert = false;
         },
         // 口红推荐
         async screen(){
             this.counts = 0;
-            let res = await allGoodsList(this.counts, this.skin, this.scene);
+            let res = this.ajaxDoSomeing(await allGoodsList(this.counts, this.skin, this.scene));
             let resData = res.data.info;
 
             this.goodsListArr = [...this.goodsListArr, ...resData];
         },
+        loadingFunc(awaitFetch){
+            this.loading.isloading = true;
+            let res = awaitFetch;
+            this.loading.isloading = false;
+            return res;
+        }
     },
     watch: {
         userInfo: function(value){

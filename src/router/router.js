@@ -7,6 +7,7 @@ const pointUser = r => require.ensure([], () => r(require('../page/pointUser/poi
 const pointList = r => require.ensure([], () => r(require('../page/pointUser/point/list')), 'pointList')
 const pointListDetail = r => require.ensure([], () => r(require('../page/pointUser/point/listDetail')), 'pointListDetail')
 const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
+const myPoint = r => require.ensure([], () => r(require('../page/user/myPoint/myPoint')), 'myPoint')
 const goods = r => require.ensure([], () => r(require('../page/goods/goods')), 'goods')
 const shoppingCart = r => require.ensure([], () => r(require('../page/shoppingCart/shoppingCart')), 'shoppingCart')
 
@@ -53,6 +54,11 @@ export default [{
         {
             path: '/user',
             component: user
+        },
+        // 我的积分/积分纪录
+        {
+            path: '/user/myPoint',
+            component: myPoint
         },
         // 商品详情页
         {

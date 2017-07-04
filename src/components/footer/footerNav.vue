@@ -27,7 +27,7 @@
                     {{ cartText }}
                 </a>
             </li>
-            <li @click="gotoAddress({path: '/user'})">
+            <li @click="gotoAddress({path: (cartNum ? '/shoppingCart/?num=' + cartNum : '/shoppingCart')})">
                 <a class="nav-itme fz16">
                     立即下单
                 </a>
@@ -119,9 +119,11 @@ import { mapState, mapActions, mapMutations } from 'vuex'
         	gotoAddress(path){
         		this.$router.push(path)
         	},
+            // 加入购物车
             joinCart(){
                 this.$emit('joinCart');
             },
+            // 购物车商品数量
             initCartNum(){
                 Object.keys(this.cartList).forEach(itemid => {
                     let goodsInfo = this.cartList[itemid];
@@ -129,6 +131,10 @@ import { mapState, mapActions, mapMutations } from 'vuex'
                     this.cartNumSide += goodsInfo.num;
                 })
             },
+            // 立即下单
+            joinOrder(path){
+                this.$emit('joinOrder', path);
+            }
         },
     }
 </script>

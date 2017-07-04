@@ -33,7 +33,7 @@
 			</ul>
 		</section>
 		<!-- 兑换积分页 -->
-        <transition name="router-children-slid" mode="in-out">
+        <transition name="router-children-slid">
             <router-view></router-view>
         </transition>
 	</div>

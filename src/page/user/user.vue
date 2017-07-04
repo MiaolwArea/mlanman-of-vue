@@ -77,9 +77,9 @@
 </template>
 
 <script>
-	import footerNav from '../../components/footer/footerNav'
-    import { recommendList } from '../../service/getData'
-    import { removeStore } from '../../assets/config/mUtils'
+	import footerNav from '@/components/footer/footerNav'
+    import { recommendList } from '@/service/getData'
+    import { removeStore } from '@/assets/config/mUtils'
     import { mapState, mapMutations } from 'vuex'
 
     export default {

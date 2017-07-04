@@ -28,9 +28,9 @@
 </template>
 
 <script>
-	import footerNav from '../../components/footer/footerNav'
-    import alertTip from '../../components/common/alertTip'
-    import { qrcodeimg, getQrcodeimgs, selectedQrcodeimg } from '../../service/getData'
+	import footerNav from '@/components/footer/footerNav'
+    import alertTip from '@/components/common/alertTip'
+    import { qrcodeimg, getQrcodeimgs, selectedQrcodeimg } from '@/service/getData'
     import { Swiper, SwiperItem } from 'vux'
     import { mapState, mapMutations } from 'vuex'
 

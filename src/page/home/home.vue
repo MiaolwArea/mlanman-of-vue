@@ -137,11 +137,11 @@
 </template>
 
 <script>
-import footerBottom from '../../components/footer/footer'
-import footerNav from '../../components/footer/footerNav'
-import { allGoodsList, newGoodsList, home, addsubscribe } from '../../service/getData'
-import { loadMore } from '../../components/common/mixin'
-import alertTip from '../../components/common/alertTip'
+import footerBottom from '@/components/footer/footer'
+import footerNav from '@/components/footer/footerNav'
+import { allGoodsList, newGoodsList, home, addsubscribe } from '@/service/getData'
+import { loadMore } from '@/components/common/mixin'
+import alertTip from '@/components/common/alertTip'
 import { mapState } from 'vuex'
 
 const reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
@@ -224,11 +224,9 @@ export default {
             //数据每次显示3条
             _this.counts += 3;
             
-            _this.loading.isloading = true;
             let res = _this.ajaxDoSomeing(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
             let resData = res.data.info;
 
-            _this.loading.isloading = false;
             _this.goodsListArr = [..._this.goodsListArr, ...resData];
             //当获取数据小于总数，说明没有更多数据，不需要再次请求数据
             if (resData.length >= _this.totalNum) {
@@ -255,12 +253,6 @@ export default {
 
             this.goodsListArr = [...this.goodsListArr, ...resData];
         },
-        loadingFunc(awaitFetch){
-            this.loading.isloading = true;
-            let res = awaitFetch;
-            this.loading.isloading = false;
-            return res;
-        }
     },
     watch: {
         userInfo: function(value){

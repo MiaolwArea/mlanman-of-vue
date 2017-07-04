@@ -113,10 +113,10 @@
 </template>
 
 <script>
-import footerNav from '../../components/footer/footerNav'
+import footerNav from '@/components/footer/footerNav'
 import { mapState, mapActions, mapMutations } from 'vuex'
-import { subNumber } from '../../components/common/mixin'
-import alertTip from '../../components/common/alertTip'
+import { subNumber } from '@/components/common/mixin'
+import alertTip from '@/components/common/alertTip'
 
     var thisId = null;
 

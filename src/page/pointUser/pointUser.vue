@@ -118,9 +118,9 @@
 </template>
 
 <script>
-	import footerNav from '../../components/footer/footerNav'
-	import {pointUser} from '../../service/getData'
-	import alertTip from '../../components/common/alertTip'
+	import footerNav from '@/components/footer/footerNav'
+	import {pointUser} from '@/service/getData'
+	import alertTip from '@/components/common/alertTip'
 
 	const boolerInfo = {false: '已订阅', true: '订阅提醒'};
 	

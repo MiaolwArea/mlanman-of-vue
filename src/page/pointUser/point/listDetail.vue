@@ -33,8 +33,8 @@
 </template>
 
 <script>
-    import { pointGoodsDetail } from '../../../service/getData'
-    import alertTip from '../../../components/common/alertTip'
+    import { pointGoodsDetail } from '@/service/getData'
+    import alertTip from '@/components/common/alertTip'
     import { mapState } from 'vuex'
 
     let isBeginExchange = true;

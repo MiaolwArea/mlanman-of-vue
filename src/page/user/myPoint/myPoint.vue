@@ -1,32 +1,51 @@
 <template>
 	<div id="my-point">
-		积分页
+		<section class="point-header color-bg-gray">
+            <div class="point-icon tac">
+                <i class="iconfont">&#xe621;</i>
+            </div>
+            <div class="point-integral">
+                <p class="fz14">可用积分: {{ point }}</p>
+                <router-link tag="p" :to="{path: ''}" class="fz14">即将获得订单积分: {{ freezeIntegral }}<i class="iconfont"> &#xe60e;</i></router-link>
+            </div>
+        </section>
+        <loading v-show="loading.isloading"></loading>
+        <footer-nav :isShopcart="false"></footer-nav>   
 	</div>
 </template>
 
 <script>
-    import { pointGoodsDetail } from '../../../service/getData'
+    import { myPoint } from '@/service/getData'
     import { mapState } from 'vuex'
+    import footerNav from '@/components/footer/footerNav'
 
-    let isBeginExchange = true;
-    
     export default {
     	data(){
     		return {
-    			pointGoodsArr: [],		// 商品介绍
+    			point: 0,		    // 拥有积分
+                freezeIntegral: 0,  // 将要获得积分
+                recordList: null,   // 积分纪录
     		}
     	},
-    	compute: {
+    	computed: {
     		...mapState([
-    			'userInfo'
+    			'userInfo', 'loading'
 			])
     	},
+        components: {
+            footerNav,
+        },
     	mounted(){
     		this.initData();
     	},
     	methods: {
     		async initData(){
-    			
+                let _this = this;
+    			let myPointRes = _this.ajaxDoSomeing(await myPoint()).data;
+
+                _this.point = myPointRes.integral;
+                _this.freezeIntegral = myPointRes.freezeIntegral;
+                _this.recordList = myPointRes.listdata;
     		},
     	},
     	watch: {
@@ -40,5 +59,25 @@
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 	
-	
+	.point-header{
+        @include remCalc('padding', 20, 15);
+        @include fj(left);
+        .point-icon{
+            background-color: #838383;
+            border-radius: 50%;
+            width: strip-rem(50px);
+            height: strip-rem(50px);
+            i{
+                font-size: strip-rem(24px);
+                line-height: 2;
+            }
+        }
+        .point-integral{
+            margin-left: strip-rem(10px);
+            line-height: 1.5;
+            i{
+                vertical-align: middle;
+            }
+        }
+    }
 </style>

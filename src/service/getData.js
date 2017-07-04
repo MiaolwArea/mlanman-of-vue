@@ -87,6 +87,11 @@ export const pointGoods = () => fetch('/pointGoods');
  */
 export const pointGoodsDetail = () => fetch('/pointGoodsDetail');
 
+/**
+ * 我的积分
+ */
+export const myPoint = () => fetch('/myPoint');
+
 
 
 

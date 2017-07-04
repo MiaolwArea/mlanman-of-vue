@@ -34,26 +34,26 @@
             </li>
         </ul>
 	    <ul class="item-list" v-else="buyBtn">
-	    	<li :class="{active: $route.path.indexOf('home') !== -1}" @click="gotoAddress({path: '/home'})">
+	    	<li :class="{active: /\/home$/g.test($route.path)}" @click="gotoAddress({path: '/home'})">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-index"></i>
                 	<p>口红</p>
 	    		</a>
 	    	</li>
-	    	<li :class="{active: $route.path.indexOf('myCode') !== -1}" @click="gotoAddress({path: '/myCode'})">
+	    	<li :class="{active: /\/myCode$/g.test($route.path)}" @click="gotoAddress({path: '/myCode'})">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-qrcode"></i>
                 	<p>二维码</p>
 	    		</a>
 	    	</li>
-	    	<li :class="{active: $route.path.indexOf('point') !== -1}" @click="gotoAddress({path: '/pointUser'})" class="pr">
+	    	<li :class="{active: /\/pointUser$/g.test($route.path)}" @click="gotoAddress({path: '/pointUser'})" class="pr">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-point"></i>
                     <p>积分</p>
                     <!-- <div :class="{'red-spot': userInfo.isTask}"></div> -->
 	    		</a>
 	    	</li>
-	    	<li :class="{active: $route.path.indexOf('user') !== -1}" @click="gotoAddress({path: '/user'})">
+	    	<li :class="{active: /\/user$/g.test($route.path)}" @click="gotoAddress({path: '/user'})">
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-user"></i>
                 	<p>个人中心</p>

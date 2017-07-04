@@ -97,10 +97,10 @@
 </template>
 
 <script>
-	import footerNav from '../../components/footer/footerNav'
-    import alertTip from '../../components/common/alertTip'
-    import { goodsDetial, popularGoods, commentList } from '../../service/getData'
-    import { formatDate } from '../../components/common/mixin'
+	import footerNav from '@/components/footer/footerNav'
+    import alertTip from '@/components/common/alertTip'
+    import { goodsDetial, popularGoods, commentList } from '@/service/getData'
+    import { formatDate } from '@/components/common/mixin'
     import { mapState, mapMutations } from 'vuex'
     import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
 

@@ -452,5 +452,27 @@
         "http://image.lanman.cn/2017/04/25/7de97e4c39a130f835a23d902a7860c9.jpg"
       ]
     }
+  },
+  "myPoint": {
+    "error": 0,
+    "msg": null,
+    "data": {
+      "user_id": 818,
+      "integral": 185,
+      "freezeIntegral": 20,
+      "listdata": [{
+        "id": 1,
+        "type": 1,
+        "val": 2,
+        "remark": "完成任务1，获得2积分",
+        "add_time": 1499011200
+      },{
+        "id": 2,
+        "type": 2,
+        "val": 20,
+        "remark": "兑换商品，使用20积分",
+        "add_time": 1499011200
+      }]
+    }
   }
 }

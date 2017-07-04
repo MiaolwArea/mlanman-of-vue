@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import { pointGoods } from '../../../service/getData'
+    import { pointGoods } from '@/service/getData'
     import { mapState } from 'vuex'
 
     export default {
@@ -53,13 +53,13 @@
     			goodsNum: 0,		// 可兑换口红个数
     		}
     	},
-    	compute: {
+    	computed: {
     		...mapState([
     			'userInfo'
 			])
     	},
     	mounted(){
-    		this.initData();
+    		this.initData();console.log(this)
     	},
     	methods: {
     		async initData(){

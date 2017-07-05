@@ -7,7 +7,7 @@
                 <a class="fz14 link-home" href="">去逛逛 ></a>
             </div>
         </div>
-        <div v-if="isHaveOrder">
+        <div v-else>
             <router-link tag="section" v-if="userId" :to="{path: 'address', query: {id: userId}}" class="address padding-1">
                 <div class="receive-info">
                     <div class="receive fz16">

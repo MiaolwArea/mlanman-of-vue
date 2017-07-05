@@ -97,12 +97,19 @@ img{
 .color-ft-black{ color: #000; } 
 .color-bg-gray{ background-color: $gray; }
 .color-bg-black{ background-color: #000; }
+
+.flex-order-0{ order: 0; }
+.flex-order-1{ order: 1; }
+.flex-order-2{ order: 2; }
 // 公共样式
 .padd-lr{
     @include remCalc('padding', 0, 10);
 }
 .padd-all-2010{
     @include remCalc('padding', 20, 10);
+}
+.padd-all-1010{
+    @include remCalc('padding', 10, 10);
 }
 .clear:after{
     content: ".";
@@ -125,6 +132,8 @@ img{
     position: absolute;
     top: 0;
     left: 0;
+    min-height: 100%;
+    width: 100%;
     background-color: #000;
     z-index: 9999;
 }
@@ -174,7 +183,7 @@ img{
     }
 }
 .goods-item{
-    padding-bottom: strip-rem(15px);
+    padding: strip-rem(15px) 0;
     border-bottom: 1px solid $gray;;
     a{
         display: block;

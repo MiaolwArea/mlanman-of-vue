@@ -1,15 +1,13 @@
 <template>
-	<div id="my-point">
-		<section class="point-header color-bg-gray">
-            <div class="point-icon tac">
-                <i class="iconfont">&#xe621;</i>
-            </div>
-            <div class="point-integral">
-                <p class="fz14">可用积分: {{ point }}</p>
-                <router-link tag="p" :to="{path: '/user/myPoint/orderList'}" class="fz14">即将获得订单积分: {{ freezeIntegral }}<i class="iconfont"> &#xe60e;</i></router-link>
+	<div id="order-point-list" class="children-view">
+		<head-top head-title="商品积分列表" go-back='true'></head-top>
+		<section class="point-header" v-if="freezeIntegral == 0">
+            <div class="blank-cont color-bg-gray">
+                <img src="http://image.lanman.cn/2016/m.lanman.cn/images/blank/bg_order_blank.png">
+                <p class="fz16 fw">您还未有积分</p>
             </div>
         </section>
-        <section class="point-record">
+        <section class="point-record" v-else>
             <ul class="record-list padd-all-1010">
                 <li class="goods-item" v-for="item in recordList" :key="item.id">
                     <template v-if="item.type == 1">
@@ -28,18 +26,14 @@
             </ul>
         </section>
         <loading v-show="loading.isloading"></loading>
-        <footer-nav :isShopcart="false"></footer-nav> 
-        <transition name="router-slid">
-            <router-view></router-view>
-        </transition>
 	</div>
 </template>
 
 <script>
-    import { myPoint } from '@/service/getData'
+    import { orderPointList } from '@/service/getData'
     import { mapState } from 'vuex'
-    import footerNav from '@/components/footer/footerNav'
     import { formatDate } from '@/components/common/mixin'
+    import headTop from '@/components/header/head'
 
     export default {
     	data(){
@@ -54,9 +48,7 @@
     			'userInfo', 'loading'
 			])
     	},
-        components: {
-            footerNav,
-        },
+        components: { headTop },
         mixins: [ formatDate ],
     	mounted(){
     		this.initData();
@@ -64,11 +56,11 @@
     	methods: {
     		async initData(){
                 let _this = this;
-    			let myPointRes = _this.ajaxDoSomeing(await myPoint()).data;
+    			let orderPointListRes = _this.ajaxDoSomeing(await orderPointList()).data;
 
-                _this.point = myPointRes.integral;
-                _this.freezeIntegral = myPointRes.freezeIntegral;
-                _this.recordList = myPointRes.listdata;
+                _this.point = orderPointListRes.integral;
+                _this.freezeIntegral = orderPointListRes.freezeIntegral;
+                _this.recordList = orderPointListRes.listdata;
     		},
     	},
     	watch: {
@@ -82,25 +74,17 @@
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 	
-	.point-header{
-        @include remCalc('padding', 20, 15);
-        @include fj(left);
-        .point-icon{
-            background-color: #838383;
-            border-radius: 50%;
-            width: strip-rem(50px);
-            height: strip-rem(50px);
-            i{
-                font-size: strip-rem(24px);
-                line-height: 2;
-            }
-        }
-        .point-integral{
-            margin-left: strip-rem(10px);
-            line-height: 1.5;
-            i{
-                vertical-align: middle;
-            }
+	.blank-cont{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        margin: 0 auto;
+        @include fj($type: center, $direction: column);
+        img{
+            width: strip-rem(80px);
+            margin-bottom: strip-rem(10px);
         }
     }
     .goods-item{
@@ -108,12 +92,5 @@
         .point-info-box{
             line-height: 2;
         }
-    }
-    .router-slid-enter-active, .router-slid-leave-active {
-        transition: all .4s;
-    }
-    .router-slid-enter, .router-slid-leave-active {
-        transform: translate3d(2rem, 0, 0);
-        opacity: 0;
     }
 </style>

@@ -108,7 +108,7 @@
 		        </ul>
 		    </div>
 		</section>
-		<alert-tip :isShow="showAlert" @closeTip="uploadCommit" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
+		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="sureTip" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
 		<footer-nav></footer-nav>
 		<!-- 兑换积分页 -->
         <transition name="router-slid" mode="out-in">
@@ -200,8 +200,12 @@
         	// 上传确定按钮
         	uploadCommit(){
         		// TODO 上传图片成功点击确定需要执行的判断。。。
-
-        		this.showAlert = false;
+        	},
+        	sureTip(){
+				if(this.isUpload){
+					this.uploadCommit();
+				}
+				this.showAlert = false;
         	},
         	// 订阅提醒
         	subReminder(){

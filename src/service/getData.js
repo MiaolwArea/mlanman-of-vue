@@ -92,6 +92,11 @@ export const pointGoodsDetail = () => fetch('/pointGoodsDetail');
  */
 export const myPoint = () => fetch('/myPoint');
 
+/**
+ * 订单将要获取到积分纪录页
+ */
+export const orderPointList = () => fetch('/orderPointList');
+
 
 
 

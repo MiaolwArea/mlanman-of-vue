@@ -459,7 +459,28 @@
     "data": {
       "user_id": 818,
       "integral": 185,
-      "freezeIntegral": 20,
+      "freezeIntegral": 0,
+      "listdata": [{
+        "id": 1,
+        "type": 1,
+        "val": 2,
+        "remark": "完成任务1，获得2积分",
+        "add_time": 1499011200
+      },{
+        "id": 2,
+        "type": 2,
+        "val": 20,
+        "remark": "兑换商品，使用20积分",
+        "add_time": 1499011200
+      }]
+    }
+  },
+  "orderPointList": {
+    "error": 0,
+    "msg": null,
+    "data": {
+      "user_id": 818,
+      "freezeIntegral": 0,
       "listdata": [{
         "id": 1,
         "type": 1,

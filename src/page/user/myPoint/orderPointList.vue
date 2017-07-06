@@ -56,7 +56,7 @@
     	methods: {
     		async initData(){
                 let _this = this;
-    			let orderPointListRes = _this.ajaxDoSomeing(await orderPointList()).data;
+    			let orderPointListRes = _this.ajaxDoSomething(await orderPointList()).data;
 
                 _this.point = orderPointListRes.integral;
                 _this.freezeIntegral = orderPointListRes.freezeIntegral;

@@ -495,5 +495,21 @@
         "add_time": 1499011200
       }]
     }
+  },
+  "accountLogin":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "id": 818,
+      "avatar": "http://image.lanman.cn/2017/05/09/8d0714d67537db87fdc67c967166ceed.jpg",
+      "adress": "厦门市湖里区软件园二期望海路31号美易在线",
+      "user_name": "碎魄零星",
+      "point": 12,
+      "user_id": 818,
+      "patriarch": "无名",
+      "subscribe": 0,
+      "phone_num": 18759376268,
+      "isTask": true
+    }
   }
 }

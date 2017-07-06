@@ -5,9 +5,7 @@
 				<span>全球服务联系电话：400－700－0825</span>
 			</div>
 			<div class="lanman-footer-logo">
-				<a href="">
-					<img src="~assets/images/common/lanman-footer-logo.png" alt="">	
-				</a>
+				<img src="~assets/images/common/lanman-footer-logo.png" alt="">	
 			</div>
 		</div>
 	</footer>

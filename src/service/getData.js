@@ -58,7 +58,6 @@ export const selectedQrcodeimg = (userId, styleId) => fetch('/selectedQrcodeimg'
 /**
  * 获取用户信息
  */
-
 export const getUser = () => fetch('/getUser', {user_id: getStore('user_id')});
 
 /**
@@ -96,6 +95,24 @@ export const myPoint = () => fetch('/myPoint');
  * 订单将要获取到积分纪录页
  */
 export const orderPointList = () => fetch('/orderPointList');
+
+/**
+ * 获取图片验证码
+ */
+export const getcaptchas = () => fetch('http://cangdu.org:8001/v1/captchas', {},'POST', 'fetch', false);
+
+/**
+ * 用户登入验证(POST)
+ * @param {String} userAccount   用户名
+ * @param {String} passWord   密码
+ * @param {Number} codeNumber   验证码
+ */
+export const accountLogin = (userAccount, passWord, codeNumber) => fetch('/accountLogin', {
+	user_account: userAccount, 
+	pass_word: passWord,
+	code_number: codeNumber,
+});
+
 
 
 

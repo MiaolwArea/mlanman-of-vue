@@ -152,10 +152,9 @@
         width: strip-rem(240px);
         animation: tipMove .4s ;
         background-color: rgba(255,255,255,1);
-        border: 1px;
+        border: 1px solid #8e8e8e;
         padding-top: strip-rem(12px);
         @include fj($direction: column);
-        border: 1px;
         border-radius: strip-rem(5px);
         .tip-text{
             @include sc(14px, #333);

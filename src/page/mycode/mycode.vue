@@ -1,5 +1,5 @@
 <template>
-    <div id="mycode">
+    <div id="mycode" class="footer-height">
         <div id="qrcode-show-view" v-show="!isSelect">
             <img :src="qrcodeimgSrc" width="100%">
             <a id="qrcode_menu" class="fz16" @click="isSelect = true">更多样式 ></a>

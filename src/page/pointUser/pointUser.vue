@@ -1,5 +1,5 @@
 <template>
-	<div id="point-user">
+	<div id="point-user" class="footer-height">
 		<section class="point-info-box">
 		    <div class="point-info-header">
 		        <div class="my-money-item-point txt-align-l pr">

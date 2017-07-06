@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="footer-height">
     <section class="top-logo">
     	<div class="small-logo" @click="showChangeBlock = true">
     		<img src="~assets/images/common/small_logo.png" />
@@ -170,7 +170,7 @@ export default {
         alertTip,
     },
     mixins: [loadMore],
-    mounted: function(){
+    mounted: function(){console.log(this.$store)
         this.initData();
     },
     computed: {
@@ -224,7 +224,7 @@ export default {
             //数据每次显示3条
             _this.counts += 3;
             
-            let res = _this.ajaxDoSomeing(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
+            let res = _this.ajaxDoSomething(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
             let resData = res.data.info;
 
             _this.goodsListArr = [..._this.goodsListArr, ...resData];
@@ -237,18 +237,28 @@ export default {
         },
         // 订阅提醒
         subRemind(){
+            if(!this.userInfo){
+                this.showAlert = true;
+                this.alertText = "你还没登录，请先登录！";
+                return;
+            }
             this.showAlert = true;
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){
-            let addsubscribeRes = this.ajaxDoSomeing(await addsubscribe());
+            if(!this.userInfo){
+                this.showAlert = false;
+                this.$router.push('/user/login');
+                return;
+            }
+            let addsubscribeRes = this.ajaxDoSomething(await addsubscribe());
             this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
             this.showAlert = false;
         },
         // 口红推荐
         async screen(){
             this.counts = 0;
-            let res = this.ajaxDoSomeing(await allGoodsList(this.counts, this.skin, this.scene));
+            let res = this.ajaxDoSomething(await allGoodsList(this.counts, this.skin, this.scene));
             let resData = res.data.info;
 
             this.goodsListArr = [...this.goodsListArr, ...resData];

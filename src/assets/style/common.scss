@@ -125,8 +125,12 @@ img{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-#app{
-    margin-bottom: strip-rem(50px);
+#app{ height: 100%; }
+.header-height{
+    padding-top: strip-rem(40px);
+}
+.footer-height{
+    padding-bottom: strip-rem(50px);
 }
 .children-view{
     position: absolute;

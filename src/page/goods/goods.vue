@@ -1,5 +1,5 @@
 <template>
-    <div id="goods-detial">
+    <div id="goods-detial" class="footer-height">
     	<section class="goods-banner fz14">
     		<img :src="bannerPic" />
     		<div class="padding-all">

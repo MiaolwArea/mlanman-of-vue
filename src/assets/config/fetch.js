@@ -2,9 +2,9 @@ import {
 	baseUrl
 } from './env'
 
-export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
+export default async(url = '', data = {}, type = 'GET', method = 'fetch', prefix = true) => {
 	type = type.toUpperCase();
-	url = baseUrl + url;
+	url = prefix ? baseUrl + url : url;
 
 	if (type == 'GET') {
 		let dataStr = ''; //数据拼接字符串

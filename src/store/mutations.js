@@ -137,6 +137,10 @@ export default {
 	[RECORD_USERINFO](state, info) {
 		state.userInfo = info;
 		state.login = true;
+		// 这里把登入信息存入localStore，
+		// 优点: 不用进入每个页面请求一次后台登入验证，减少网络传输
+		// 缺点: 后台更改用户信息之后，需要重新请求一次才能同步(后台基本无权限修改用户登入的信息，所以不算严重缺点)
+		setStore('userInfo', info);
 		setStore('user_id', info.user_id);
 	},
 	//获取用户信息存入vuex

@@ -1,5 +1,5 @@
 <template>
-    <div id="member">
+    <div id="member" class="footer-height">
         <section class="about-me">
             <a class="member-photo" href="">
                 <img :src="avatar">

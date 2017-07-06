@@ -1,5 +1,5 @@
 <template>
-	<div id="my-point">
+	<div id="my-point" class="footer-height">
 		<section class="point-header color-bg-gray">
             <div class="point-icon tac">
                 <i class="iconfont">&#xe621;</i>
@@ -64,7 +64,7 @@
     	methods: {
     		async initData(){
                 let _this = this;
-    			let myPointRes = _this.ajaxDoSomeing(await myPoint()).data;
+    			let myPointRes = _this.ajaxDoSomething(await myPoint()).data;
 
                 _this.point = myPointRes.integral;
                 _this.freezeIntegral = myPointRes.freezeIntegral;

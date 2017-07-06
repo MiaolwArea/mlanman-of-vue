@@ -32,7 +32,7 @@ router.afterEach((to) => {
 
 // 封装请求所要执行内容，此处作用是为所有请求加入loading加载动画，不建议写在此处，可作为外部文件引入
 Vue.component('loading', loading)
-Vue.prototype.ajaxDoSomeing = function (awaitFetch){
+Vue.prototype.ajaxDoSomething = function (awaitFetch){
 	this.loading.isloading = true;
     let res = awaitFetch;
     this.loading.isloading = false;

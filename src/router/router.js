@@ -11,6 +11,7 @@ const myPoint = r => require.ensure([], () => r(require('../page/user/myPoint/my
 const goods = r => require.ensure([], () => r(require('../page/goods/goods')), 'goods')
 const shoppingCart = r => require.ensure([], () => r(require('../page/shoppingCart/shoppingCart')), 'shoppingCart')
 const orderPointList = r => require.ensure([], () => r(require('../page/user/myPoint/orderPointList')), 'orderPointList')
+const login = r => require.ensure([], () => r(require('../page/user/login/login')), 'login')
 
 export default [{
     path: '/',
@@ -75,6 +76,11 @@ export default [{
         {
             path: '/shoppingCart',
             component: shoppingCart
+        },
+        // 用户登入注册页
+        {
+            path: '/user/login',
+            component: login
         },
     ]
 }]

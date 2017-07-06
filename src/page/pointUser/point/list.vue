@@ -102,14 +102,14 @@
 		}
 		.rate-border{
 			margin: 0 auto;
-			background: url(http://imglanman.b0.upaiyun.com/2016/m.lanman.cn/images/point/rouge_border.png)center no-repeat;
+			background: url(~assets/images/point/rouge_border.png)center no-repeat;
 			background-size: 100% 100%;
 			height: strip-rem(300px);
 			width: strip-rem(80px);
 			.rate-rouge{
 				width: 100%;
 				height: 100%;
-				background: url(http://imglanman.b0.upaiyun.com/2016/m.lanman.cn/images/point/rate_rouge.png) center no-repeat;
+				background: url(~assets/images/point/rate_rouge.png) center no-repeat;
 				background-size: 100% 100%;
 				padding-top: strip-rem(300px);
 				background-clip: content-box;

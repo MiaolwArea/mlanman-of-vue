@@ -150,7 +150,7 @@
         	alertTip,
         },
 	    mounted: function(){
-	        this.initData();        
+	        // this.initData();        
 	    },
         methods: {
 	        // 初始化获取数据
@@ -224,6 +224,11 @@
         	gotoAddress(path){
         		this.$router.push(path)
         	},
+        },
+        watch: {
+        	userInfo(){
+        	    this.initData()
+        	}
         }
     }
 </script>

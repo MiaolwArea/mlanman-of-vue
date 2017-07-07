@@ -51,7 +51,7 @@
             SwiperItem,
         },
         mounted(){
-            this.initData();
+            // this.initData();
         },
         computed: {
             ...mapState([
@@ -99,8 +99,8 @@
             }
         },
         watch: {
-            userInfo: function (value){
-                // this.initData();
+            userInfo(){
+                this.initData()
             }
         }
     }

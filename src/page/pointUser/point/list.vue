@@ -59,7 +59,7 @@
 			])
     	},
     	mounted(){
-    		this.initData();console.log(this)
+    		// this.initData();
     	},
     	methods: {
     		async initData(){
@@ -82,8 +82,8 @@
     		},
     	},
     	watch: {
-    		userInfo: function(){
-    			// this.initData();
+    		userInfo(){
+    		    this.initData()
     		},
     		$route: function(to, from) {
 		    	// TODO change

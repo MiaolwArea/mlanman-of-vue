@@ -59,7 +59,7 @@
         },
         mixins: [ formatDate ],
     	mounted(){
-    		this.initData();
+    		// this.initData();
     	},
     	methods: {
     		async initData(){
@@ -72,9 +72,9 @@
     		},
     	},
     	watch: {
-    		userInfo: function(){
-    			// this.initData();
-    		},
+    		userInfo(){
+                this.initData()
+            }
     	},
     }
 </script>

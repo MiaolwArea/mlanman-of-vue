@@ -149,7 +149,7 @@
             this.INIT_BUYCART();
         },
         mounted(){
-            this.initData();
+            // this.initData();
 
             // 计算加载完成图片数量
             this.countForImg = 1;
@@ -208,16 +208,16 @@
             	if(this.countForImg == pictureAryLength){
             		swiperDOM = document.querySelectorAll("div[class='vux-swiper']")[0];
             		swiperDOM.style.cssText = 'overflow: scroll;';
-            		swiperDOM.style.height = this.$refs.imgBox0.clientHeight + "px";
+            		swiperDOM.style.height = `${this.$refs.imgBox0.clientHeight}px`;
             	}
             },
             // 滑动内容区块重新计算高度
             onIndexChange(index){
             	if(index == 0){
             		this.commentList = firstListComment;
-            		swiperDOM.style.height = this.$refs.imgBox0.clientHeight + "px";
+            		swiperDOM.style.height = `${this.$refs.imgBox0.clientHeight}px`;
             	}else{
-            		swiperDOM.style.height = this.$refs.imgBox1.clientHeight + "px";
+            		swiperDOM.style.height = `${this.$refs.imgBox1.clientHeight}px`;
             	}
             },
             async loadMore(){
@@ -248,8 +248,8 @@
             }
         },
         watch: {
-            userInfo: function (value){
-                // this.initData();
+            userInfo(){
+                this.initData()
             },
             // 购物车数量变化执行动画
             cartNum(){

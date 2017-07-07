@@ -113,7 +113,7 @@
         "link_to": "https://mp.weixin.qq.com/s?__biz=MzI0NjUwOTEzNA==&mid=2247485512&idx=1&sn=fb96ed05e42fa393c7a83ffafca54f7d&chksm=e9bf7369dec8fa7fe55f52feaf50a87ad99e309a1c9bec3114e07298bcfc1f951da1320e2e63#rd",
         "title": "LANMAN烂熳天使之吻水润唇膏上市"
       },
-      "newGoodsOnline": 1498924800
+      "newGoodsOnline": 1499529600
     }
   },
   "allGoodsList":{
@@ -230,8 +230,16 @@
       "patriarch": "无名",
       "subscribe": 0,
       "phone_num": 18759376268,
-      "isTask": true
+      "isTask": true,
+      "a": {
+        "b": 12
+      }
     }
+  },
+  "getUserByNull": {
+    "error": 0,
+    "msg": null,
+    "data": null
   },
   "recommendList":{
     "error": 0,

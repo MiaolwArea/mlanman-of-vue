@@ -145,7 +145,7 @@ import alertTip from '@/components/common/alertTip'
         mounted(){
             // 获取用户信息
             // this.getUserInfo();
-            this.initData();
+            // this.initData();
         },
         computed: {
             ...mapState([
@@ -230,9 +230,9 @@ import alertTip from '@/components/common/alertTip'
             },
         },
         watch: {
-            userInfo: function (value){
-                // this.initData();
-            },
+            userInfo(){
+                this.initData()
+            }
         },
     }
 </script>

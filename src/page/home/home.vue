@@ -170,8 +170,8 @@ export default {
         alertTip,
     },
     mixins: [loadMore],
-    mounted: function(){console.log(this.$store)
-        this.initData();
+    mounted: function(){
+        // this.initData();
     },
     computed: {
         ...mapState([
@@ -191,7 +191,7 @@ export default {
             _this.totalNum = res.data.total;
             _this.goodsListArr = [...resData];
             // 根据是否登入判断是否开启提醒，无登入默认未提醒
-            _this.reminderTxt = _this.userInfo ? reminderMap[_this.userInfo.subscribe] : reminderMap[0];
+            _this.reminderTxt = !_this.isEmptyObject(_this.userInfo) ? reminderMap[_this.userInfo.subscribe] : reminderMap[0];
             
             let homeRes = await home();
             _this.news = homeRes.data.news;
@@ -202,7 +202,7 @@ export default {
                 , onLineDay = Math.ceil((onLineTime - nowTime)/3600/24);
 
             if(onLineDay > 0){
-                this.onLineInfo = "距离下次新品发布还有"+ onLineDay +"天"
+                this.onLineInfo = `距离下次新品发布还有${onLineDay}天`
             }else if(onLineDay == 0){
                 this.onLineInfo = "LANMAN烂熳新品今日上线！"
             }else if(onLineDay < 0){
@@ -237,7 +237,7 @@ export default {
         },
         // 订阅提醒
         subRemind(){
-            if(!this.userInfo){
+            if(this.isEmptyObject(this.userInfo)){
                 this.showAlert = true;
                 this.alertText = "你还没登录，请先登录！";
                 return;
@@ -246,7 +246,7 @@ export default {
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){
-            if(!this.userInfo){
+            if(this.isEmptyObject(this.userInfo)){
                 this.showAlert = false;
                 this.$router.push('/user/login');
                 return;
@@ -265,8 +265,8 @@ export default {
         },
     },
     watch: {
-        userInfo: function(value){
-            // this.initData();
+        userInfo(){
+            this.initData()
         }
     }
 }

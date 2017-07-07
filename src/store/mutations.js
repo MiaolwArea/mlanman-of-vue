@@ -22,7 +22,7 @@ import {
 	ADD_CART_NUM,
 } from './mutation-types.js'
 
-import {setStore, getStore} from '../assets/config/mUtils'
+import {setStore, getStore, isEmptyObject} from '../assets/config/mUtils'
 
 import {localapi, proapi} from '../assets/config/env'
 
@@ -137,17 +137,14 @@ export default {
 	[RECORD_USERINFO](state, info) {
 		state.userInfo = info;
 		state.login = true;
-		// 这里把登入信息存入localStore，
-		// 优点: 不用进入每个页面请求一次后台登入验证，减少网络传输
-		// 缺点: 后台更改用户信息之后，需要重新请求一次才能同步(后台基本无权限修改用户登入的信息，所以不算严重缺点)
-		setStore('userInfo', info);
+		setStore('login', true);
 		setStore('user_id', info.user_id);
 	},
 	//获取用户信息存入vuex
 	[GET_USERINFO](state, info) {
 		let infoData = info.data;
 
-		if (state.userInfo && (state.userInfo.username !== infoData.username)) {
+		if (!isEmptyObject(state.userInfo) && (state.userInfo.user_name !== infoData.user_name)) {
 			return;
 		};
 		if (!state.login) {
@@ -167,6 +164,7 @@ export default {
 	[OUT_LOGIN](state) {
 		state.userInfo = {};
 		state.login = false;
+		setStore('login', false);
 	},
 	
 	//记录订单页面用户选择的备注, 传递给订单确认页面

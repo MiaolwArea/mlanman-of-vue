@@ -99,7 +99,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
         },
         mounted(){
             // 获取用户信息
-            // this.getUserInfo();
+            this.getUserInfo();
             this.initCartNum();
         },
         computed: {

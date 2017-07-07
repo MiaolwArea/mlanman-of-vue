@@ -56,9 +56,16 @@ export const getQrcodeimgs = () => fetch('/getQrcodeimgs');
 export const selectedQrcodeimg = (userId, styleId) => fetch('/selectedQrcodeimg', {user_id: userId, style_id: styleId});
 
 /**
- * 获取用户信息
+ * 获取用户信息, 两个请求是根据后台登入纪录状态返回不同结果
  */
-export const getUser = () => fetch('/getUser', {user_id: getStore('user_id')});
+ if(getStore('login') == 'true'){
+	var getUser = () => fetch('/getUser', {user_id: getStore('user_id')}); 	
+ }else{
+ 	var getUser = () => fetch('/getUserByNull', {user_id: getStore('user_id')}); 	
+ }
+ export {getUser};
+ 
+
 
 /**
  * 商品详情

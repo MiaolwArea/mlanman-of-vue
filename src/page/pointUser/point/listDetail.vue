@@ -60,7 +60,7 @@
 			])
     	},
     	mounted(){
-    		this.initData();
+    		// this.initData();
     	},
         components: { alertTip },
     	methods: {
@@ -127,9 +127,9 @@
             }
     	},
     	watch: {
-    		userInfo: function(){
-    			// this.initData();
-    		},
+    		userInfo(){
+                this.initData()
+            }
     	},
     }
 </script>

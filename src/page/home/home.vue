@@ -43,8 +43,8 @@
         </div>
     </section>
     <section class="introduce-area">
-        <div class="user-avatar">
-            <img src="http://image.lanman.cn/2017/05/09/8d0714d67537db87fdc67c967166ceed.jpg">
+        <div class="user-avatar" v-show="avatar">
+            <img :src="avatar">
         </div>
     	<div class="introduce-box tac fz14">
     		<div class="introduce-header">
@@ -130,7 +130,7 @@
         </div>
     </transition>
     <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
-    <loading v-show="loading.isloading"></loading>
+    <loading v-show="loading.isLoading"></loading>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
   </div>
@@ -150,13 +150,14 @@ export default {
     // TODO 立即购买、购物车、订阅提醒都要登录验证
 	data() {
 		return{
+            avatar: '',             // 用户头像
             counts: 0,              // 单次请求商品数目
             showAlert: false,       // 是否显示弹窗
             alertText: null,        // 弹框文本内容
             goodsListArr: null,     // 全部商品列表
             newGoodsListArr: null,  // 当季新品列表
             totalNum: 0,            // 商品总数
-            reminderTxt: null,      // 订阅按钮文本
+            reminderTxt: reminderMap[0],      // 订阅按钮文本
             skin: '',               // 肤质
             scene: [],              // 场合
             showChangeBlock: false, // 是否显示关注公众号弹框
@@ -174,9 +175,10 @@ export default {
         // this.initData();
     },
     computed: {
-        ...mapState([
-            'userInfo', 'loading'
-        ])
+        // ...mapState({
+        //     isLoading: state => state.loading.isLoading
+        // }),
+        ...mapState([ 'userInfo' , 'loading' ]),
     },
     methods: {
         // 初始化获取数据
@@ -191,7 +193,10 @@ export default {
             _this.totalNum = res.data.total;
             _this.goodsListArr = [...resData];
             // 根据是否登入判断是否开启提醒，无登入默认未提醒
-            _this.reminderTxt = !_this.isEmptyObject(_this.userInfo) ? reminderMap[_this.userInfo.subscribe] : reminderMap[0];
+            // if(!_this._isEmptyObject(_this.userInfo)){
+            //     _this.reminderTxt = reminderMap[_this.userInfo.subscribe];
+            //     _this.avatar = _this.userInfo.avatar;
+            // }
             
             let homeRes = await home();
             _this.news = homeRes.data.news;
@@ -224,7 +229,7 @@ export default {
             //数据每次显示3条
             _this.counts += 3;
             
-            let res = _this.ajaxDoSomething(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
+            let res = _this._ajaxDoSomething(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
             let resData = res.data.info;
 
             _this.goodsListArr = [..._this.goodsListArr, ...resData];
@@ -237,28 +242,28 @@ export default {
         },
         // 订阅提醒
         subRemind(){
-            if(this.isEmptyObject(this.userInfo)){
-                this.showAlert = true;
-                this.alertText = "你还没登录，请先登录！";
-                return;
-            }
+            // if(this._isEmptyObject(this.userInfo)){
+            //     this.showAlert = true;
+            //     this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+            //     return;
+            // }
             this.showAlert = true;
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){
-            if(this.isEmptyObject(this.userInfo)){
-                this.showAlert = false;
-                this.$router.push('/user/login');
-                return;
-            }
-            let addsubscribeRes = this.ajaxDoSomething(await addsubscribe());
+            // if(this._isEmptyObject(this.userInfo)){
+            //     this.showAlert = false;
+            //     this.$router.push('/user/login');
+            //     return;
+            // }
+            let addsubscribeRes = this._ajaxDoSomething(await addsubscribe());
             this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
             this.showAlert = false;
         },
         // 口红推荐
         async screen(){
             this.counts = 0;
-            let res = this.ajaxDoSomething(await allGoodsList(this.counts, this.skin, this.scene));
+            let res = this._ajaxDoSomething(await allGoodsList(this.counts, this.skin, this.scene));
             let resData = res.data.info;
 
             this.goodsListArr = [...this.goodsListArr, ...resData];

@@ -25,7 +25,7 @@
                 </li>
             </ul>
         </section>
-        <loading v-show="loading.isloading"></loading>
+        <loading v-show="isloading"></loading>
 	</div>
 </template>
 
@@ -44,9 +44,10 @@
     		}
     	},
     	computed: {
-    		...mapState([
-    			'userInfo', 'loading'
-			])
+    		...mapState({
+                isLoading: state => state.loading.isLoading
+            }),
+            ...mapState([ 'userInfo' ]),
     	},
         components: { headTop },
         mixins: [ formatDate ],
@@ -56,7 +57,7 @@
     	methods: {
     		async initData(){
                 let _this = this;
-    			let orderPointListRes = _this.ajaxDoSomething(await orderPointList()).data;
+    			let orderPointListRes = _this._ajaxDoSomething(await orderPointList()).data;
 
                 _this.point = orderPointListRes.integral;
                 _this.freezeIntegral = orderPointListRes.freezeIntegral;

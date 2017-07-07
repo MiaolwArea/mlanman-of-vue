@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </section>
-        <loading v-show="loading.isloading"></loading>
+        <loading v-show="isloading"></loading>
         <footer-nav :isShopcart="false"></footer-nav> 
         <transition name="router-slid">
             <router-view></router-view>
@@ -50,9 +50,10 @@
     		}
     	},
     	computed: {
-    		...mapState([
-    			'userInfo', 'loading'
-			])
+    		...mapState({
+                isLoading: state => state.loading.isLoading
+            }),
+            ...mapState([ 'userInfo' ]),
     	},
         components: {
             footerNav,
@@ -64,7 +65,7 @@
     	methods: {
     		async initData(){
                 let _this = this;
-    			let myPointRes = _this.ajaxDoSomething(await myPoint()).data;
+    			let myPointRes = _this._ajaxDoSomething(await myPoint()).data;
 
                 _this.point = myPointRes.integral;
                 _this.freezeIntegral = myPointRes.freezeIntegral;

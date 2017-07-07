@@ -110,6 +110,7 @@
 		</section>
 		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="sureTip" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
 		<footer-nav></footer-nav>
+		<loading v-show="isLoading"></loading>
 		<!-- 兑换积分页 -->
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
@@ -121,6 +122,7 @@
 	import footerNav from '@/components/footer/footerNav'
 	import {pointUser} from '@/service/getData'
 	import alertTip from '@/components/common/alertTip'
+	import { mapState } from 'vuex'
 
 	const boolerInfo = {false: '已订阅', true: '订阅提醒'};
 	
@@ -151,6 +153,12 @@
         },
 	    mounted: function(){
 	        // this.initData();        
+	    },
+	    computed: {
+	        ...mapState({
+	            isLoading: state => state.loading.isLoading
+	        }),
+	        ...mapState([ 'userInfo' ]),
 	    },
         methods: {
 	        // 初始化获取数据
@@ -184,11 +192,22 @@
 			        _this.$refs.donut__svg__circle.style.strokeDashoffset = Math.floor(circumference - curProcess * circumference);
 	            }
 	        },
+	        // 登入验证
+	        // _verification(){
+	        // 	if(this._isEmptyObject(this.userInfo)){
+	        // 	    this.showAlert = true;
+	        // 	    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+	        // 	    return false;
+	        // 	}
+	        // },
         	// 显示弹窗
         	showMyPic(isUpload, remark){
         		const _this = this;
         		
         		_this.isConfirm = !isUpload;
+        		if(!this._verification()){
+	        	    return false;
+	        	}
         		_this.isUpload = isUpload;
         		_this.showAlert = true;
         		if(isUpload){
@@ -202,6 +221,11 @@
         		// TODO 上传图片成功点击确定需要执行的判断。。。
         	},
         	sureTip(){
+        		if(this._isEmptyObject(this.userInfo)){
+	                this.showAlert = false;
+	                this.$router.push('/user/login');
+	                return;
+	            }
 				if(this.isUpload){
 					this.uploadCommit();
 				}
@@ -209,6 +233,9 @@
         	},
         	// 订阅提醒
         	subReminder(){
+        		if(!this._verification()){
+	        	    return false;
+	        	}
         		// this.$http.get('http://localhost:3000/subReminder').then(res => {
 	    			this.subBooler = !this.subBooler;
 	        		this.reminderTxt = boolerInfo[this.subBooler];
@@ -222,12 +249,17 @@
         	},
         	// 地址跳转
         	gotoAddress(path){
+        		if(!this._verification()){alert(this.alertText)
+	        	    return false;
+	        	}
         		this.$router.push(path)
         	},
         },
         watch: {
-        	userInfo(){
-        	    this.initData()
+        	userInfo(val){
+        		if(!this._isEmptyObject(val)){
+        			this.initData()
+        		}
         	}
         }
     }

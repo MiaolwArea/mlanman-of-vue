@@ -10,7 +10,7 @@
                     <span class="member-id">会员ID: {{ userId }}</span>
                     <span>
                         <i class="iconfont icon-point ft-34">&#xe61e;</i>
-                        我的积分: <a href="">{{ point }} ></a>
+                        我的积分: <a @click="gotoAddress({path: '/user/myPoint'})">{{ point }} ></a>
                     </span>
                 </p>
                 <p class="fz14">家族族长: {{ patriarch }}</p>

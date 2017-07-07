@@ -22,7 +22,7 @@ import {
 	ADD_CART_NUM,
 } from './mutation-types.js'
 
-import {setStore, getStore, isEmptyObject} from '../assets/config/mUtils'
+import {setStore, getStore} from '../assets/config/mUtils'
 
 import {localapi, proapi} from '../assets/config/env'
 
@@ -144,12 +144,6 @@ export default {
 	[GET_USERINFO](state, info) {
 		let infoData = info.data;
 
-		if (!isEmptyObject(state.userInfo) && (state.userInfo.user_name !== infoData.user_name)) {
-			return;
-		};
-		if (!state.login) {
-			return
-		}
 		if (!info.error) {
 			state.userInfo = {...infoData};
 		} else {

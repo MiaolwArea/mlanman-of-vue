@@ -4,6 +4,7 @@ import VueResource from 'vue-resource'
 import routes from './router/router'
 import store from './store/'
 import './assets/applicationUtil/flexible' 
+import loading from './components/common/loading'
 import vueUtils from './assets/applicationUtil/vueUtils'
 
 Vue.use(VueRouter);

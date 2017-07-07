@@ -27,7 +27,7 @@
         </p>
         <div class="login_container fz14" @click="mobileLogin">登录</div>
         <alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="showAlert = false" :alertText="alertText"></alert-tip>
-        <loading v-show="loading.isloading"></loading>
+        <loading v-show="isLoading"></loading>
     </div>
 </template>
 
@@ -59,9 +59,10 @@ import alertTip from '@/components/common/alertTip'
             alertTip
 	    },
         computed: {
-            ...mapState([
-                'userInfo', 'loading'
-            ])
+            ...mapState({
+                isLoading: state => state.loading.isLoading
+            }),
+            ...mapState([ 'userInfo' ]),
         },
         methods: {
             ...mapMutations([
@@ -88,7 +89,7 @@ import alertTip from '@/components/common/alertTip'
                     return
                 }
                 //用户名登录
-                this.infos = this.ajaxDoSomething(await accountLogin(this.userAccount, this.passWord, this.codeNumber)).data;
+                this.infos = this._ajaxDoSomething(await accountLogin(this.userAccount, this.passWord, this.codeNumber)).data;
 
                 if(this.infos.user_id){
                     this.RECORD_USERINFO(this.infos);

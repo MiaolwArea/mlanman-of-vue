@@ -31,7 +31,7 @@ export const addsubscribe = () => fetch('/addsubscribe');
 /**
  * 积分页初始数据
  */
-export const pointUser = () => fetch('/pointUser');
+export const pointUser = () => fetch('/pointUser', {user_id: getStore('user_id')});
 
 /**
  * 推荐列表
@@ -58,14 +58,8 @@ export const selectedQrcodeimg = (userId, styleId) => fetch('/selectedQrcodeimg'
 /**
  * 获取用户信息, 两个请求是根据后台登入纪录状态返回不同结果
  */
- if(getStore('login') == 'true'){
-	var getUser = () => fetch('/getUser', {user_id: getStore('user_id')}); 	
- }else{
- 	var getUser = () => fetch('/getUserByNull', {user_id: getStore('user_id')}); 	
- }
- export {getUser};
- 
-
+ export const getUser = () => fetch('/getUser', {user_id: getStore('user_id')}); 	
+ export const getUserByNull = () => fetch('/getUserByNull', {user_id: getStore('user_id')}); 	
 
 /**
  * 商品详情

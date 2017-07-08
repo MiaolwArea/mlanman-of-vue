@@ -51,7 +51,6 @@
             SwiperItem,
         },
         mounted(){
-            // this.initData();
         },
         computed: {
             ...mapState([
@@ -83,8 +82,20 @@
                     picItem: this.qrcodeimgAry.length
                 });
             },
+            // 登入验证
+            _verification(){
+                if(!this.loginState){
+                    this.showAlert = true;
+                    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+                    return false;
+                }
+                return true;
+            },
             // 选择样式
             async selected(){
+                if(!this._verification()){
+                    return false;
+                }
                 let selectedQrcodeimgRes = await selectedQrcodeimg(this.userInfo.user_id, this.qrcodeimgAry[this.picIndex].id);
 
                 if(selectedQrcodeimgRes.data = "success"){
@@ -93,16 +104,23 @@
                 }
             },
             sureTip(){
-                this.isSelect = false;
                 this.showAlert = false;
+                if(!this.loginState){
+                    this.$router.push('/user/login');
+                    return;
+                }
+                this.isSelect = false;
                 this.initData();
             }
         },
         watch: {
-            userInfo(){
-                this.initData()
+            userInfo(val){
+                this.loginState = !this._isEmptyObject(val);
+                if (this.loginState) {
+                    this.initData()
+                }
             }
-        }
+        },
     }
 </script>
 <style lang="scss" scoped>

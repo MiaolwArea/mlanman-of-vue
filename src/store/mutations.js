@@ -136,8 +136,8 @@ export default {
 	// 记录用户信息
 	[RECORD_USERINFO](state, info) {
 		state.userInfo = info;
-		state.login = true;
-		setStore('login', true);
+		state.isLogin = true;
+		setStore('isLogin', true);
 		setStore('user_id', info.user_id);
 	},
 	//获取用户信息存入vuex
@@ -157,8 +157,8 @@ export default {
 	//退出登录
 	[OUT_LOGIN](state) {
 		state.userInfo = {};
-		state.login = false;
-		setStore('login', false);
+		state.isLogin = false;
+		setStore('isLogin', false);
 	},
 	
 	//记录订单页面用户选择的备注, 传递给订单确认页面

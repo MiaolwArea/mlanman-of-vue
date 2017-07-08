@@ -31,8 +31,7 @@
                     </a>
                 </li>
                 <li class="list-item">
-                    <!-- <a @click="gotoAddress({path: '/payfeedback'})"> -->
-                    <a @click="outLogin">
+                    <a @click="gotoAddress({path: '/payfeedback'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的售后</span>
                     </a>
@@ -49,6 +48,12 @@
                         <span class="menu-name">我的地址</span>
                     </a>
                 </li>
+                <li class="list-item">
+                    <a @click="outLogin">
+                        <i class="iconfont icon-sub">&#xe605;</i>
+                        <span class="menu-name">{{ loginState ? '退出登入' : '登入/注册' }}</span>
+                    </a>
+                </li>
             </ul>
         </section>
         <section class="new-goods">
@@ -62,7 +67,7 @@
                 </div>
             </div>
         </section>
-        <section class="recommend padd-lr">
+        <section class="recommend padd-lr" v-show="recommendList">
             <p class="title fz14">LANMAN向您推荐</p>
             <ul class="item-list fl">
                 <router-link v-for="item in recommendList" :key="item.id" :to="{path: 'goods', query: {id: item.id}}" tag="li" class="list-item" >
@@ -85,6 +90,7 @@
     export default {
     	data(){
             return{
+                loginState: false,      // 登入状态
                 avatar: '',             // 会员头像
                 userName: '',           // 会员名
                 userId: null,           // 会员ID
@@ -111,13 +117,11 @@
             async initData(){
                 const _this = this;
 
-                if (_this.userInfo && _this.userInfo.user_id) {
-                    _this.avatar = _this.userInfo.avatar;
-                    _this.userName = _this.userInfo.user_name;
-                    _this.userId = _this.userInfo.user_id;
-                    _this.point = _this.userInfo.point;
-                    _this.patriarch = _this.userInfo.patriarch;
-                }
+                _this.avatar = _this.userInfo.avatar;
+                _this.userName = _this.userInfo.user_name;
+                _this.userId = _this.userInfo.user_id;
+                _this.point = _this.userInfo.point;
+                _this.patriarch = _this.userInfo.patriarch;
                 let recommendListRes = await recommendList();
 
                 _this.recommendList = recommendListRes.data;
@@ -126,13 +130,19 @@
                 this.$router.push(path);
             },
             outLogin(){
-                this.OUT_LOGIN();
-                removeStore('user_id');
+                if(this.loginState){
+                    this.OUT_LOGIN();
+                    removeStore('user_id');
+                }
+                this.$router.push('/user/login');
             },
         },
         watch: {
-            userInfo(){
-                this.initData()
+            userInfo(val){
+                this.loginState = !this._isEmptyObject(val);
+                if (this.loginState) {
+                    this.initData()
+                }
             }
         }
     }

@@ -13,7 +13,7 @@ export default {
 		state
 	}) {
 		let res;
-		if(getStore('login') == 'true'){
+		if(getStore('isLogin') === 'true'){
 			res = await getUser();
 		}else{
 			res = await getUserByNull();

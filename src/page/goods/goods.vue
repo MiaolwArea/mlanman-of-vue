@@ -149,14 +149,12 @@
             this.INIT_BUYCART();
         },
         mounted(){
-            // this.initData();
-
             // 计算加载完成图片数量
             this.countForImg = 1;
         },
         computed: {
             ...mapState([
-                'userInfo', 'cartList'
+                'cartList'
             ])
         },
         methods: {
@@ -234,7 +232,7 @@
                 if(!_this.isCanJoin){
                     return;
                 }
-                if (!(_this.userInfo && _this.userInfo.user_id)) {
+                if (!_this.loginState) {
                     _this.ADD_CART({shopId: _this.orderId, shopPrice: _this.shopPrice, goodsName: _this.goodsName, colorName: _this.color_name, shopPic: _this.bannerPic });
                 }else{
                     // 存到后端API地址中
@@ -248,8 +246,11 @@
             }
         },
         watch: {
-            userInfo(){
-                this.initData()
+            userInfo(val){
+                this.loginState = !this._isEmptyObject(val);
+                if (this.loginState) {
+                    this.initData()
+                }
             },
             // 购物车数量变化执行动画
             cartNum(){

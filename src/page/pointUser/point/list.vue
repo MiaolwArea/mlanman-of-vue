@@ -59,12 +59,12 @@
 			])
     	},
     	mounted(){
-    		// this.initData();
+    		
     	},
     	methods: {
     		async initData(){
     			const _this = this;
-    			let pointGoodsRes = await pointGoods(this.userInfo)
+    			let pointGoodsRes = await pointGoods()
     				, pointGoodsData = pointGoodsRes.data;
 
     			_this.integral = pointGoodsData.integral;
@@ -82,9 +82,12 @@
     		},
     	},
     	watch: {
-    		userInfo(){
-    		    this.initData()
-    		},
+    		userInfo(val){
+	            this.loginState = !this._isEmptyObject(val);
+	            if (this.loginState) {
+	                this.initData()
+	            }
+	        },
     		$route: function(to, from) {
 		    	// TODO change
 		    }

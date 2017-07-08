@@ -66,7 +66,10 @@
     	},
     	watch: {
     		userInfo(){
-                this.initData()
+                this.loginState = !this._isEmptyObject(val);
+                if (this.loginState) {
+                    this.initData()
+                }
             }
     	},
     }

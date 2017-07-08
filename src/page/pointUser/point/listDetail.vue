@@ -60,7 +60,7 @@
 			])
     	},
     	mounted(){
-    		// this.initData();
+    		
     	},
         components: { alertTip },
     	methods: {
@@ -126,11 +126,14 @@
                 this.showAlert = false;
             }
     	},
-    	watch: {
-    		userInfo(){
-                this.initData()
+        watch: {
+            userInfo(val){
+                this.loginState = !this._isEmptyObject(val);
+                if (this.loginState) {
+                    this.initData()
+                }
             }
-    	},
+        },
     }
 </script>
 

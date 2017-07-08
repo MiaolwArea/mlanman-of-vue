@@ -1,116 +1,118 @@
 <template>
 	<div id="point-user" class="footer-height">
-		<section class="point-info-box">
-		    <div class="point-info-header">
-		        <div class="my-money-item-point txt-align-l pr">
-		            <i class="iconfont icon-point ft-34">&#xe61e;</i>
-		            <span>我的积分</span>
-		            <span class="point-num fz18">{{ num }}</span>
-		        </div>
-		        <div class="my-money-item-log txt-align-r" @click="gotoAddress({path: '/user/myPoint'})">
-		            <i class="iconfont icon-point ft-34">&#xe61f;</i>
-		            <span>积分记录</span>
-		        </div>
-		    </div>
-		    <div class="point-info-drawing">
-		        <div class="dial-container-wrapper">
-		            <div class="drawing-info fz12">
-		                <p>已获口红</p>
-		                <p class="perc">{{ percenNum }}%</p>
-		                <p>差积分{{ difNum }}</p>
-		            </div>
-		            <div class="svg-box">
-					    <svg width="100%" height="100%" viewBox="0 0 100 100" >
-					        <circle cx="50" cy="50" r="45" stroke-width="2" stroke="#fff"></circle>
-					        <circle cx="50" cy="50" r="45" stroke-width="8" ref="donut__svg__circle" class="donut__svg__circle--one" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" transform="rotate(90, 50 50)"></circle>
-					    </svg>
-					</div>
-		        </div>
-		    </div>
-		    <div class="point-info-footer">
-		        <div class="exchange-num txt-align-l pr">
-		            <p>当前可兑换口红数量：<span class="exchange-num-word">{{ goodsNum }}</span></p>
-		        </div>
-		        <div class="exchange-btn txt-align-r">
-		            <a @click="gotoAddress({path: '/pointUser/point/list'})">兑换口红</a>
-		        </div>
-		    </div>
-		    <div class="divide-line"></div>
-		</section>
-		<section class="link-info">
-		    <a class="link-info-word fz14" :href="newsLinkTo">{{ newsLinkTitle }}</a>
-		</section>
-		<div class="divide-line"></div>
-		<section class="myfamily">
-		    <div class="header">
-		        <font class="iconfont icon-title-embellish"></font>
-		        <span>我的家族</span>
-		    </div>
-		    <div class="content">
-		        <div class="family-man">
-		            <p class="title">我的家族成员</p>
-		            <p>{{ familyMan }}</p>
-		        </div>
-		        <div class="family-order">
-		            <p class="title">家族订单</p>
-		            <p>{{ familyOrder }}</p>
-		        </div>
-		    </div>
-		    <div class="ins">
-		        <p class="mb1r">家族成员每增加1人，可获得1个积分（上限30分）</p>
-		        <p>家族订单每增加1单，可获得20个积分</p>
-		    </div>
-		</section>
-		<div class="divide-line"></div>
-		<section class="mission">
-		    <div class="header">
-		        <font class="iconfont icon-title-embellish"></font>
-		        <span>积分任务</span>
-		    </div>
-		    <div class="content">
-		        <ul class="mission-list">
-		            <li class="list-item" v-if="!isShowOfPic">
-		                <div class="mission-info col-8">
-		                    <div class="info mb1r">转发“LANMAN烂熳口红”公众号并晒单公众号并晒单</div>
-		                    <div class="point">
-		                        <i class="iconfont ft-28">&#xe61e;</i>
-		                        <span>10</span>
-		                    </div>
-		                </div>
-		                <div class="misstion-btn col-2">
-		                    <a @click="showMyPic(true)">晒单</a>
-		                </div>
-		            </li>
-		            <li class="list-item">
-		                <div class="mission-info col-7">
-		                    <div class="info mb1r">积分周：每月25、26、27号购买口红，积分翻倍</div>
-		                    <div class="point">
-		                        <i class="iconfont ft-28">&#xe61e;</i>
-		                    </div>
-		                </div>
-		                <div class="misstion-btn col-3" :class="{active: reminderTxt == '已订阅'}">
-		                    <a @click="subReminder">{{ reminderTxt }}</a>
-		                </div>
-		            </li>
-		            <li class="list-item" v-for="item in missionList" :key="item.task_id" v-if="item.status != 3">
-		            	<div class="mission-info col-7">
-		                    <div class="info mb1r">{{ item.desc }}</div>
-		                    <div class="point">
-		                        <i class="iconfont ft-28">&#xe61e;</i>
-		                        <span>{{ item.val }}</span>
-		                    </div>
-		                </div>
-		                <div class="misstion-btn col-3">
-		                    <a @click="showMyPic(false, item.remark)" v-if="item.status == 1">查看</a>
-		                    <a @click="reward(item.id)" v-if="item.status == 2">领取</a>
-		                </div>
-		            </li>
-		        </ul>
-		    </div>
-		</section>
-		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="sureTip" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
-		<footer-nav></footer-nav>
-		<loading v-show="isLoading"></loading>
+		<div class="parent-page" v-show="isChildren">
+			<section class="point-info-box">
+			    <div class="point-info-header">
+			        <div class="my-money-item-point txt-align-l pr">
+			            <i class="iconfont icon-point ft-34">&#xe61e;</i>
+			            <span>我的积分</span>
+			            <span class="point-num fz18">{{ num }}</span>
+			        </div>
+			        <div class="my-money-item-log txt-align-r" @click="gotoAddress({path: '/user/myPoint'})">
+			            <i class="iconfont icon-point ft-34">&#xe61f;</i>
+			            <span>积分记录</span>
+			        </div>
+			    </div>
+			    <div class="point-info-drawing">
+			        <div class="dial-container-wrapper">
+			            <div class="drawing-info fz12">
+			                <p>已获口红</p>
+			                <p class="perc">{{ percenNum }}%</p>
+			                <p>差积分{{ difNum }}</p>
+			            </div>
+			            <div class="svg-box">
+						    <svg width="100%" height="100%" viewBox="0 0 100 100" >
+						        <circle cx="50" cy="50" r="45" stroke-width="2" stroke="#fff"></circle>
+						        <circle cx="50" cy="50" r="45" stroke-width="8" ref="donut__svg__circle" class="donut__svg__circle--one" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" transform="rotate(90, 50 50)"></circle>
+						    </svg>
+						</div>
+			        </div>
+			    </div>
+			    <div class="point-info-footer">
+			        <div class="exchange-num txt-align-l pr">
+			            <p>当前可兑换口红数量：<span class="exchange-num-word">{{ goodsNum }}</span></p>
+			        </div>
+			        <div class="exchange-btn txt-align-r">
+			            <a @click="gotoAddress({path: '/pointUser/point/list'})">兑换口红</a>
+			        </div>
+			    </div>
+			    <div class="divide-line"></div>
+			</section>
+			<section class="link-info">
+			    <a class="link-info-word fz14" :href="newsLinkTo">{{ newsLinkTitle }}</a>
+			</section>
+			<div class="divide-line"></div>
+			<section class="myfamily">
+			    <div class="header">
+			        <font class="iconfont icon-title-embellish"></font>
+			        <span>我的家族</span>
+			    </div>
+			    <div class="content">
+			        <div class="family-man">
+			            <p class="title">我的家族成员</p>
+			            <p>{{ familyMan }}</p>
+			        </div>
+			        <div class="family-order">
+			            <p class="title">家族订单</p>
+			            <p>{{ familyOrder }}</p>
+			        </div>
+			    </div>
+			    <div class="ins">
+			        <p class="mb1r">家族成员每增加1人，可获得1个积分（上限30分）</p>
+			        <p>家族订单每增加1单，可获得20个积分</p>
+			    </div>
+			</section>
+			<div class="divide-line"></div>
+			<section class="mission">
+			    <div class="header">
+			        <font class="iconfont icon-title-embellish"></font>
+			        <span>积分任务</span>
+			    </div>
+			    <div class="content">
+			        <ul class="mission-list">
+			            <li class="list-item" v-if="!isShowOfPic">
+			                <div class="mission-info col-8">
+			                    <div class="info mb1r">转发“LANMAN烂熳口红”公众号并晒单公众号并晒单</div>
+			                    <div class="point">
+			                        <i class="iconfont ft-28">&#xe61e;</i>
+			                        <span>10</span>
+			                    </div>
+			                </div>
+			                <div class="misstion-btn col-2">
+			                    <a @click="showMyPic(true)">晒单</a>
+			                </div>
+			            </li>
+			            <li class="list-item">
+			                <div class="mission-info col-7">
+			                    <div class="info mb1r">积分周：每月25、26、27号购买口红，积分翻倍</div>
+			                    <div class="point">
+			                        <i class="iconfont ft-28">&#xe61e;</i>
+			                    </div>
+			                </div>
+			                <div class="misstion-btn col-3" :class="{active: reminderTxt == '已订阅'}">
+			                    <a @click="subReminder">{{ reminderTxt }}</a>
+			                </div>
+			            </li>
+			            <li class="list-item" v-for="item in missionList" :key="item.task_id" v-if="item.status != 3">
+			            	<div class="mission-info col-7">
+			                    <div class="info mb1r">{{ item.desc }}</div>
+			                    <div class="point">
+			                        <i class="iconfont ft-28">&#xe61e;</i>
+			                        <span>{{ item.val }}</span>
+			                    </div>
+			                </div>
+			                <div class="misstion-btn col-3">
+			                    <a @click="showMyPic(false, item.remark)" v-if="item.status == 1">查看</a>
+			                    <a @click="reward(item.id)" v-if="item.status == 2">领取</a>
+			                </div>
+			            </li>
+			        </ul>
+			    </div>
+			</section>
+			<alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="sureTip" :isConfirm="isConfirm" :isUpload="isUpload" :alertText="alertText"></alert-tip>
+			<footer-nav></footer-nav>
+			<loading v-show="isLoading"></loading>
+		</div>
 		<!-- 兑换积分页 -->
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
@@ -129,6 +131,7 @@
     export default {
     	data(){
             return{
+            	isChildren: true,
             	showAlert: false,		// 是否显示弹窗
                 alertText: null,		// 弹框文本内容
                 isShowOfPic: false,		// 是否显示晒单任务
@@ -193,13 +196,14 @@
 	            }
 	        },
 	        // 登入验证
-	        // _verification(){
-	        // 	if(this._isEmptyObject(this.userInfo)){
-	        // 	    this.showAlert = true;
-	        // 	    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
-	        // 	    return false;
-	        // 	}
-	        // },
+	        _verification(){
+	        	if(!this.loginState){
+	        	    this.showAlert = true;
+	        	    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+	        	    return false;
+	        	}
+	        	return true;
+	        },
         	// 显示弹窗
         	showMyPic(isUpload, remark){
         		const _this = this;
@@ -221,7 +225,7 @@
         		// TODO 上传图片成功点击确定需要执行的判断。。。
         	},
         	sureTip(){
-        		if(this._isEmptyObject(this.userInfo)){
+        		if(!this.loginState){
 	                this.showAlert = false;
 	                this.$router.push('/user/login');
 	                return;
@@ -249,7 +253,7 @@
         	},
         	// 地址跳转
         	gotoAddress(path){
-        		if(!this._verification()){alert(this.alertText)
+        		if(!this._verification()){
 	        	    return false;
 	        	}
         		this.$router.push(path)
@@ -257,10 +261,18 @@
         },
         watch: {
         	userInfo(val){
-        		if(!this._isEmptyObject(val)){
-        			this.initData()
-        		}
-        	}
+        		this.loginState = !this._isEmptyObject(val);
+                if (this.loginState) {
+                    this.initData()
+                }
+        	},
+    		$route: function(to, from) {
+		    	/*
+				* 这里因为子路由相当于一个内嵌iframe, 会导致父级高度大于子级，滚动到一定会显示父层，这里做切换隐藏;
+				* 注意：这里主要是方法实现，真实情况父路由嵌套路由不应该高于一屏或者说不高于子路由（特殊需求除外）
+		    	*/
+		    	this.isChildren = !this.isChildren;
+		    }
         }
     }
 </script>

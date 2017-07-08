@@ -130,7 +130,7 @@
         </div>
     </transition>
     <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
-    <loading v-show="loading.isLoading"></loading>
+    <loading v-show="isLoading"></loading>
     <footer-bottom></footer-bottom>		
   	<footer-nav></footer-nav>
   </div>
@@ -172,13 +172,13 @@ export default {
     },
     mixins: [loadMore],
     mounted: function(){
-        // this.initData();
+
     },
     computed: {
-        // ...mapState({
-        //     isLoading: state => state.loading.isLoading
-        // }),
-        ...mapState([ 'userInfo' , 'loading' ]),
+        ...mapState({
+            isLoading: state => state.loading.isLoading
+        }),
+        ...mapState([ 'userInfo' ]),
     },
     methods: {
         // 初始化获取数据
@@ -193,10 +193,10 @@ export default {
             _this.totalNum = res.data.total;
             _this.goodsListArr = [...resData];
             // 根据是否登入判断是否开启提醒，无登入默认未提醒
-            // if(!_this._isEmptyObject(_this.userInfo)){
-            //     _this.reminderTxt = reminderMap[_this.userInfo.subscribe];
-            //     _this.avatar = _this.userInfo.avatar;
-            // }
+            if(_this.loginState){
+                _this.reminderTxt = reminderMap[_this.userInfo.subscribe];
+                _this.avatar = _this.userInfo.avatar;
+            }
             
             let homeRes = await home();
             _this.news = homeRes.data.news;
@@ -242,20 +242,20 @@ export default {
         },
         // 订阅提醒
         subRemind(){
-            // if(this._isEmptyObject(this.userInfo)){
-            //     this.showAlert = true;
-            //     this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
-            //     return;
-            // }
+            if(!this.loginState){
+                this.showAlert = true;
+                this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+                return;
+            }
             this.showAlert = true;
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){
-            // if(this._isEmptyObject(this.userInfo)){
-            //     this.showAlert = false;
-            //     this.$router.push('/user/login');
-            //     return;
-            // }
+            if(!this.loginState){
+                this.showAlert = false;
+                this.$router.push('/user/login');
+                return;
+            }
             let addsubscribeRes = this._ajaxDoSomething(await addsubscribe());
             this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
             this.showAlert = false;
@@ -267,13 +267,16 @@ export default {
             let resData = res.data.info;
 
             this.goodsListArr = [...this.goodsListArr, ...resData];
-        },
+        }, 
     },
     watch: {
-        userInfo(){
-            this.initData()
+        userInfo(val){
+            this.loginState = !this._isEmptyObject(val);
+            if (this.loginState) {
+                this.initData()
+            }
         }
-    }
+    },
 }
 </script>
 

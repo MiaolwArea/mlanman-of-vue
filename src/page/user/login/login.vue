@@ -1,34 +1,41 @@
 <template>
+<transition name="router-slid" mode="out-in">
     <div id="login-in" class="header-height">
-    	<head-top head-title="用户登入/注册" go-back='true'></head-top>
-        <form class="loginForm">
-            <section class="input_container">
-                <input class="fz14" type="text" placeholder="账号" v-model.lazy="userAccount">
-            </section>
-            <section class="input_container">
-                <input class="fz14" type="password" placeholder="密码"  v-model="passWord">
-            </section>
-            <section class="input_container captcha_code_container">
-                <input type="text" class="fz14" placeholder="验证码" maxlength="4" v-model="codeNumber">
-                <div class="img_change_img">
-                    <img v-show="captchaCodeImg" :src="captchaCodeImg">
-                    <div class="change_img" @click="getCaptchaCode">
-                        <p>看不清</p>
-                        <p>换一张</p>
+        <template v-if="!this.isLogin">
+            <head-top head-title="用户登入/注册" go-back='true'></head-top>
+            <form class="loginForm">
+                <section class="input_container">
+                    <input class="fz14" type="text" placeholder="账号" v-model.lazy="userAccount">
+                </section>
+                <section class="input_container">
+                    <input class="fz14" type="password" placeholder="密码"  v-model="passWord">
+                </section>
+                <section class="input_container captcha_code_container">
+                    <input type="text" class="fz14" placeholder="验证码" maxlength="4" v-model="codeNumber">
+                    <div class="img_change_img">
+                        <img v-show="captchaCodeImg" :src="captchaCodeImg">
+                        <div class="change_img" @click="getCaptchaCode">
+                            <p>看不清</p>
+                            <p>换一张</p>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </form>
-        <p class="login_tips">
-            温馨提示：未注册过的账号，登录时将自动注册
-        </p>
-        <p class="login_tips">
-            注册过的用户可凭账号密码登录
-        </p>
-        <div class="login_container fz14" @click="mobileLogin">登录</div>
-        <alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="showAlert = false" :alertText="alertText"></alert-tip>
-        <loading v-show="isLoading"></loading>
+                </section>
+            </form>
+            <p class="login_tips">
+                温馨提示：未注册过的账号，登录时将自动注册
+            </p>
+            <p class="login_tips">
+                注册过的用户可凭账号密码登录
+            </p>
+            <div class="login_container fz14" @click="mobileLogin">登录</div>
+            <alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="showAlert = false" :alertText="alertText"></alert-tip>
+            <loading v-show="isLoading"></loading>
+        </template>
+        <template v-else>
+            <div class="login_container fz14">退出并登录</div>
+        </template>
     </div>
+</transition>
 </template>
 
 <script>
@@ -52,7 +59,7 @@ import alertTip from '@/components/common/alertTip'
             this.getCaptchaCode();
         },
         mounted(){
-            this.isLogin();
+
         },
 	    components: {
 	        headTop,
@@ -62,7 +69,7 @@ import alertTip from '@/components/common/alertTip'
             ...mapState({
                 isLoading: state => state.loading.isLoading
             }),
-            ...mapState([ 'userInfo' ]),
+            ...mapState([ 'isLogin' ]),
         },
         methods: {
             ...mapMutations([
@@ -93,18 +100,12 @@ import alertTip from '@/components/common/alertTip'
 
                 if(this.infos.user_id){
                     this.RECORD_USERINFO(this.infos);
-                    // this.$router.go(-1);
+                    this.$router.go(-1);
                 }else{
                     // TODO 返回错误之后的操作
                     // this.getCaptchaCode();
                 }
             },
-            isLogin(){
-                if(this.userInfo){
-                    // TODO 跳转到退出登入页
-                    console.log('loginOut')
-                }
-            }
         },
 
     }
@@ -179,5 +180,12 @@ import alertTip from '@/components/common/alertTip'
         border: 1px;
         border-radius: strip-rem(5px);
         text-align: center;
+    }
+    .router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
     }
 </style>

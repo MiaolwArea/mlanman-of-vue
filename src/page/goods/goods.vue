@@ -83,7 +83,7 @@
     			</ul>
     		</div>
     	</section>
-        <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
+        <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
         <footer-nav ref="footerNavObj"
             :class = "{scaleaction: isAdd}" 
             :isShopcart = "false" 
@@ -149,12 +149,13 @@
             this.INIT_BUYCART();
         },
         mounted(){
+            this.initData();
             // 计算加载完成图片数量
             this.countForImg = 1;
         },
         computed: {
             ...mapState([
-                'cartList'
+                'cartList', 'userInfo'
             ])
         },
         methods: {
@@ -241,16 +242,21 @@
             },
             // 立即下单
             joinOrder(url){
-                // TODO 下单业务逻辑
+                if (!this.loginState) {
+                    this.showAlert = true;
+                    this.alertText = `(≖ ‿ ≖)✧你还没登入，登入知晓更多福利哦～`;
+                    return;
+                }
+                // TODO 下单业务逻辑 ...
                 this.$router.push(url);
+            },
+            sureTip(){
+                this.$router.push('/user/login');
             }
         },
         watch: {
             userInfo(val){
                 this.loginState = !this._isEmptyObject(val);
-                if (this.loginState) {
-                    this.initData()
-                }
             },
             // 购物车数量变化执行动画
             cartNum(){

@@ -27,7 +27,7 @@
                     {{ cartText }}
                 </a>
             </li>
-            <li @click="gotoAddress({path: (cartNum ? '/shoppingCart/?num=' + cartNum : '/shoppingCart')})">
+            <li @click="joinOrder((cartNum ? '/shoppingCart/?num=' + cartNum : '/shoppingCart'))">
                 <a class="nav-itme fz16">
                     立即下单
                 </a>

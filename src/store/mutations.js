@@ -57,7 +57,7 @@ export default {
 			}
 		}
 	},
-	// 加入购物车
+	// 加入购物车, TODO 登入后追加购物车数量内容
 	[ADD_CART](state, {
 		shopId,
 		shopPrice,

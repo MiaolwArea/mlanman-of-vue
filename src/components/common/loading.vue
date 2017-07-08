@@ -55,6 +55,7 @@
         left: 0;
         right: 0;
         bottom: 0;
+        z-index: 999;
         background-color: rgba(255, 255, 255, .3);
     }
   	.g-circles {

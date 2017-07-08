@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </section>
-        <loading v-show="isloading"></loading>
+        <loading v-show="isLoading_view"></loading>
         <footer-nav :isShopcart="false"></footer-nav> 
         <transition name="router-slid">
             <router-view></router-view>
@@ -51,7 +51,7 @@
     	},
     	computed: {
     		...mapState({
-                isLoading: state => state.loading.isLoading
+                isLoading_view: state => state.loading.isLoading
             }),
             ...mapState([ 'userInfo' ]),
     	},
@@ -60,7 +60,7 @@
         },
         mixins: [ formatDate ],
     	mounted(){
-    		// this.initData();
+            
     	},
     	methods: {
     		async initData(){
@@ -73,7 +73,7 @@
     		},
     	},
     	watch: {
-    		userInfo(){
+    		userInfo(val){
                 this.loginState = !this._isEmptyObject(val);
                 if (this.loginState) {
                     this.initData()

@@ -1,6 +1,7 @@
 <template>
 	<div id="point-goods-detail" class="children-view">
-		<div class="goods-detail-box">
+        <head-top head-title="商品积分列表" go-back='true'></head-top>
+		<div class="goods-detail-box" :class="{'bottom-block': isShowBtn}">
 			<section class="goods-info" ref="goodsInfoDOM">
 				<router-link tag="p" class="get-point fz14 fw tac" :to="{path: '/pointUser'}">如何获得更多积分</router-link>
 				<img :src="picView">
@@ -36,6 +37,7 @@
     import { pointGoodsDetail } from '@/service/getData'
     import alertTip from '@/components/common/alertTip'
     import { mapState } from 'vuex'
+    import headTop from '@/components/header/head'
 
     let isBeginExchange = true;
     
@@ -54,7 +56,7 @@
                 alertText: '',          // 弹窗内容
     		}
     	},
-    	compute: {
+    	computed: {
     		...mapState([
     			'userInfo'
 			])
@@ -62,7 +64,7 @@
     	mounted(){
     		
     	},
-        components: { alertTip },
+        components: { alertTip, headTop },
     	methods: {
     		async initData(){
     			const _this = this;
@@ -140,7 +142,8 @@
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 	
-	.goods-detail-box{ padding-bottom: strip-rem(40px); }
+	.goods-detail-box{ padding-top: strip-rem(40px); }
+    .bottom-block{ padding-bottom: strip-rem(40px); }
 	.goods-info{
 		.point-box{
 			padding-bottom: strip-rem(10px);

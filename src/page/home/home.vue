@@ -172,7 +172,7 @@ export default {
     },
     mixins: [loadMore],
     mounted: function(){
-
+        this.initData();
     },
     computed: {
         ...mapState({
@@ -242,12 +242,11 @@ export default {
         },
         // 订阅提醒
         subRemind(){
+            this.showAlert = true;
             if(!this.loginState){
-                this.showAlert = true;
                 this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
                 return;
             }
-            this.showAlert = true;
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){
@@ -272,9 +271,6 @@ export default {
     watch: {
         userInfo(val){
             this.loginState = !this._isEmptyObject(val);
-            if (this.loginState) {
-                this.initData()
-            }
         }
     },
 }

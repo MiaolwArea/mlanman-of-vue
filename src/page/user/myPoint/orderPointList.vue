@@ -25,7 +25,7 @@
                 </li>
             </ul>
         </section>
-        <loading v-show="isloading"></loading>
+        <loading v-show="isLoading_view"></loading>
 	</div>
 </template>
 
@@ -45,7 +45,7 @@
     	},
     	computed: {
     		...mapState({
-                isLoading: state => state.loading.isLoading
+                isLoading_view: state => state.loading.isLoading
             }),
             ...mapState([ 'userInfo' ]),
     	},
@@ -65,7 +65,7 @@
     		},
     	},
     	watch: {
-    		userInfo(){
+    		userInfo(val){
                 this.loginState = !this._isEmptyObject(val);
                 if (this.loginState) {
                     this.initData()

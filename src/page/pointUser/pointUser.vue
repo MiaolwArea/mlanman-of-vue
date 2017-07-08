@@ -131,7 +131,7 @@
     export default {
     	data(){
             return{
-            	isChildren: true,
+            	isChildren: true,		// 是否有子路由
             	showAlert: false,		// 是否显示弹窗
                 alertText: null,		// 弹框文本内容
                 isShowOfPic: false,		// 是否显示晒单任务

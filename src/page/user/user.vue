@@ -63,7 +63,7 @@
                     距离下次新品发布还有1天
                 </div>
                 <div class="col-4 tar">
-                    <a class="link-known" href="">订阅新品提醒</a>
+                    <a class="link-known" @click="subRemind">订阅新品提醒</a>
                 </div>
             </div>
         </section>
@@ -77,19 +77,23 @@
                 </router-link>
             </ul>
         </section>
+        <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
         <footer-nav></footer-nav>   
     </div>
 </template>
 
 <script>
 	import footerNav from '@/components/footer/footerNav'
-    import { recommendList } from '@/service/getData'
+    import { recommendList, addsubscribe } from '@/service/getData'
     import { removeStore } from '@/assets/config/mUtils'
     import { mapState, mapMutations } from 'vuex'
+    import alertTip from '@/components/common/alertTip'
 
     export default {
     	data(){
             return{
+                showAlert: false,       // 是否显示弹窗
+                alertText: null,        // 弹框文本内容
                 loginState: false,      // 登入状态
                 avatar: '',             // 会员头像
                 userName: '',           // 会员名
@@ -101,6 +105,7 @@
         },
         components: {
         	footerNav,
+            alertTip,
         },
         mounted(){
             // this.initData();
@@ -135,6 +140,25 @@
                     removeStore('user_id');
                 }
                 this.$router.push('/user/login');
+            },
+            // 订阅提醒
+            subRemind(){
+                this.showAlert = true;
+                if(!this.loginState){
+                    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+                    return;
+                }
+                this.alertText = "有新品上市，您将会收到公众号推送的消息";
+            },
+            async sureTip(){
+                if(!this.loginState){
+                    this.showAlert = false;
+                    this.$router.push('/user/login');
+                    return;
+                }
+                let addsubscribeRes = this._ajaxDoSomething(await addsubscribe());
+                this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
+                this.showAlert = false;
             },
         },
         watch: {

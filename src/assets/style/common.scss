@@ -70,6 +70,8 @@ img{
 .lr-col{
     @include fj();
 }
+.mt5{ margin-top: strip-rem(5px); }
+.mt10{ margin-top: strip-rem(10px); }
 
 .fz0{font-size: 0px;}
 .fz12{font-size: 1em;}
@@ -97,6 +99,7 @@ img{
 .color-ft-black{ color: #000; } 
 .color-bg-gray{ background-color: $gray; }
 .color-bg-black{ background-color: #000; }
+.color-bg-lightgray{ background-color: #6f6f6f; }
 
 .flex-order-0{ order: 0; }
 .flex-order-1{ order: 1; }
@@ -131,6 +134,10 @@ img{
 }
 .footer-height{
     padding-bottom: strip-rem(50px);
+}
+.bg-gray{
+    background-color: $gray;
+    min-height: 100%;
 }
 .children-view{
     position: absolute;

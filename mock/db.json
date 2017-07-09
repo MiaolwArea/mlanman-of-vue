@@ -19,7 +19,7 @@
           "sale_money": "129.00",
           "vip_status": "0",
           "qrcode_style": "16",
-          "nickname": "桂镇",
+          "nickname": "碎魄零星",
           "avatar": "http://imglanman.b0.upaiyun.com/2016/09/01/d8f211d968cf5eb9c0485ac505913ee1.jpg",
           "unionid": "orLkuv59n5_3Y_XyoMOkAMOFeEBc",
           "is_ok": "1"
@@ -27,7 +27,7 @@
       "times": 0,
       "member_info": {
           "member_id": "12292200",
-          "member_nickname": "桂镇",
+          "member_nickname": "碎魄零星",
           "avatar": "",
           "sex": 2,
           "birthday": "0000-00-00 00:00:00",
@@ -519,5 +519,28 @@
       "phone_num": 18759376268,
       "isTask": true
     }
+  },
+  "getAdress":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "id": 1,
+      "adress": "厦门市湖里区软件园二期望海路31号美易在线",
+      "phone_num": 18759376268,
+      "consignee": "碎魄零星1",
+      "isDefault": true
+    },{
+      "id": 2,
+      "adress": "厦门市湖里区软件园二期望海路32号美易在线",
+      "phone_num": 18759376268,
+      "consignee": "碎魄零星2",
+      "isDefault": false
+    },{
+      "id": 3,
+      "adress": "厦门市湖里区软件园二期望海路33号美易在线",
+      "phone_num": 18759376268,
+      "consignee": "碎魄零星3",
+      "isDefault": false
+    }]
   }
 }

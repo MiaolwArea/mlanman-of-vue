@@ -6,7 +6,7 @@
             </div>
             <div class="point-integral">
                 <p class="fz14">可用积分: {{ point }}</p>
-                <router-link tag="p" :to="{path: '/user/myPoint/orderList'}" class="fz14">即将获得订单积分: {{ freezeIntegral }}<i class="iconfont"> &#xe60e;</i></router-link>
+                <router-link tag="p" :to="{path: '/user/myPoint/orderPointList'}" class="fz14">即将获得订单积分: {{ freezeIntegral }}<i class="iconfont"> &#xe60e;</i></router-link>
             </div>
         </section>
         <section class="point-record">

@@ -19,7 +19,7 @@
         <section class="menu">
             <ul class="menu-list">
                 <li class="list-item">
-                    <a @click="gotoAddress({path: '/home'})">
+                    <a @click="gotoAddress({path: '/order'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的订单</span>
                     </a>
@@ -37,13 +37,13 @@
                     </a>
                 </li>
                 <li class="list-item">
-                    <a @click="gotoAddress({path: '/mycomment'})">
+                    <a @click="gotoAddress({path: '/comment'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的评价</span>
                     </a>
                 </li>
                 <li class="list-item">
-                    <a @click="gotoAddress({path: '/address'})">
+                    <a @click="gotoAddress({path: '/user/adress'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的地址</span>
                     </a>

@@ -114,6 +114,11 @@ export const accountLogin = (userAccount, passWord, codeNumber) => fetch('/accou
 	code_number: codeNumber,
 });
 
+/**
+ * 地址列表数据
+ */
+export const getAdress = () => fetch('/getAdress');
+
 
 
 

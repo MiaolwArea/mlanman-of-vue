@@ -1,13 +1,13 @@
 <template>
-	<div class="shopping-cart">
-        <div v-if="!isHaveOrder">
+	<div id="shopping-cart" class="footer-height">
+        <template v-if="!isHaveOrder">
             <div class="blank-cont color-bg-gray">
                 <img src="~assets/images/shoppingCart/bg_shoppingcart_blank.png">
                 <p class="fz16 fw">您购物车中没任何商品</p>
                 <a class="fz14 link-home" href="">去逛逛 ></a>
             </div>
-        </div>
-        <div v-else>
+        </template>
+        <template v-else>
             <router-link tag="section" v-if="userId" :to="{path: 'address', query: {id: userId}}" class="address padding-1">
                 <div class="receive-info">
                     <div class="receive fz16">
@@ -19,7 +19,7 @@
                 </div>
                 <i class="color-ft-a3 icon-right-arrow iconfont">&#xe60e;</i>
             </router-link>
-            <router-link tag="section" v-else="userId" :to="{path: 'login'}" class="padding-1">
+            <router-link tag="section" v-else :to="{path: '/user/login'}" class="padding-1">
                 <p class="fz16 tac">点击登入获取地址信息</p>
             </router-link>
             <div class="divide-line"></div>
@@ -71,7 +71,7 @@
                 </ul>
             </section>
             <section class="pay-btn-box color-bg-gray">
-                <a href="" class="pay-btn tac fz16">微信支付</a>
+                <a class="pay-btn tac fz16" @click="payByWechat">微信支付</a>
             </section>
             <footer class="lanman-footer color-bg-gray">
                 <div class="lanman-footer-logo">
@@ -106,7 +106,7 @@
                     </footer>
                 </div>
             </transition>
-        </div>
+        </template>
         <alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" :alertText="alertText" @sureTip="sureTip()"></alert-tip>
         <footer-nav :isShopcart="false"></footer-nav>   
     </div>
@@ -143,8 +143,7 @@ import alertTip from '@/components/common/alertTip'
             this.INIT_BUYCART();
         },
         mounted(){
-            // 获取用户信息
-            // this.getUserInfo();
+            
         },
         computed: {
             ...mapState([
@@ -180,7 +179,7 @@ import alertTip from '@/components/common/alertTip'
         methods: {
             // 获取登入信息
             ...mapActions([
-                'getUserInfo'
+                'userInfo'
             ]),
             ...mapMutations([
                 'ADD_CART', 'INIT_BUYCART', 'ADD_CART_NUM', 'CLEAR_CART'
@@ -227,10 +226,19 @@ import alertTip from '@/components/common/alertTip'
             goBack(){
                 this.$router.go(-1);
             },
+            payByWechat(){
+                if(!this.loginState){
+                    this.showAlert = true;
+                    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+                    return;
+                }
+                // TODO 微信接口以及支付前逻辑判断
+            },
         },
         watch: {
             userInfo(val){
                 this.loginState = !this._isEmptyObject(val);
+                this.userId = val.user_id
                 if (this.loginState) {
                     this.initData()
                 }

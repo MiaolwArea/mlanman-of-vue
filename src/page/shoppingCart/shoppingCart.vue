@@ -8,7 +8,7 @@
             </div>
         </template>
         <template v-else>
-            <router-link tag="section" v-if="userId" :to="{path: 'address', query: {id: userId}}" class="address padding-1">
+            <router-link tag="section" v-if="userId" :to="{path: '/user/adress', query: {id: userId}}" class="address padding-1">
                 <div class="receive-info">
                     <div class="receive fz16">
                         <span class="color-ft-a3">收货人：{{ receiveName }} {{ phone }}</span>

@@ -125,6 +125,11 @@ export const getAdress = () => fetch('/getAdress');
  */
 export const setDefaultAdress = (id) => fetch('/setDefaultAdress');
 
+/**
+ * 地址列表数据
+ */
+export const getAdressInfo = () => fetch('/getAdressInfo');
+
 
 
 

@@ -1,5 +1,6 @@
 <template>
-	<div id="adress-list" class="header-height bg-gray">
+<transition name="lf-slid" mode="out-in">
+	<div id="adress-list" class="header-height bg-gray children-view">
         <template v-show="isChildren">
     		<head-top head-title="地址管理" go-back='true'></head-top>
     		<section class="address-list-block color-bg-black">
@@ -50,6 +51,7 @@
             <router-view></router-view>
         </transition>
 	</div>
+</transition>
 </template>
 
 <script>

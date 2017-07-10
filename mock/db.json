@@ -565,5 +565,18 @@
       "consignee": "碎魄零星3",
       "isDefault": false
     }]
+  },
+  "getAdressInfo":{
+    "error": 0,
+    "msg": null,
+    "data": {
+      "id": 2,
+      "adress": "软件园二期望海路31号美易在线",
+      "city": "福建省厦门市湖里区",
+      "consignee": "碎魄零星",
+      "phoneNum": 18759376268,
+      "postcode": 355000,
+      "aa": 12
+    }
   }
 }

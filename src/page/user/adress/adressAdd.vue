@@ -1,7 +1,55 @@
 <template>
-	<div id="adress-list" class="children-view">
+	<div id="adress-list" class="header-height children-view">
 		<head-top :head-title="headerTitile" go-back='true'></head-top>
-		12
+		<form @submit.prevent="submit" class="padd-lr">
+            <ul class="address-item-list">
+                <li class="goods-item">
+                    <label class="fz16 fw">收货人</label>
+                    <input class="consignee color-bg-gray mt10" type="text" placeholder="必填" v-model="userAdress.consignee" />
+                </li>
+                <li class="goods-item">
+                    <label class="fz16 fw">联系电话</label>
+                    <input class="consignee color-bg-gray mt10" type="text" placeholder="必填" v-model="userAdress.phoneNum" />
+                </li>
+                <li class="goods-item">
+                    <label class="fz16 fw">邮政编码</label>
+                    <input class="consignee color-bg-gray mt10" type="text" placeholder="选填" v-model="userAdress.postcode" />
+                </li>
+                <li class="goods-item">
+                    <label class="fz16 fw">所在城市</label>
+                    <input class="consignee color-bg-gray mt10"  @click="showChangeBlock = true" type="text" v-model="userAdress.city" />
+                </li>
+                <li class="goods-item">
+                    <label class="fz16 fw">详细地址</label>
+                    <input class="consignee color-bg-gray mt10" type="text" placeholder="必填" v-model="userAdress.address" />
+                </li>
+            </ul>   
+            
+            <input class="add-btn fz14 color-bg-lightgray mt10" type="submit" value="保存">
+        </form>
+        <!-- 选择城市 -->
+        <transition name="fade">
+            <div class="specs_cover" @click="showChangeBlock = false" v-if="showChangeBlock"></div>
+        </transition>
+        <transition name="fadeBounce">
+            <div class="specs_list" v-show="showChangeBlock">
+                <header class="specs_list_header">
+                    <h4 class="ellipsis fz16 tac color-ft-black">选择所在城市</h4>
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" version="1.1"class="specs_cancel" @click="showChangeBlock = false">
+                        <line x1="0" y1="0" x2="16" y2="16"  stroke="#666" stroke-width="1.2"/>
+                        <line x1="0" y1="16" x2="16" y2="0"  stroke="#666" stroke-width="1.2"/>
+                    </svg>
+                </header>
+                <section class="specs_details">
+                    <div class="city-box">
+                        <picker :data="cityList" :columns=3 v-model="cityVal" @on-change="change" ref="picker1"></picker>
+                    </div>
+                </section>
+                <footer class="specs_footer">
+                    <div class="update_num fz16" @click="changeCityAlertSure()">确认</div>
+                </footer>
+            </div>
+        </transition>
 		<loading v-show="isLoading"></loading>
 		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
 	</div>
@@ -9,21 +57,36 @@
 
 <script>
 import headTop from '@/components/header/head'
-import {  } from '@/service/getData'
+import { getAdressInfo } from '@/service/getData'
 import { mapState } from 'vuex'
+import { Picker } from 'vux'
 import alertTip from '@/components/common/alertTip'
+import { cityList } from '@/assets/applicationUtil/city'
 
     export default {
     	data(){
             return{
-                adressList: [],			// 地址列表
 	            showAlert: false,       // 是否显示弹窗
 	            alertText: null,        // 弹框文本内容
+                userAdress: {
+                    consignee: '',
+                    phoneNum: '',
+                    postcode: null,
+                    city: '',
+                    address: ''
+                },
+                cityVal: [],
+                cityList: cityList,
+                showChangeBlock: false,     // 是否显示数量输入框
             }
         },
         components: {
         	headTop,
             alertTip,
+            Picker,
+        },
+        mounted(){
+            
         },
         computed: {
 	        ...mapState({
@@ -38,11 +101,27 @@ import alertTip from '@/components/common/alertTip'
         },
         methods: {
         	async initData(){
-                
+                let getAdressInfoRes = this._ajaxDoSomething(await getAdressInfo()).data;
+
+                this.userAdress = getAdressInfoRes;
+                // TODO 做一个城市转化['val1', 'val2', 'val3']
+                // this.cityVal = ['fj', 'xm', 'huli']
+                // this.sureCity = ['fj', 'xm', 'huli']
         	},
         	sureTip(){
         		
         	},
+            // 保存
+            submit(){
+
+            },
+            change (value) {
+                this.sureCity = value[0] + value[1] + value[2];
+            },
+            changeCityAlertSure(){
+                this.userAdress.city = this.sureCity;
+                this.showChangeBlock = false;
+            }
         },
         watch: {
         	userInfo(val){
@@ -57,5 +136,36 @@ import alertTip from '@/components/common/alertTip'
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 
-	
+	.address-item-list{
+        label{
+            display: block;
+        }
+        input{
+            @include wh(200px, 25px);
+            padding: 0 strip-rem(5px);
+        }
+    }
+    .add-btn{
+        display: block;
+        text-align: center;
+        height: strip-rem(40px);
+        line-height: strip-rem(40px);
+        width: 100%;
+    }
+    .specs_list{
+        h4{
+            padding: strip-rem(10px);
+        }
+        .specs_details{
+            padding: 0;
+        }
+        .update_num{
+            background-color: #000;
+            width: 50%;
+            height: strip-rem(30px);
+            line-height: strip-rem(30px);
+            text-align: center;
+            margin: strip-rem(20px) auto;
+        }
+    }
 </style>

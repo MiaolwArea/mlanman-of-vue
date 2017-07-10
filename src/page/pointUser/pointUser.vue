@@ -114,7 +114,7 @@
 			<loading v-show="isLoading"></loading>
 		</div>
 		<!-- 兑换积分页 -->
-        <transition name="router-slid" mode="out-in">
+        <transition name="ud-slid" mode="out-in">
             <router-view></router-view>
         </transition>
 	</div>
@@ -400,11 +400,4 @@
 			}
 		}
 	}
-    .router-slid-enter-active, .router-slid-leave-active {
-        transition: all .4s;
-    }
-    .router-slid-enter, .router-slid-leave-active {
-        transform: translate3d(0, -2rem, 0);
-        opacity: 0;
-    }
 </style>

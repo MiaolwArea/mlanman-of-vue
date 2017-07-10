@@ -29,7 +29,7 @@
 		<div class="point-exchange-box tac fixed" :class="isShowBtn ? 'show' : 'hide'" @click="exchange">
 			<a class="exchange fz16">{{ btninfo }}</a>
 		</div>
-        <alert-tip :isShow="showAlert" :confirmModel="2" @isShowAuto="isShowAuto" :alertText="alertText"></alert-tip>
+        <alert-tip :isShow="showAlert" :confirmModel="2" :alertText="alertText"></alert-tip>
 	</div>
 </template>
 
@@ -121,12 +121,11 @@
     		},
     		async exchange(){
     			// let exchangeGoodsRes = await exchangeGoods(this.userInfo, this.orderId);
-                this.showAlert = true;
-                this.alertText = '兑换成功！'
-    		},
-            isShowAuto(data){
-                this.showAlert = false;
-            }
+                if(isBeginExchange){
+                    this.showAlert = true;
+                    this.alertText = '兑换成功！'
+                }
+    		}
     	},
         watch: {
             userInfo(val){
@@ -170,11 +169,4 @@
 		line-height: strip-rem(40px);
 		background-color: #000;
 	}
-    .router-slid-enter-active, .router-slid-leave-active {
-        transition: all .4s;
-    }
-    .router-slid-enter, .router-slid-leave-active {
-        transform: scale(2, 2);
-        opacity: 0;
-    }
 </style>

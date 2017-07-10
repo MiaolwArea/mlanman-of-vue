@@ -20,7 +20,7 @@
         </section>
         <!-- 模式2: 简单提示弹框 -->
         <transition name="downToUp">
-            <section v-show="isShow" class="simpleTip-text-container" v-if="confirmModel == 2">
+            <section v-show="isShowF" class="simpleTip-text-container" v-if="confirmModel == 2">
                 <div class="simpleTip-box">
                     <p class="fz16 tac color-ft-black">{{ alertText }}<span class="color-ft-black" v-if="isCountDown">({{ timeDown }})</span></p>
                     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" version="1.1"class="specs_cancel" v-if="isCancel" @click="closeTip">
@@ -37,11 +37,12 @@
     export default {
     	data(){
             return{
-                timeDown: 0
+                timeDown: 0,
+                isShowF: false,
             }
         },
         mounted(){
-
+            
         },
         props: {
             // 弹出框显示模式，默认1
@@ -93,8 +94,7 @@
                     }, 1000);
                 }else{
                     if(_this.isAutoHide){
-                        // 自动隐藏回调函数
-                        _this.$emit('isShowAuto', false);
+                        this.isShowF = false
                     }
                 }
             },
@@ -107,7 +107,8 @@
         },
         watch: {
             isShow(){
-                if(this.isShow){
+                if(this.confirmModel == 2){
+                    this.isShowF = true;
                     this.timeDown = this.second;
                     this.countDown();
                 }

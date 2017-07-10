@@ -238,6 +238,7 @@ img{
         @include remCalc('padding', 20, 10, 0);
     }
 }
+// 显影路由动画
 .fadeBounce-enter-active, .fadeBounce-leave-active,
 .fade-enter-active, .fade-leave-active {
     transition: all .3s;
@@ -247,5 +248,21 @@ img{
     transform: scale(.7);
 }
 .fade-enter, .fade-leave-active {
+    opacity: 0;
+}
+// 左右过渡路由动画
+.lf-slid-enter-active, .lf-slid-leave-active {
+    transition: all .4s;
+}
+.lf-slid-enter, .lf-slid-leave-to {
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
+}
+// 上下过渡路由动画
+.ud-slid-enter-active, .ud-slid-leave-active {
+    transition: all .4s;
+}
+.ud-slid-enter, .ud-slid-leave-active {
+    transform: translate3d(0, -2rem, 0);
     opacity: 0;
 }

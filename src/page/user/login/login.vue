@@ -1,5 +1,5 @@
 <template>
-<transition name="router-slid" mode="out-in">
+<transition name="lf-slid" mode="out-in">
     <div id="login-in" class="header-height children-view">
         <template v-if="!this.isLogin">
             <head-top head-title="用户登入/注册" go-back='true'></head-top>
@@ -180,12 +180,5 @@ import alertTip from '@/components/common/alertTip'
         border: 1px;
         border-radius: strip-rem(5px);
         text-align: center;
-    }
-    .router-slid-enter-active, .router-slid-leave-active {
-        transition: all .4s;
-    }
-    .router-slid-enter, .router-slid-leave-to {
-        transform: translate3d(2rem, 0, 0);
-        opacity: 0;
     }
 </style>

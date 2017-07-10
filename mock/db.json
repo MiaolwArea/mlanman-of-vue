@@ -542,5 +542,28 @@
       "consignee": "碎魄零星3",
       "isDefault": false
     }]
+  },
+  "setDefaultAdress":{
+    "error": 0,
+    "msg": null,
+    "data": [{
+      "id": 2,
+      "adress": "厦门市湖里区软件园二期望海路32号美易在线",
+      "phone_num": 18759376268,
+      "consignee": "碎魄零星2",
+      "isDefault": false
+    },{
+      "id": 1,
+      "adress": "厦门市湖里区软件园二期望海路31号美易在线",
+      "phone_num": 18759376268,
+      "consignee": "碎魄零星1",
+      "isDefault": true
+    },{
+      "id": 3,
+      "adress": "厦门市湖里区软件园二期望海路33号美易在线",
+      "phone_num": 18759376268,
+      "consignee": "碎魄零星3",
+      "isDefault": false
+    }]
   }
 }

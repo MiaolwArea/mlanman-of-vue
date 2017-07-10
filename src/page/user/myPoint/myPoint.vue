@@ -29,7 +29,7 @@
         </section>
         <loading v-show="isLoading_view"></loading>
         <footer-nav :isShopcart="false"></footer-nav> 
-        <transition name="router-slid">
+        <transition name="lf-slid">
             <router-view></router-view>
         </transition>
 	</div>
@@ -112,12 +112,5 @@
         .point-info-box{
             line-height: 2;
         }
-    }
-    .router-slid-enter-active, .router-slid-leave-active {
-        transition: all .4s;
-    }
-    .router-slid-enter, .router-slid-leave-active {
-        transform: translate3d(2rem, 0, 0);
-        opacity: 0;
     }
 </style>

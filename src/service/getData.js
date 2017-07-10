@@ -119,6 +119,12 @@ export const accountLogin = (userAccount, passWord, codeNumber) => fetch('/accou
  */
 export const getAdress = () => fetch('/getAdress');
 
+/**
+ * 设置默认地址(POST)
+ * @param {String} userAccount   用户名
+ */
+export const setDefaultAdress = (id) => fetch('/setDefaultAdress');
+
 
 
 

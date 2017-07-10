@@ -13,6 +13,7 @@ const shoppingCart = r => require.ensure([], () => r(require('../page/shoppingCa
 const orderPointList = r => require.ensure([], () => r(require('../page/user/myPoint/orderPointList')), 'orderPointList')
 const login = r => require.ensure([], () => r(require('../page/user/login/login')), 'login')
 const adress = r => require.ensure([], () => r(require('../page/user/adress/adressList')), 'adress')
+const editAdress = r => require.ensure([], () => r(require('../page/user/adress/adressAdd')), 'editAdress')
 
 export default [{
     path: '/',
@@ -86,7 +87,16 @@ export default [{
         // 用户收货地址页
         {
             path: '/user/adress',
-            component: adress
+            component: adress,
+            children: [{
+                // 添加地址
+                path: 'add',
+                component: editAdress
+            },{
+                // 编辑地址
+                path: 'edit',
+                component: editAdress
+            }]
         },
     ]
 }]

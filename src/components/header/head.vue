@@ -45,7 +45,6 @@ import { mapState, mapActions } from 'vuex'
     #head_top{
         background-color: #6f6f6f;
         position: fixed;
-        z-index: 100;
         left: 0;
         top: 0;
         width: 100%;

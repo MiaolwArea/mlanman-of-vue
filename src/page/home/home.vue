@@ -143,6 +143,7 @@ import { allGoodsList, newGoodsList, home, addsubscribe } from '@/service/getDat
 import { loadMore } from '@/components/common/mixin'
 import alertTip from '@/components/common/alertTip'
 import { mapState } from 'vuex'
+import { mVerification } from '@/components/common/mixin'
 
 const reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
 
@@ -170,7 +171,7 @@ export default {
         footerNav,
         alertTip,
     },
-    mixins: [loadMore],
+    mixins: [ loadMore, mVerification ],
     mounted: function(){
         this.initData();
     },
@@ -243,10 +244,7 @@ export default {
         // 订阅提醒
         subRemind(){
             this.showAlert = true;
-            if(!this.loginState){
-                this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
-                return;
-            }
+            this._verification();
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){

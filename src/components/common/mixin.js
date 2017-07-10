@@ -109,7 +109,7 @@ export const formatDate = {
 			return format;
 		}
 	}
-}
+};
 /**
  * 小数截取位数
  * @param {Number} number   自动传入要控制的值
@@ -135,5 +135,21 @@ export const subNumber = {
 			}
 			return numbers;
 		}
+	}
+};
+/*------------common Vue实例--------------*/
+/**
+ * 验证是否登入
+ */
+export const mVerification = {
+	methods: {
+		_verification(){
+        	if(!this.loginState){
+        	    this.showAlert = true;
+        	    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
+        	    return false;
+        	}
+        	return true;
+        },
 	}
 }

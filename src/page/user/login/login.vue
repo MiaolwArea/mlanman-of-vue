@@ -1,6 +1,6 @@
 <template>
 <transition name="router-slid" mode="out-in">
-    <div id="login-in" class="header-height">
+    <div id="login-in" class="header-height children-view">
         <template v-if="!this.isLogin">
             <head-top head-title="用户登入/注册" go-back='true'></head-top>
             <form class="loginForm">
@@ -184,7 +184,7 @@ import alertTip from '@/components/common/alertTip'
     .router-slid-enter-active, .router-slid-leave-active {
         transition: all .4s;
     }
-    .router-slid-enter, .router-slid-leave-active {
+    .router-slid-enter, .router-slid-leave-to {
         transform: translate3d(2rem, 0, 0);
         opacity: 0;
     }

@@ -125,6 +125,7 @@
 	import {pointUser} from '@/service/getData'
 	import alertTip from '@/components/common/alertTip'
 	import { mapState } from 'vuex'
+	import { mVerification } from '@/components/common/mixin'
 
 	const boolerInfo = {false: '已订阅', true: '订阅提醒'};
 	
@@ -154,6 +155,7 @@
         	footerNav,
         	alertTip,
         },
+        mixins: [ mVerification ],
 	    mounted: function(){
 	        // this.initData();        
 	    },
@@ -195,15 +197,6 @@
 			        _this.$refs.donut__svg__circle.style.strokeDashoffset = Math.floor(circumference - curProcess * circumference);
 	            }
 	        },
-	        // 登入验证
-	        _verification(){
-	        	if(!this.loginState){
-	        	    this.showAlert = true;
-	        	    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
-	        	    return false;
-	        	}
-	        	return true;
-	        },
         	// 显示弹窗
         	showMyPic(isUpload, remark){
         		const _this = this;
@@ -215,7 +208,7 @@
         		_this.isUpload = isUpload;
         		_this.showAlert = true;
         		if(isUpload){
-	                _this.alertText = '<p>一、在朋友圈完成晒单<br>朋友圈晒单要求：<br>1、晒出来的图不得少于3张图片<br>2、含LANMAN烂熳LOGO图片<br>3、含个人专属二维码图片4、至少含一张产品拍照图<br>二、截图朋友圈状态上传即可</p>';
+	                _this.alertText = '一、在朋友圈完成晒单<br>朋友圈晒单要求：<br>1、晒出来的图不得少于3张图片<br>2、含LANMAN烂熳LOGO图片<br>3、含个人专属二维码图片4、至少含一张产品拍照图<br>二、截图朋友圈状态上传即可';
         		}else{
         			_this.alertText = remark;
         		}

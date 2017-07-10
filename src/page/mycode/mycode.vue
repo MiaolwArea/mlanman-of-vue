@@ -33,6 +33,7 @@
     import { qrcodeimg, getQrcodeimgs, selectedQrcodeimg } from '@/service/getData'
     import { Swiper, SwiperItem } from 'vux'
     import { mapState, mapMutations } from 'vuex'
+    import { mVerification } from '@/components/common/mixin'
 
     export default {
     	data(){
@@ -81,15 +82,6 @@
                     actionNum: position,
                     picItem: this.qrcodeimgAry.length
                 });
-            },
-            // 登入验证
-            _verification(){
-                if(!this.loginState){
-                    this.showAlert = true;
-                    this.alertText = "(。・`ω´・)你还没登录，点击确认开始登录！";
-                    return false;
-                }
-                return true;
             },
             // 选择样式
             async selected(){

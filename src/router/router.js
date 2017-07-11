@@ -16,7 +16,7 @@ const adress = r => require.ensure([], () => r(require('../page/user/adress/adre
 const editAdress = r => require.ensure([], () => r(require('../page/user/adress/adressAdd')), 'editAdress')
 const order = r => require.ensure([], () => r(require('../page/user/order/orderList')), 'order')
 const logistics = r => require.ensure([], () => r(require('../page/user/logistics/logistics')), 'logistics')
-const payfeedback = r => require.ensure([], () => r(require('../page/user/payfeedback/payfeedbackList')), 'payfeedback')
+const payfeedback = r => require.ensure([], () => r(require('../page/user/payfeedback/payfeedback')), 'payfeedback')
 const comment = r => require.ensure([], () => r(require('../page/user/comment/comment')), 'comment')
 
 export default [{

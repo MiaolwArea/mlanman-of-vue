@@ -85,6 +85,7 @@
         right: 0px;
         bottom: 0px;
         margin: 0 auto;
+        z-index: -1;
         @include fj($type: center, $direction: column);
         img{
             width: strip-rem(80px);

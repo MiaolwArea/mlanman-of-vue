@@ -1,7 +1,7 @@
 <template>
 <transition name="lf-slid" mode="out-in">
-	<div id="logistics" class="header-height children-view">
-		<head-top head-title="我的物流" go-back='true'></head-top>
+	<div id="payfeedback" class="header-height children-view">
+		<head-top head-title="我的售后" go-back='true'></head-top>
 		
 		<loading v-show="isLoading"></loading>
 		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="sureTip" :alertText="alertText"></alert-tip>

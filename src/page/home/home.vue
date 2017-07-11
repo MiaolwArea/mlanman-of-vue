@@ -169,7 +169,7 @@ export default {
     components: {
         footerBottom,
         footerNav,
-        alertTip,
+        alertTip, 
     },
     mixins: [ loadMore, mVerification ],
     mounted: function(){
@@ -244,7 +244,9 @@ export default {
         // 订阅提醒
         subRemind(){
             this.showAlert = true;
-            this._verification();
+            if(!this._verification()){
+                return false;
+            }
             this.alertText = "有新品上市，您将会收到公众号推送的消息";
         },
         async sureTip(){

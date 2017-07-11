@@ -123,6 +123,7 @@ import alertTip from '@/components/common/alertTip'
             @include remCalc('padding', 12, 16);
             border-bottom: 1px solid #f1f1f1;
             input{
+                width: 100%;
                 color: #666;
             }
             button{

@@ -8,9 +8,9 @@
                 <p class="fz14">{{ userName }}</p>
                 <p class="point">
                     <span class="member-id">会员ID: {{ userId }}</span>
-                    <span>
+                    <span @click="gotoAddress({path: '/user/myPoint'})">
                         <i class="iconfont icon-point ft-34">&#xe61e;</i>
-                        我的积分: <a @click="gotoAddress({path: '/user/myPoint'})">{{ point }} ></a>
+                        我的积分: <a>{{ point }} ></a>
                     </span>
                 </p>
                 <p class="fz14">家族族长: {{ patriarch }}</p>
@@ -127,7 +127,7 @@
                 _this.userId = _this.userInfo.user_id;
                 _this.point = _this.userInfo.point;
                 _this.patriarch = _this.userInfo.patriarch;
-                let recommendListRes = await recommendList();
+                let recommendListRes = _this._ajaxDoSomething(await recommendList());
 
                 _this.recommendList = recommendListRes.data;
             },

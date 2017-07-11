@@ -51,7 +51,7 @@
             </div>
         </transition>
 		<loading v-show="isLoading"></loading>
-		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" :isConfirm="false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
+		<alert-tip :isShow="showAlert" @closeTip="showAlert = false" @sureTip="sureTip" :alertText="alertText"></alert-tip>
 	</div>
 </template>
 
@@ -66,17 +66,17 @@ import { cityList } from '@/assets/applicationUtil/city'
     export default {
     	data(){
             return{
-	            showAlert: false,       // 是否显示弹窗
-	            alertText: null,        // 弹框文本内容
-                userAdress: {
-                    consignee: '',
-                    phoneNum: '',
-                    postcode: null,
-                    city: '',
-                    address: ''
+	            showAlert: false,           // 是否显示弹窗
+                alertText: null,            // 弹框文本内容
+                userAdress: {               // 地址信息map
+                    consignee: '',          // 收货人
+                    phoneNum: '',           // 手机号码
+                    postcode: null,         // 邮政编码
+                    city: '',               // 省份城市
+                    address: ''             // 详细地址
                 },
-                cityVal: [],
-                cityList: cityList,
+                cityVal: [],                // 选中城市数据
+                cityList: cityList,         // 城市列表数据
                 showChangeBlock: false,     // 是否显示数量输入框
             }
         },
@@ -109,11 +109,14 @@ import { cityList } from '@/assets/applicationUtil/city'
                 // this.sureCity = ['fj', 'xm', 'huli']
         	},
         	sureTip(){
-        		
+                this.$router.go(-1);
         	},
             // 保存
             submit(){
-
+                let adressInfo = JSON.stringify(this.userAdress);
+                // TODO 传送给后台做保存
+                this.showAlert = true;
+                this.alertText = '保存成功！'
             },
             change (value) {
                 this.sureCity = value[0] + value[1] + value[2];

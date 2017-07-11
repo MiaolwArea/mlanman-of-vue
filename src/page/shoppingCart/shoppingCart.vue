@@ -4,7 +4,7 @@
             <div class="blank-cont color-bg-gray">
                 <img src="~assets/images/shoppingCart/bg_shoppingcart_blank.png">
                 <p class="fz16 fw">您购物车中没任何商品</p>
-                <a class="fz14 link-home" href="">去逛逛 ></a>
+                <router-link class="fz14 link-home" :to="{path: '/home'}">去逛逛 ></router-link>
             </div>
         </template>
         <template v-else>

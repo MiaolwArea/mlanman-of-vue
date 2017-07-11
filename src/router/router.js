@@ -14,6 +14,10 @@ const orderPointList = r => require.ensure([], () => r(require('../page/user/myP
 const login = r => require.ensure([], () => r(require('../page/user/login/login')), 'login')
 const adress = r => require.ensure([], () => r(require('../page/user/adress/adressList')), 'adress')
 const editAdress = r => require.ensure([], () => r(require('../page/user/adress/adressAdd')), 'editAdress')
+const order = r => require.ensure([], () => r(require('../page/user/order/orderList')), 'order')
+const logistics = r => require.ensure([], () => r(require('../page/user/logistics/logistics')), 'logistics')
+const payfeedback = r => require.ensure([], () => r(require('../page/user/payfeedback/payfeedbackList')), 'payfeedback')
+const comment = r => require.ensure([], () => r(require('../page/user/comment/comment')), 'comment')
 
 export default [{
     path: '/',
@@ -98,5 +102,25 @@ export default [{
                 component: editAdress
             }]
         },
+        // 我的订单页
+        {
+            path: '/user/order',
+            component: order
+        },
+        // 我的物流页
+        {
+            path: '/user/logistics',
+            component: logistics
+        },
+        // 我的售后页
+        {
+            path: '/user/payfeedback',
+            component: payfeedback
+        },
+        // 我的评价页
+        {
+            path: '/user/comment',
+            component: comment
+        }
     ]
 }]

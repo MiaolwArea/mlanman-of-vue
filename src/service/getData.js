@@ -130,6 +130,11 @@ export const setDefaultAdress = (id) => fetch('/setDefaultAdress');
  */
 export const getAdressInfo = () => fetch('/getAdressInfo');
 
+/**
+ * 订单列表数据
+ */
+export const getOrderList = () => fetch('/getOrderList');
+
 
 
 

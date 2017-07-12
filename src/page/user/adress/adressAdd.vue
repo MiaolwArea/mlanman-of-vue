@@ -58,7 +58,7 @@
 <script>
 import headTop from '@/components/header/head'
 import { getAdressInfo } from '@/service/getData'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { Picker } from 'vux'
 import alertTip from '@/components/common/alertTip'
 import { cityList } from '@/assets/applicationUtil/city'
@@ -89,9 +89,7 @@ import { cityList } from '@/assets/applicationUtil/city'
             
         },
         computed: {
-	        ...mapState({
-	            isLoading: state => state.loading.isLoading
-	        }),
+	        ...mapGetters([ 'isLoading' ]),
         	...mapState([
         		'userInfo',
     		]),

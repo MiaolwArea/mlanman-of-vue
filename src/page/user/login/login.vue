@@ -41,7 +41,7 @@
 <script>
 import headTop from '@/components/header/head'
 import { getcaptchas, accountLogin } from '@/service/getData'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 import alertTip from '@/components/common/alertTip'
 
     export default {
@@ -66,9 +66,7 @@ import alertTip from '@/components/common/alertTip'
             alertTip
 	    },
         computed: {
-            ...mapState({
-                isLoading: state => state.loading.isLoading
-            }),
+            ...mapGetters([ 'isLoading' ]),
             ...mapState([ 'isLogin' ]),
         },
         methods: {

@@ -31,7 +31,7 @@
 
 <script>
     import { orderPointList } from '@/service/getData'
-    import { mapState } from 'vuex'
+    import { mapState, mapGetters } from 'vuex'
     import { formatDate } from '@/components/common/mixin'
     import headTop from '@/components/header/head'
 
@@ -44,9 +44,7 @@
     		}
     	},
     	computed: {
-    		...mapState({
-                isLoading_view: state => state.loading.isLoading
-            }),
+    		...mapGetters([ 'isLoading' ]),
             ...mapState([ 'userInfo' ]),
     	},
         components: { headTop },

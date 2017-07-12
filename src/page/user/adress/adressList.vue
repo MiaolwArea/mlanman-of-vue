@@ -57,7 +57,7 @@
 <script>
 import headTop from '@/components/header/head'
 import { getAdress, setDefaultAdress } from '@/service/getData'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import alertTip from '@/components/common/alertTip'
 
     export default {
@@ -75,9 +75,7 @@ import alertTip from '@/components/common/alertTip'
             alertTip,
         },
         computed: {
-	        ...mapState({
-	            isLoading: state => state.loading.isLoading
-	        }),
+	        ...mapGetters([ 'isLoading' ]),
         	...mapState([
         		'userInfo',
     		])

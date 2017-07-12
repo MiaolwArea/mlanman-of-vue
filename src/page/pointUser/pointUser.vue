@@ -124,7 +124,7 @@
 	import footerNav from '@/components/footer/footerNav'
 	import {pointUser} from '@/service/getData'
 	import alertTip from '@/components/common/alertTip'
-	import { mapState } from 'vuex'
+	import { mapState, mapGetters } from 'vuex'
 	import { mVerification } from '@/components/common/mixin'
 
 	const boolerInfo = {false: '已订阅', true: '订阅提醒'};
@@ -160,9 +160,7 @@
 	        // this.initData();        
 	    },
 	    computed: {
-	        ...mapState({
-	            isLoading: state => state.loading.isLoading
-	        }),
+	        ...mapGetters([ 'isLoading' ]),
 	        ...mapState([ 'userInfo' ]),
 	    },
         methods: {

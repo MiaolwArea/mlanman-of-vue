@@ -37,7 +37,7 @@
 
 <script>
     import { myPoint } from '@/service/getData'
-    import { mapState } from 'vuex'
+    import { mapState, mapGetters } from 'vuex'
     import footerNav from '@/components/footer/footerNav'
     import { formatDate } from '@/components/common/mixin'
 
@@ -50,9 +50,7 @@
     		}
     	},
     	computed: {
-    		...mapState({
-                isLoading_view: state => state.loading.isLoading
-            }),
+    		...mapGetters([ 'isLoading' ]),
             ...mapState([ 'userInfo' ]),
     	},
         components: {

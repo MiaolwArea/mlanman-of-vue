@@ -142,7 +142,7 @@ import footerNav from '@/components/footer/footerNav'
 import { allGoodsList, newGoodsList, home, addsubscribe } from '@/service/getData'
 import { loadMore } from '@/components/common/mixin'
 import alertTip from '@/components/common/alertTip'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { mVerification } from '@/components/common/mixin'
 
 const reminderMap = {"1": "已订阅提醒", "0": "订阅新品提醒"};
@@ -176,9 +176,7 @@ export default {
         this.initData();
     },
     computed: {
-        ...mapState({
-            isLoading: state => state.loading.isLoading
-        }),
+        ...mapGetters([ 'isLoading' ]),
         ...mapState([ 'userInfo' ]),
     },
     methods: {

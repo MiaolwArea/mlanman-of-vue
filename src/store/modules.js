@@ -11,5 +11,5 @@ const loadingModule = {
 }
 
 export default {
-    loading:loadingModule
+    loading: loadingModule
 }

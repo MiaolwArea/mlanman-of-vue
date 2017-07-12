@@ -23,4 +23,4 @@ npm run build
 npm run build --report
 ```
 ## 技术栈
-vue2 + vuex + vux + vue-router + webpack + ES6/7 + fetch + sass + flex + svg + mock(json-server)
+vue2 + vuex + vux + vue-router + webpack + ES6/7 + fetch + sass + axios + svg + mock(json-server)

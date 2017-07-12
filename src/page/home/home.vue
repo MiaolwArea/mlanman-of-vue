@@ -183,10 +183,10 @@ export default {
         // 初始化获取数据
         async initData(){
             const _this = this;
-            let newGoodsListRes = await newGoodsList();
+            let newGoodsListRes = _this._ajaxDoSomething(await newGoodsList());
             _this.newGoodsListArr = newGoodsListRes.data;
 
-            let res = await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null);
+            let res = _this._ajaxDoSomething(await allGoodsList(_this.counts, _this.skin || null, _this.scene.length != 0 ? _this.scene : null));
             let resData = res.data.info;
 
             _this.totalNum = res.data.total;
@@ -197,7 +197,7 @@ export default {
                 _this.avatar = _this.userInfo.avatar;
             }
             
-            let homeRes = await home();
+            let homeRes = _this._ajaxDoSomething(await home());
             _this.news = homeRes.data.news;
             _this._onLineTimeOfDay(homeRes.data.newGoodsOnline);
         },

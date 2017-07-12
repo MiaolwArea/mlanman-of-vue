@@ -4,17 +4,17 @@ import {
 	baseUrl
 } from '@/assets/config/env'
 
-async function axiosToDo(url, paramObj, type = 'GET', prefix = true){ 
+function axiosToDo(url, paramObj, type = 'GET', prefix = true){ 
 	let urlInfo = prefix ? baseUrl + url : url;
 
 	if(type === 'POST'){
-		return await axios.post(urlInfo, paramObj).then((res) => {
+		return axios.post(urlInfo, paramObj).then((res) => {
 			return res.data;
 		}).catch(error => {
 			console.log(error);
 		});
 	}else{
-		return await axios.get(urlInfo, {
+		return axios.get(urlInfo, {
 			params: paramObj
 		}).then((res) => {
 			return res.data;
@@ -25,14 +25,14 @@ async function axiosToDo(url, paramObj, type = 'GET', prefix = true){
 }
 
 /**
- * 当季新品
+ * 首页信息
  */
 export const home = () => axiosToDo('/home');
+
 /**
  * 当季新品
  */
 export const newGoodsList = () => axiosToDo('/newGoodsList');
-
 /**
  * 全部商品
  * @param {Number} counts   显示总数
@@ -95,7 +95,7 @@ export const goodsDetial = (order_id) => axiosToDo('/goodsDetial', {order_id: or
 export const popularGoods = () => axiosToDo('/popularGoods');
 
 /**
- * 最受欢迎、热门商品
+ * 评论列表
  */
 export const commentList = () => axiosToDo('/commentList');
 
@@ -122,7 +122,7 @@ export const orderPointList = () => axiosToDo('/orderPointList');
 /**
  * 获取图片验证码
  */
-export const getcaptchas = () => axiosToDo('http://cangdu.org:8001/v1/captchas', {},'POST', 'axiosToDo', false);
+export const getcaptchas = () => axiosToDo('http://cangdu.org:8001/v1/captchas', {}, 'POST', false);
 
 /**
  * 用户登入验证(POST)
@@ -148,7 +148,7 @@ export const getAdress = () => axiosToDo('/getAdress');
 export const setDefaultAdress = (id) => axiosToDo('/setDefaultAdress');
 
 /**
- * 地址列表数据
+ * 获取编辑地址
  */
 export const getAdressInfo = () => axiosToDo('/getAdressInfo');
 

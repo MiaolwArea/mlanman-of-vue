@@ -581,69 +581,72 @@
   "getOrderList":{
     "error": 0,
     "msg": null,
-    "data": [{
-      "order_id": 1,
-      "goods": [{
-        "id": 11,
-        "outside_view": "http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg",
-        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
-        "shop_price": 120.00,
-        "color_name": "#204 日光倾城",
-        "num": 1
+    "data": {
+      "total": 3,
+      "info": [{
+        "order_id": 1,
+        "goods": [{
+          "id": 11,
+          "outside_view": "http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg",
+          "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+          "shop_price": 120.00,
+          "color_name": "#204 日光倾城",
+          "num": 1
+        },{
+          "id": 12,
+          "outside_view": "http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg",
+          "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+          "shop_price": 240.00,
+          "color_name": "#204 日光倾城",
+          "num": 2
+        }],
+        "count_num": 3,
+        "count_price": 360.00,
+        "add_time": 1499011200,
+        "order_states": 2
       },{
-        "id": 12,
-        "outside_view": "http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg",
-        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
-        "shop_price": 120.00,
-        "color_name": "#204 日光倾城",
-        "num": 2
-      }],
-      "count_num": 3,
-      "count_price": 360.00,
-      "add_time": 1499011200,
-      "order_states": 2
-    },{
-      "order_id": 2,
-      "goods": [{
-        "id": 11,
-        "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
-        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
-        "shop_price": 120.00,
-        "color_name": "#204 日光倾城",
-        "num": 1
+        "order_id": 2,
+        "goods": [{
+          "id": 11,
+          "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
+          "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+          "shop_price": 120.00,
+          "color_name": "#204 日光倾城",
+          "num": 1
+        },{
+          "id": 12,
+          "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
+          "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+          "shop_price": 240.00,
+          "color_name": "#204 日光倾城",
+          "num": 2
+        }],
+        "count_num": 3,
+        "count_price": 360.00,
+        "add_time": 1499011200,
+        "order_states": 1
       },{
-        "id": 12,
-        "outside_view": "http://image.lanman.cn/2017/06/16/94598967f5bdb89298d1607c19393987.jpg",
-        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
-        "shop_price": 120.00,
-        "color_name": "#204 日光倾城",
-        "num": 2
-      }],
-      "count_num": 3,
-      "count_price": 360.00,
-      "add_time": 1499011200,
-      "order_states": 1
-    },{
-      "order_id": 3,
-      "goods": [{
-        "id": 11,
-        "outside_view": "http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg",
-        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
-        "shop_price": 120.00,
-        "color_name": "#204 日光倾城",
-        "num": 1
-      },{
-        "id": 12,
-        "outside_view": "http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg",
-        "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
-        "shop_price": 120.00,
-        "color_name": "#204 日光倾城",
-        "num": 2
-      }],
-      "count_num": 3,
-      "count_price": 360.00,
-      "add_time": 1499011200,
-      "order_states": 1
-    }]
+        "order_id": 3,
+        "goods": [{
+          "id": 11,
+          "outside_view": "http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg",
+          "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+          "shop_price": 120.00,
+          "color_name": "#204 日光倾城",
+          "num": 1
+        },{
+          "id": 12,
+          "outside_view": "http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg",
+          "goods_name": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+          "shop_price": 240.00,
+          "color_name": "#204 日光倾城",
+          "num": 2
+        }],
+        "count_num": 3,
+        "count_price": 360.00,
+        "add_time": 1499011200,
+        "order_states": 1
+      }]
+    }
   }
 }

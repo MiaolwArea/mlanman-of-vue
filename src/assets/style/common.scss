@@ -112,7 +112,7 @@ img{
     @include remCalc('padding', 20, 10);
 }
 .padd-all-1010{
-    @include remCalc('padding', 10, 10);
+    @include remCalc('padding', 10);
 }
 .clear:after{
     content: ".";

@@ -196,7 +196,8 @@
             }
             span, i{
                 color: #989898;
-            }        }
+            }        
+        }
         .member-id{
             margin-right: 5px;
         }
@@ -228,6 +229,9 @@
             a{
                 @include remCalc('padding', 15);
                 display: block;
+            }
+            span, i{
+                vertical-align: middle;
             }
         }
     }

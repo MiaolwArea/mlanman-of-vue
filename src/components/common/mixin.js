@@ -79,7 +79,7 @@ export const loadMore = {
  */
 export const formatDate = {
 	filters: {
-		formatDate(time, format){
+		formatDate(time, format = 'yyyy-MM-dd'){
 			if(/^[0-9]*$/.test(time) == false){
 				return time;
 			}

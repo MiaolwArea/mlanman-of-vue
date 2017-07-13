@@ -171,7 +171,7 @@ img{
     @include remCalc('padding', 15, 10);
 }
 .link-known{
-    @include remCalc('padding', 5, 10);
+    @include remCalc('padding', 10, 15);
     background-color: #000;
 }
 // ul列表

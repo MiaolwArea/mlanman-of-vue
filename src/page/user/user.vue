@@ -1,7 +1,7 @@
 <template>
     <div id="member" class="footer-height">
         <section class="about-me">
-            <a class="member-photo" href="">
+            <a class="member-photo">
                 <img :src="avatar">
             </a>
             <div class="member-info">
@@ -18,37 +18,37 @@
         </section>
         <section class="menu">
             <ul class="menu-list">
-                <li class="list-item">
+                <li class="list-item fz14">
                     <a @click="gotoAddress({path: '/user/order'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的订单</span>
                     </a>
                 </li>
-                <li class="list-item">
+                <li class="list-item fz14">
                     <a @click="gotoAddress({path: '/user/logistics'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的物流</span>
                     </a>
                 </li>
-                <li class="list-item">
+                <li class="list-item fz14">
                     <a @click="gotoAddress({path: '/user/payfeedback'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的售后</span>
                     </a>
                 </li>
-                <li class="list-item">
+                <li class="list-item fz14">
                     <a @click="gotoAddress({path: '/user/comment'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的评价</span>
                     </a>
                 </li>
-                <li class="list-item">
+                <li class="list-item fz14">
                     <a @click="gotoAddress({path: '/user/adress'})">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">我的地址</span>
                     </a>
                 </li>
-                <li class="list-item">
+                <li class="list-item fz14">
                     <a @click="outLogin">
                         <i class="iconfont icon-sub">&#xe605;</i>
                         <span class="menu-name">{{ loginState ? '退出登入' : '登入/注册' }}</span>
@@ -63,12 +63,12 @@
                     距离下次新品发布还有1天
                 </div>
                 <div class="col-4 tar">
-                    <a class="link-known" @click="subRemind">订阅新品提醒</a>
+                    <a class="link-known fz14" @click="subRemind">订阅新品提醒</a>
                 </div>
             </div>
         </section>
         <section class="recommend padd-lr" v-show="recommendList">
-            <p class="title fz14">LANMAN向您推荐</p>
+            <p class="title fz14 fw">LANMAN向您推荐</p>
             <ul class="item-list fl">
                 <router-link v-for="item in recommendList" :key="item.id" :to="{path: 'goods', query: {id: item.id}}" tag="li" class="list-item" >
                     <img class="item-view" :src="item.outside_view">
@@ -181,8 +181,8 @@
         background: url(~assets/images/member/bg-my.jpg) no-repeat center;
         background-size: cover;
         .member-photo{
-            width: strip-rem(70px);
-            height: strip-rem(70px);
+            width: strip-rem(75px);
+            height: strip-rem(75px);
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid #fff;

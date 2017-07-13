@@ -137,8 +137,8 @@
 		}
         .get-point-btn{
             display: block;
-            height: strip-rem(40px);
-            line-height: strip-rem(40px);
+            height: strip-rem(48px);
+            line-height: strip-rem(48px);
             margin-bottom: strip-rem(40px);
         }
 	}

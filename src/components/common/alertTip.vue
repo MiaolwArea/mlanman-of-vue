@@ -4,7 +4,7 @@
         <section v-show="isShow" v-if="confirmModel == 1" class="alet-container">
             <div class="tip-text-container">
                 <div class="tip-text" :class="{tal: isUpload === true}">
-                    <div v-html="alertText" class="color-ft-black"></div>
+                    <div v-html="alertText" class="color-ft-black fz14"></div>
                     <div v-if="isUpload" class="upload-wrapper">
                         <div class="upload">
                             <img src="http://image.lanman.cn/2016/m.lanman.cn/images/comment/add.png">
@@ -149,8 +149,8 @@
         top: 50%;
         left: 50%;
         margin-top: -50%;
-        margin-left: strip-rem(-120px);
-        width: strip-rem(240px);
+        margin-left: strip-rem(-140px);
+        width: strip-rem(280px);
         animation: tipMove .4s ;
         background-color: rgba(255,255,255,1);
         border: 1px solid #8e8e8e;

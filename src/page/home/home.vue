@@ -3,7 +3,7 @@
     <section class="top-logo">
     	<div class="small-logo" @click="showChangeBlock = true">
     		<img src="~assets/images/common/small_logo.png" />
-    		<span class="fz14">关注公众号</span>
+    		<span class="fz14 fw">关注公众号</span>
     	</div>
     	<div class="slogn">
     		<a href="javascript:void(0);">
@@ -13,7 +13,7 @@
     </section>
     <section class="news">
     	<a :href="news.link_to">
-    		<p class="news-title"><span>{{ news.title }}</span></p>
+    		<p class="news-title fw"><span>{{ news.title }}</span></p>
     	</a>
     	<video id="news_video" preload="none" src="http://apps.mushu.cn/lanman_20161205.mp4" poster=""></video>
     </section>
@@ -279,10 +279,10 @@ export default {
 
 	.small-logo{
 		@include fj('flex-start');
-		@include remCalc('padding', 10);
+		@include remCalc('padding', 10, 15);
 		img{
-			@include remCalc('height', 30);
-			@include remCalc('width', 30);
+			@include remCalc('height', 36);
+			@include remCalc('width', 36);
 			@include remCalc('margin-right', 10);
 		}
 	}
@@ -351,7 +351,7 @@ export default {
 	    color: #000;
 	    text-align: center;
 	    @include remCalc('font-size', $newsFZ);
-	    @include remCalc('line-height', 41);
+	    @include remCalc('line-height', 48);
 	}
 	.after-sale-service{
 		@include remCalc('margin', 20, 15, 15, 25);

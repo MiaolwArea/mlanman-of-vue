@@ -6,6 +6,13 @@ import store from './store/'
 import './assets/applicationUtil/flexible' 
 import loading from './components/common/loading'
 import vueUtils from './assets/applicationUtil/vueUtils'
+import FastClick from 'fastclick'
+
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
 
 Vue.use(VueRouter);
 Vue.use(VueResource);

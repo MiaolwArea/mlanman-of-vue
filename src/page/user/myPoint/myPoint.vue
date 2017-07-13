@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </section>
-        <loading v-show="isLoading_view"></loading>
+        <loading v-show="isLoading"></loading>
         <footer-nav :isShopcart="false"></footer-nav> 
         <transition name="lf-slid">
             <router-view></router-view>

@@ -3,7 +3,7 @@
 $gray: #333;
 $color-a3: #a3a3a3;
 $newsFZ: 14;
-$browser-default-font-size: 32px !default;
+$browser-default-font-size: 37.5px !default;
 
 @function strip-units($number){ 
 	@return $number / ($number * 0 + 1);

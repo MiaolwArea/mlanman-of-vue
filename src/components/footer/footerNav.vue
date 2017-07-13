@@ -60,8 +60,8 @@
 	    		</a>
 	    	</li>
 	    </ul>
-        <div class="shopcart pa" v-show="isShopcart" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
-            <a class="iconfont icon-fixed-shopcar"></a>
+        <div class="shopcart pa tac" v-show="isShopcart" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
+            <a class="iconfont icon-fixed-shopcar fz20"></a>
             <div class="cart-num">{{ cartNumSide }}</div>
         </div>
 	</nav>
@@ -141,7 +141,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 <style lang="scss" scoped>
 	@import '~assets/style/mixin.scss';
 
-    $footerNavHeight: 50px;
+    $footerNavHeight: 60px;
     .footer-nav{
     	position: fixed;
     	background-color: #4c4c4c;
@@ -215,11 +215,11 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 		}
         .shopcart{
             right: strip-rem(10px);
-            top: strip-rem(-50px);
+            top: strip-rem(-70px);
             border-radius: 50%;
-            width: strip-rem(35px);
-            height: strip-rem(35px);
-            padding: strip-rem(9px);
+            width: strip-rem(48px);
+            height: strip-rem(48px);
+            line-height: strip-rem(45px);
             border: 1px solid #fff;
         }
         .cart-num{

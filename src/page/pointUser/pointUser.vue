@@ -5,17 +5,17 @@
 			    <div class="point-info-header">
 			        <div class="my-money-item-point txt-align-l pr">
 			            <i class="iconfont icon-point ft-34">&#xe61e;</i>
-			            <span>我的积分</span>
+			            <span class="fz14">我的积分</span>
 			            <span class="point-num fz18">{{ num }}</span>
 			        </div>
 			        <div class="my-money-item-log txt-align-r" @click="gotoAddress({path: '/user/myPoint'})">
 			            <i class="iconfont icon-point ft-34">&#xe61f;</i>
-			            <span>积分记录</span>
+			            <span class="fz14">积分记录</span>
 			        </div>
 			    </div>
 			    <div class="point-info-drawing">
 			        <div class="dial-container-wrapper">
-			            <div class="drawing-info fz12">
+			            <div class="drawing-info">
 			                <p>已获口红</p>
 			                <p class="perc">{{ percenNum }}%</p>
 			                <p>差积分{{ difNum }}</p>
@@ -58,8 +58,8 @@
 			        </div>
 			    </div>
 			    <div class="ins">
-			        <p class="mb1r">家族成员每增加1人，可获得1个积分（上限30分）</p>
-			        <p>家族订单每增加1单，可获得20个积分</p>
+			        <p class="mb1r fz14">家族成员每增加1人，可获得1个积分（上限30分）</p>
+			        <p class="fz14">家族订单每增加1单，可获得20个积分</p>
 			    </div>
 			</section>
 			<div class="divide-line"></div>
@@ -78,8 +78,8 @@
 			                        <span>10</span>
 			                    </div>
 			                </div>
-			                <div class="misstion-btn col-2">
-			                    <a @click="showMyPic(true)">晒单</a>
+			                <div class="misstion-btn col-2" @click="showMyPic(true)">
+			                    <a>晒单</a>
 			                </div>
 			            </li>
 			            <li class="list-item">
@@ -89,8 +89,8 @@
 			                        <i class="iconfont ft-28">&#xe61e;</i>
 			                    </div>
 			                </div>
-			                <div class="misstion-btn col-3" :class="{active: reminderTxt == '已订阅'}">
-			                    <a @click="subReminder">{{ reminderTxt }}</a>
+			                <div class="misstion-btn col-3" @click="subReminder" :class="{active: reminderTxt == '已订阅'}">
+			                    <a>{{ reminderTxt }}</a>
 			                </div>
 			            </li>
 			            <li class="list-item" v-for="item in missionList" :key="item.task_id" v-if="item.status != 3">
@@ -101,9 +101,11 @@
 			                        <span>{{ item.val }}</span>
 			                    </div>
 			                </div>
-			                <div class="misstion-btn col-3">
-			                    <a @click="showMyPic(false, item.remark)" v-if="item.status == 1">查看</a>
-			                    <a @click="reward(item.id)" v-if="item.status == 2">领取</a>
+			                <div class="misstion-btn col-3" @click="showMyPic(false, item.remark)" v-if="item.status == 1">
+			                    <a>查看</a>
+			                </div>
+			                <div class="misstion-btn col-3" @click="reward(item.id)" v-if="item.status == 2">
+			                    <a>领取</a>
 			                </div>
 			            </li>
 			        </ul>
@@ -301,24 +303,14 @@
 	}
 	/* 条形圆图 */
 	.point-info-drawing{
-		@include remCalc('height', 100);
+		@include remCalc('height', 120);
 		@include remCalc('margin-top', 10);
 	}
 	.dial-container-wrapper {
 		position: absolute; 
-		@include remCalc('height', 100);
-		@include remCalc('width', 100);
-		left: calc(50% - #{strip-rem(50px)});
-		&:after{
-			content: "";
-			background: #000;
-			border-radius: 50%;
-			width: strip-rem(80px);
-			height: strip-rem(80px);
-			position: absolute;
-			top: strip-rem(10px);
-			left: strip-rem(10px);
-		}
+		@include remCalc('height', 120);
+		@include remCalc('width', 120);
+		left: calc(50% - #{strip-rem(60px)});
 	}
 	.donut__svg__circle--one{
 		stroke-dasharray: $circumference;
@@ -327,9 +319,8 @@
 	}   
 	.drawing-info{
 		position: absolute;
-		top: 50%;
-		width: strip-rem(55px); 
-		height: strip-rem(60px); 
+		top: 47%;
+		width: strip-rem(60px); 
 		left: 50%;
 		margin-left: strip-rem(-27.5px); 
 		margin-top: strip-rem(-30px); 

@@ -50,7 +50,7 @@
 	    		<a class="nav-itme">
 	    			<i class="iconfont fz20 icon-tabbar-point"></i>
                     <p>积分</p>
-                    <!-- <div :class="{'red-spot': userInfo.isTask}"></div> -->
+                    <div :class="{'red-spot': isTask}"></div>
 	    		</a>
 	    	</li>
 	    	<li :class="{active: /\/user$/g.test($route.path)}" @click="gotoAddress({path: '/user'})">
@@ -80,7 +80,8 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             return{
                 isService: false,       // 是否显示联系客服二维码
                 cartNumSide: 0,         // 悬浮购物车商品数量
-                autoHide: true,
+                autoHide: true,         // 隐藏购物车
+                isTask: false,          // 是否有积分任务
             }
         },
         props: {
@@ -124,6 +125,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             ]),
             // 地址跳转
         	gotoAddress(path){
+                this._unbindScroll();
         		this.$router.push(path)
         	},
             // 加入购物车
@@ -144,12 +146,8 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             },
             // 滚动隐藏购物车
             _autoHideShopCart(){
-                if(!this.isShopcart){
-                    this._unbindScroll();
-                    return;
-                }
-                window.addEventListener('scroll', this._scrollHandler, false)
-                window.addEventListener('touchend', this._moveEnd, false)
+                document.addEventListener('scroll', this._scrollHandler, false);
+                document.addEventListener('touchend', this._moveEnd, false);
             },
             _moveEnd(e){
                 oldScrollTop = document.body.scrollTop;
@@ -157,7 +155,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
                     requestFram = requestAnimationFrame(() => {
                         if (document.body.scrollTop != oldScrollTop) {
                             oldScrollTop = document.body.scrollTop;
-                            this._moveEnd();
+                            loops();
                         } else {
                             cancelAnimationFrame(requestFram);
                         }
@@ -173,7 +171,16 @@ import { mapState, mapActions, mapMutations } from 'vuex'
                     this.autoHide = true;
                 }, 1000);
             },
+            _unbindScroll(){
+                document.removeEventListener('scroll', this._scrollHandler, false);
+                document.removeEventListener('touchend', this._moveEnd, false);
+            }
         },
+        watch: {
+            userInfo(Objs){
+                this.isTask = Objs.isTask;
+            },
+        }
     }
 </script>
 <style lang="scss" scoped>
@@ -216,14 +223,14 @@ import { mapState, mapActions, mapMutations } from 'vuex'
                 }
                 li:nth-child(3){
                     background-color: #5f5f5f;
-                    line-height: strip-rem(50px);
+                    line-height: strip-rem(60px);
                 }
                 li.cant{
                     background-color: #a0a0a0;
                 }
                 li:nth-child(4){
                     background-color: #000;
-                    line-height: strip-rem(50px);
+                    line-height: strip-rem(60px);
                 }
                 li:nth-child(3), li:nth-child(4){
                     width: 30%;
@@ -239,7 +246,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
     		text-align: center;
     		li{
     			width: 25%;
-                height: strip-rem(50px);
+                height: strip-rem(60px);
                 @include remCalc('padding', 6, 0);
     		}
     		i,p{
@@ -280,7 +287,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
         .red-spot{
             position: absolute;
             top: strip-rem(5px);
-            left: strip-rem(15px);
+            left: strip-rem(25px);
             background-color: red;
             width: strip-rem(10px);
             height: strip-rem(10px);

@@ -346,8 +346,8 @@ import alertTip from '@/components/common/alertTip'
         @include remCalc('padding', 20, 10);
         .pay-btn{
             display: block;
-            height: strip-rem(40px);
-            line-height: strip-rem(40px);
+            height: strip-rem(45px);
+            line-height: strip-rem(45px);
             background-color: #000;
         }
     }

@@ -150,8 +150,8 @@ import { cityList } from '@/assets/applicationUtil/city'
     .add-btn{
         display: block;
         text-align: center;
-        height: strip-rem(40px);
-        line-height: strip-rem(40px);
+        height: strip-rem(45px);
+        line-height: strip-rem(45px);
         width: 100%;
     }
     .specs_list{

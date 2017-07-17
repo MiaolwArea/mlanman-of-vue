@@ -1,6 +1,6 @@
 <template>
 <transition name="lf-slid" mode="out-in">
-	<div id="adress-list" class="header-height bg-gray children-view">
+	<div id="adress-list" class="header-height children-view">
         <template v-show="isChildren">
     		<head-top head-title="地址管理" go-back='true'></head-top>
     		<section class="address-list-block color-bg-black">
@@ -140,6 +140,7 @@ import alertTip from '@/components/common/alertTip'
 	.mr5{
 		margin-right: strip-rem(15px);
 	}
+    #adress-list.children-view{ background-color: #333; }
     .address-operate{
     	border-top: 1px solid #333;
     	padding-top: strip-rem(10px);
@@ -170,7 +171,7 @@ import alertTip from '@/components/common/alertTip'
     	display: block;
     	text-align: center;
     	margin: strip-rem(10px);
-    	height: strip-rem(40px);
-    	line-height: strip-rem(40px);
+    	height: strip-rem(45px);
+    	line-height: strip-rem(45px);
     }
 </style>

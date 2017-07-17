@@ -230,10 +230,7 @@
       "patriarch": "无名",
       "subscribe": 0,
       "phone_num": 18759376268,
-      "isTask": true,
-      "a": {
-        "b": 12
-      }
+      "isTask": true
     }
   },
   "getUserByNull": {

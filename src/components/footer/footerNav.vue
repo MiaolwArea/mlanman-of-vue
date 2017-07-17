@@ -60,15 +60,20 @@
 	    		</a>
 	    	</li>
 	    </ul>
-        <div class="shopcart pa tac" v-if="isShopcart" v-show="autoHide" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
-            <a class="iconfont icon-fixed-shopcar fz20"></a>
-            <div class="cart-num">{{ cartNumSide }}</div>
-        </div>
+        <transition name="lf-slid">
+            <div class="shopcart pa tac" v-if="isShopcart" v-show="autoHide" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
+                <a class="iconfont icon-fixed-shopcar fz20"></a>
+                <div class="cart-num">{{ cartNumSide }}</div>
+            </div>
+        </transition>
 	</nav>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex'
+    let requestFram
+        , oldScrollTop
+        , timer;
 
     export default {
     	data(){
@@ -137,20 +142,37 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             joinOrder(path){
                 this.$emit('joinOrder', path);
             },
-            // 
+            // 滚动隐藏购物车
             _autoHideShopCart(){
                 if(!this.isShopcart){
                     this._unbindScroll();
                     return;
                 }
                 window.addEventListener('scroll', this._scrollHandler, false)
+                window.addEventListener('touchend', this._moveEnd, false)
+            },
+            _moveEnd(e){
+                oldScrollTop = document.body.scrollTop;
+                const loops = () => {
+                    requestFram = requestAnimationFrame(() => {
+                        if (document.body.scrollTop != oldScrollTop) {
+                            oldScrollTop = document.body.scrollTop;
+                            this._moveEnd();
+                        } else {
+                            cancelAnimationFrame(requestFram);
+                        }
+                        this._scrollHandler();
+                    })
+                }
+                loops();
             },
             _scrollHandler(){
-                
+                clearTimeout(timer);
+                this.autoHide = false;
+                timer = setTimeout(() => {
+                    this.autoHide = true;
+                }, 1000);
             },
-            _unbindScroll(){
-                window.removeEventListener('scroll', this._scrollHandler, false);
-            }
         },
     }
 </script>

@@ -9,7 +9,7 @@
 
 let baseUrl = 'http://localhost:3000'; 
 let routerMode = 'history';
-let imgBaseUrl = 'http://images.cangdu.org/';
+let imgBaseUrl = '';
 
 
 if (process.env.NODE_ENV == 'development') {

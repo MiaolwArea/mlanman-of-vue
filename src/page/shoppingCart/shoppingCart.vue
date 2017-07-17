@@ -31,7 +31,7 @@
                         </router-link>
                         <div class="order-goods-info col-8">
                             <p class="fz14 color-ft-a3">{{ item.name }}</p>
-                            <p class="tar color-ft-a3">¥{{ item.price | subNumber }}</p>
+                            <p class="tar color-ft-a3 padding-5">¥{{ item.price | subNumber }}</p>
                             <div class="order-goods-num lr-col">
                                 <div class="num lr-col" @click="changeNumAlert(item.id, listNum[item.id] || item.num)">
                                     <span>数量：</span>
@@ -250,6 +250,7 @@ import alertTip from '@/components/common/alertTip'
 	@import '~assets/style/mixin.scss';
 
     .padding-1{ padding: strip-rem(10px); }
+    .padding-5{ padding: strip-rem(5px) 0; }
     .color-cart-black{ color: #000; }
     .blank-cont{
         position: fixed;
@@ -272,7 +273,7 @@ import alertTip from '@/components/common/alertTip'
         @include fj();
         color: #3a3a3a;
         .receive{
-            margin-bottom: strip-rem(10px);
+            margin: strip-rem(10px) 0;
         }
     }
     .order-my-pic{
@@ -287,7 +288,7 @@ import alertTip from '@/components/common/alertTip'
             color: $color-a3;
         }
         .box{
-            @include wh(20px, 20px);
+            @include wh(25px, 25px);
             text-align: center;
             line-height: 2;
             border: 1px solid $color-a3;

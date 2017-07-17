@@ -5,23 +5,23 @@
             <ul class="address-item-list">
                 <li class="goods-item">
                     <label class="fz16 fw">收货人</label>
-                    <input class="consignee color-bg-gray mt10" type="text" placeholder="必填" v-model="userAdress.consignee" />
+                    <input class="consignee color-bg-gray mt10 fz14" type="text" placeholder="必填" v-model="userAdress.consignee" />
                 </li>
                 <li class="goods-item">
                     <label class="fz16 fw">联系电话</label>
-                    <input class="consignee color-bg-gray mt10" type="text" placeholder="必填" v-model="userAdress.phoneNum" />
+                    <input class="consignee color-bg-gray mt10 fz14" type="text" placeholder="必填" v-model="userAdress.phoneNum" />
                 </li>
                 <li class="goods-item">
                     <label class="fz16 fw">邮政编码</label>
-                    <input class="consignee color-bg-gray mt10" type="text" placeholder="选填" v-model="userAdress.postcode" />
+                    <input class="consignee color-bg-gray mt10 fz14" type="text" placeholder="选填" v-model="userAdress.postcode" />
                 </li>
                 <li class="goods-item">
                     <label class="fz16 fw">所在城市</label>
-                    <input class="consignee color-bg-gray mt10"  @click="showChangeBlock = true" type="text" v-model="userAdress.city" />
+                    <input class="consignee color-bg-gray mt10 fz14"  @click="showChangeBlock = true" type="text" v-model="userAdress.city" />
                 </li>
                 <li class="goods-item">
                     <label class="fz16 fw">详细地址</label>
-                    <input class="consignee color-bg-gray mt10" type="text" placeholder="必填" v-model="userAdress.address" />
+                    <input class="consignee color-bg-gray mt10 fz14" type="text" placeholder="必填" v-model="userAdress.address" />
                 </li>
             </ul>   
             
@@ -93,7 +93,7 @@ import { cityList } from '@/assets/applicationUtil/city'
         	...mapState([
         		'userInfo',
     		]),
-    		headerTitile(){
+    		headerTitile(){ 
     			return this._isEmptyObject(this.$route.query) ? '添加地址信息' : '编辑地址信息';
     		}
         },
@@ -102,7 +102,7 @@ import { cityList } from '@/assets/applicationUtil/city'
                 let getAdressInfoRes = this._ajaxDoSomething(await getAdressInfo()).data;
 
                 this.userAdress = getAdressInfoRes;
-                // TODO 做一个城市转化['val1', 'val2', 'val3']
+                // TODO 做一个城市转化为['val1', 'val2', 'val3']
                 // this.cityVal = ['fj', 'xm', 'huli']
                 // this.sureCity = ['fj', 'xm', 'huli']
         	},
@@ -120,7 +120,7 @@ import { cityList } from '@/assets/applicationUtil/city'
                 this.sureCity = value[0] + value[1] + value[2];
             },
             changeCityAlertSure(){
-                this.userAdress.city = this.sureCity;
+                this.userAdress.city = this.$refs.picker1.getNameValues().replace(/\s/g, "");
                 this.showChangeBlock = false;
             }
         },
@@ -142,7 +142,8 @@ import { cityList } from '@/assets/applicationUtil/city'
             display: block;
         }
         input{
-            @include wh(200px, 25px);
+            width: 100%;
+            height: strip-rem(35px);
             padding: 0 strip-rem(5px);
         }
     }

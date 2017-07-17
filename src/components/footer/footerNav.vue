@@ -60,7 +60,7 @@
 	    		</a>
 	    	</li>
 	    </ul>
-        <div class="shopcart pa tac" v-show="isShopcart" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
+        <div class="shopcart pa tac" v-if="isShopcart" v-show="autoHide" @click="gotoAddress({path: (cartNumSide ? '/shoppingCart/?num=' + cartNumSide : '/shoppingCart')})">
             <a class="iconfont icon-fixed-shopcar fz20"></a>
             <div class="cart-num">{{ cartNumSide }}</div>
         </div>
@@ -75,6 +75,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             return{
                 isService: false,       // 是否显示联系客服二维码
                 cartNumSide: 0,         // 悬浮购物车商品数量
+                autoHide: true,
             }
         },
         props: {
@@ -101,6 +102,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             // 获取用户信息
             this.getUserInfo();
             this.initCartNum();
+            this._autoHideShopCart();
         },
         computed: {
             ...mapState([
@@ -134,6 +136,20 @@ import { mapState, mapActions, mapMutations } from 'vuex'
             // 立即下单
             joinOrder(path){
                 this.$emit('joinOrder', path);
+            },
+            // 
+            _autoHideShopCart(){
+                if(!this.isShopcart){
+                    this._unbindScroll();
+                    return;
+                }
+                window.addEventListener('scroll', this._scrollHandler, false)
+            },
+            _scrollHandler(){
+                
+            },
+            _unbindScroll(){
+                window.removeEventListener('scroll', this._scrollHandler, false);
             }
         },
     }

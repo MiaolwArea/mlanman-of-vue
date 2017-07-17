@@ -144,7 +144,7 @@ import alertTip from '@/components/common/alertTip'
     	border-top: 1px solid #333;
     	padding-top: strip-rem(10px);
     	.set-default{
-    		input, span{
+    		input, label{
     			vertical-align: middle;
     		}
     	}
@@ -157,7 +157,7 @@ import alertTip from '@/components/common/alertTip'
     	}
     	.icon{
     		display: inline-block;
-    		@include wh(15px, 15px);
+    		@include wh(20px, 20px);
     		background-color: #474747;
     		text-align: center;
     		margin-right: strip-rem(3px);

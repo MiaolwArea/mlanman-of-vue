@@ -51,6 +51,7 @@
             Swiper,
             SwiperItem,
         },
+        mixins: [ mVerification ],
         mounted(){
         },
         computed: {

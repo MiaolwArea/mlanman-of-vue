@@ -89,6 +89,8 @@
     import { mapState, mapMutations } from 'vuex'
     import alertTip from '@/components/common/alertTip'
 
+    let sureTipType;
+
     export default {
     	data(){
             return{
@@ -136,8 +138,10 @@
             },
             outLogin(){
                 if(this.loginState){
-                    this.OUT_LOGIN();
-                    removeStore('user_id');
+                    this.showAlert = true;
+                    this.alertText = "确认退出登入？";
+                    sureTipType = 1;
+                    return;
                 }
                 this.$router.push('/user/login');
             },
@@ -151,14 +155,24 @@
                 this.alertText = "有新品上市，您将会收到公众号推送的消息";
             },
             async sureTip(){
-                if(!this.loginState){
-                    this.showAlert = false;
-                    this.$router.push('/user/login');
+                const _this = this;
+                
+                if(!_this.loginState){
+                    _this.showAlert = false;
+                    _this.$router.push('/user/login');
                     return;
                 }
-                let addsubscribeRes = this._ajaxDoSomething(await addsubscribe());
-                this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
-                this.showAlert = false;
+                if(sureTipType == 1){
+                    _this.OUT_LOGIN();
+                    removeStore('user_id');
+                    _this.showAlert = false;
+                    _this.$router.push('/user/login');
+                    return;
+                }else{
+                    let addsubscribeRes = _this._ajaxDoSomething(await addsubscribe());
+                    _this.reminderTxt = reminderMap[addsubscribeRes.data.subscribe];
+                    _this.showAlert = false;
+                }
             },
         },
         watch: {

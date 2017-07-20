@@ -24,3 +24,9 @@ npm run build --report
 ```
 ## 技术栈
 vue2 + vuex + vux + vue-router + webpack + ES6/7 + flex + sass + axios + svg + mock(json-server)
+## 预览图
+
+<img src="https://github.com/MiaolwArea/mlanman-of-vue/blob/master/preView/home.png" width = "319" height = "565" align=center />&emsp;<img src="https://github.com/MiaolwArea/mlanman-of-vue/blob/master/preView/shopcart.png" width = "319" height = "565" align=center />
+
+
+<img src="https://github.com/MiaolwArea/mlanman-of-vue/blob/master/preView/goodsDetail.png" width = "319" height = "565" align=center />&emsp;<img src="https://github.com/MiaolwArea/mlanman-of-vue/blob/master/preView/userPoint.png" width = "319" height = "565" align=center />
